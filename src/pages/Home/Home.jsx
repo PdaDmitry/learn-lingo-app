@@ -29,6 +29,7 @@ export const Home = () => {
         <svg className={css.imgSvg}>
           <use href="/symbol-defs-before-registration.svg#icon-image"></use>
         </svg>
+        {/* <img src="../../../public/block-5.jpg" alt="Language learning" className={css.imgSvg} /> */}
       </div>
 
       <ul className={css.teacherProfile}>

@@ -76,7 +76,16 @@
   width: 568px;
   height: 530px;
   flex-shrink: 0;
+  border-radius: 30px;
 }
+
+/* .imgSvg {
+  width: 568px;
+  height: 530px;
+  flex-shrink: 0;
+
+  border-radius: 30px;
+}  */
 
 .teacherProfile {
   display: flex;

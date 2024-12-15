@@ -39,6 +39,7 @@ export const Header = () => {
         <button type="button" className={css.btnLogout}>
           <svg className={css.logoutSvg}>
             <use href="/symbol-defs-before-registration.svg#icon-log-in-01"></use>
+            {/* <use href="/symbol-defs-log.svg#icon-log-in-03"></use> */}
           </svg>
         </button>
 
