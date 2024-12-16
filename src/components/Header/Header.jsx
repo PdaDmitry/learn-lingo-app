@@ -36,14 +36,10 @@ export const Header = () => {
         </ul>
       </nav>
       <div className={css.contAuthentication}>
-        <button type="button" className={css.btnLogout}>
-          <svg className={css.logoutSvg}>
-            <use href="/symbol-defs-before-registration.svg#icon-log-in-01"></use>
-            {/* <use href="/symbol-defs-log.svg#icon-log-in-03"></use> */}
-          </svg>
-        </button>
-
         <button type="button" className={css.btnLogIn}>
+          <svg className={css.loginSvg}>
+            <use href="/symbol-defs-before-registration.svg#icon-log-in-01"></use>
+          </svg>
           Log in
         </button>
 

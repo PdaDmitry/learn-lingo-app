@@ -52,23 +52,17 @@
   display: flex;
 }
 
-.btnLogout {
-  all: unset;
-  display: inline-flex;
-  align-items: center;
-  margin-right: 8px;
-  cursor: pointer;
-}
-
-.logoutSvg {
+.loginSvg {
   width: 20px;
   height: 20px;
+  fill: none;
+  margin-right: 8px;
 }
 
 .btnLogIn {
   all: unset;
   display: inline-flex;
-  width: 45px;
+  width: 73px;
   align-items: center;
   font-weight: 700;
   font-size: 16px;

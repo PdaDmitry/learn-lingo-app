@@ -18,7 +18,8 @@ const teachersSlice = createSlice({
       })
       .addCase(fetchTeachersThunc.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.items = action.payload.items;
+        // state.items = Object.values(action.payload);
+        state.items = action.payload;
       })
       .addCase(fetchTeachersThunc.rejected, (state, action) => {
         state.isLoading = false;
