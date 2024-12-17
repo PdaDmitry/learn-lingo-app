@@ -1,0 +1,131 @@
+.contCard {
+  display: flex;
+  /* gap: 48px; */
+  border-radius: 24px;
+  padding: 24px;
+  width: 1184px;
+  height: 328px;
+  background: #faf9f9;
+  /* background: #fff; */
+}
+
+.photoWrapper {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  margin-right: 48px;
+}
+
+.backgroundYellow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background-color: #fbe9ba;
+  z-index: 1;
+}
+
+.backgroundWhite {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  /* left: 60px; */
+  width: 114px;
+  height: 114px;
+  background-color: white;
+  border-radius: 50%;
+  z-index: 2;
+  transform: translate(-50%, -50%);
+}
+
+.teacherPhoto {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  /* left: 60px; */
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  object-fit: cover;
+  z-index: 3;
+  transform: translate(-50%, -50%);
+}
+
+.iconGroup {
+  position: absolute;
+  top: 19px;
+  left: 85px;
+  width: 12px;
+  height: 12px;
+  z-index: 4;
+}
+
+/* .portfolio {
+  width: 968px;
+  height: 280px;
+} */
+
+.info {
+  display: flex;
+  align-items: center;
+  /* width: 968px; */
+  margin-bottom: 8px;
+}
+
+.langText {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 150%;
+  color: #8a8a89;
+  margin-right: 192px;
+}
+
+.ratingPrice {
+  display: flex;
+  margin-right: 64px;
+}
+
+.ratingPrice li {
+  display: flex;
+  align-items: center;
+}
+
+.ratingPrice li:not(:last-child)::after {
+  content: ''; /* Добавляем псевдоэлемент */
+  display: block;
+  width: 1px; /* Ширина вертикальной линии */
+  height: 16px; /* Высота линии (подстраивается под ваш текст) */
+  background-color: rgba(18, 20, 23, 0.2); /* Цвет линии */
+  margin: 0 16px; /* Отступы между элементами */
+}
+
+.svgBook,
+.svgStar {
+  display: block;
+  width: 16px;
+  height: 16px;
+  margin-right: 8px;
+}
+
+.ratingPriceText {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 150%;
+  white-space: nowrap;
+}
+
+.spanPrice {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 150%;
+  color: #38cd3e;
+}
+
+.iconHeart {
+  display: block;
+  width: 26px;
+  height: 26px;
+  /* fill: none; */
+}

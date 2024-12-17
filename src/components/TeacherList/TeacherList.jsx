@@ -27,7 +27,7 @@ import { Teacher } from '../Teacher/Teacher';
 
 export const TeacherList = () => {
   const teachers = useSelector(selectTeachers);
-  // console.log(teachers);
+  console.log(teachers);
 
   if (!teachers.length) {
     return <div>No teachers available</div>;
