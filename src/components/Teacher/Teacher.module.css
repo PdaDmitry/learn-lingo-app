@@ -4,7 +4,7 @@
   border-radius: 24px;
   padding: 24px;
   width: 1184px;
-  height: 328px;
+  /* height: 328px; */
   background: #faf9f9;
   /* background: #fff; */
 }
@@ -93,15 +93,15 @@
 }
 
 .ratingPrice li:not(:last-child)::after {
-  content: ''; /* Добавляем псевдоэлемент */
+  content: '';
   display: block;
-  width: 1px; /* Ширина вертикальной линии */
-  height: 16px; /* Высота линии (подстраивается под ваш текст) */
-  background-color: rgba(18, 20, 23, 0.2); /* Цвет линии */
-  margin: 0 16px; /* Отступы между элементами */
+  width: 1px;
+  height: 16px;
+  background-color: rgba(18, 20, 23, 0.2);
+  margin: 0 16px;
 }
 
-.svgBook,
+/* .svgBook, */
 .svgStar {
   display: block;
   width: 16px;
@@ -128,4 +128,36 @@
   width: 26px;
   height: 26px;
   /* fill: none; */
+}
+
+.teacherName {
+  margin-bottom: 32px;
+}
+
+.categories {
+  margin-bottom: 16px;
+}
+
+.categories li {
+  margin-bottom: 8px;
+}
+
+.categories li:last-child {
+  margin-bottom: 0;
+}
+
+.categoriesText {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.speaks {
+  text-decoration: underline;
+  text-decoration-skip-ink: none;
+}
+
+.categoriesTextSpan {
+  /* text-decoration: none; */
+  color: #8a8a89;
 }

@@ -3,9 +3,14 @@ import { selectTeachersById } from '../../redux/teachers/selectors';
 import { FiHeart } from 'react-icons/fi';
 import { LuBookOpen } from 'react-icons/lu';
 import css from './Teacher.module.css';
+import { Outlet, useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 
 export const Teacher = ({ id }) => {
   const teacher = useSelector(selectTeachersById(id));
+  const navigate = useNavigate();
+  // const location = useLocation(); // Чтобы отслеживать текущий маршрут
+  const [isReviewsVisible, setIsReviewsVisible] = useState(false);
 
   const {
     lessons_done,
@@ -19,6 +24,15 @@ export const Teacher = ({ id }) => {
     levels,
     avatar_url,
   } = teacher;
+
+  const handleToggleReviews = () => {
+    if (isReviewsVisible) {
+      navigate('/teachers');
+    } else {
+      navigate('reviews');
+    }
+    setIsReviewsVisible(!isReviewsVisible);
+  };
 
   return (
     <div className={css.contCard}>
@@ -61,12 +75,34 @@ export const Teacher = ({ id }) => {
           </svg> */}
           <FiHeart style={{ width: '26px', height: '26px' }} />
         </div>
-        <h2>{`${name} ${surname}`}</h2>
-        <p>Speaks: {languages.join(', ')}</p>
-        <p>Lesson Info: {lesson_info}</p>
-        <p>Conditions:{conditions}</p>
+        <h2 className={css.teacherName}>{`${name} ${surname}`}</h2>
+        <ul className={css.categories}>
+          <li>
+            <p className={css.categoriesText}>
+              <span className={css.categoriesTextSpan}>Speaks:</span>{' '}
+              <span className={css.speaks}>{languages.join(', ')}</span>
+            </p>
+          </li>
+          <li>
+            <p className={css.categoriesText}>
+              <span className={css.categoriesTextSpan}>Lesson Info:</span> {lesson_info}
+            </p>
+          </li>
+          <li>
+            <p className={css.categoriesText}>
+              <span className={css.categoriesTextSpan}>Conditions:</span> {conditions}
+            </p>
+          </li>
+        </ul>
 
-        <button type="button">Read more</button>
+        {/* <NavLink to="reviews" className={css.featuresReviewsClass}>
+          <button type="button">Read more</button>
+        </NavLink> */}
+        <button type="button" onClick={handleToggleReviews}>
+          {isReviewsVisible ? 'Hide' : 'Read more'}
+        </button>
+        <Outlet />
+        {/* <button type="button">Read more</button> */}
         <p>{levels.join(', ')}</p>
       </div>
     </div>
