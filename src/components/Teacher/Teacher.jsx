@@ -3,13 +3,13 @@ import { selectTeachersById } from '../../redux/teachers/selectors';
 import { FiHeart } from 'react-icons/fi';
 import { LuBookOpen } from 'react-icons/lu';
 import css from './Teacher.module.css';
-import { Outlet, useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { Outlet, useLocation, useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 
 export const Teacher = ({ id }) => {
   const teacher = useSelector(selectTeachersById(id));
   const navigate = useNavigate();
-  // const location = useLocation(); // Чтобы отслеживать текущий маршрут
+  const location = useLocation(); // Чтобы отслеживать текущий маршрут
   const [isReviewsVisible, setIsReviewsVisible] = useState(false);
 
   const {
@@ -24,6 +24,10 @@ export const Teacher = ({ id }) => {
     levels,
     avatar_url,
   } = teacher;
+
+  useEffect(() => {
+    setIsReviewsVisible(location.pathname.includes('reviews'));
+  }, [location.pathname]);
 
   const handleToggleReviews = () => {
     if (isReviewsVisible) {
