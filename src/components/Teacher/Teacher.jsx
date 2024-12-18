@@ -53,9 +53,6 @@ export const Teacher = ({ id }) => {
           <p className={css.langText}>Languages</p>
           <ul className={css.ratingPrice}>
             <li>
-              {/* <svg className={css.svgBook}>
-                <use href="/symbol-defs-lan.svg#icon-book-open-01"></use>
-              </svg> */}
               <LuBookOpen style={{ width: '15px', height: '16px', marginRight: '8px' }} />
               <p className={css.ratingPriceText}>Lessons online</p>
             </li>
@@ -74,9 +71,6 @@ export const Teacher = ({ id }) => {
               </p>
             </li>
           </ul>
-          {/* <svg className={css.iconHeart}>
-            <use href="/symbol-defs-lan.svg#icon-heart"></use>
-          </svg> */}
           <FiHeart style={{ width: '26px', height: '26px' }} />
         </div>
         <h2 className={css.teacherName}>{`${name} ${surname}`}</h2>
@@ -99,14 +93,11 @@ export const Teacher = ({ id }) => {
           </li>
         </ul>
 
-        {/* <NavLink to="reviews" className={css.featuresReviewsClass}>
-          <button type="button">Read more</button>
-        </NavLink> */}
         <button type="button" onClick={handleToggleReviews}>
           {isReviewsVisible ? 'Hide' : 'Read more'}
         </button>
         <Outlet />
-        {/* <button type="button">Read more</button> */}
+
         <p>{levels.join(', ')}</p>
       </div>
     </div>
