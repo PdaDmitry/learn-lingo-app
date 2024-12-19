@@ -89,11 +89,20 @@ export const Teacher = ({ id }) => {
           </li>
         </ul>
 
-        <button type="button" onClick={handleToggle}>
+        <button type="button" className={css.btnReadMore} onClick={handleToggle}>
           {isOpenReviews ? 'Hide reviews' : 'Read more'}
         </button>
         {isOpenReviews && <TeacherReviews id={id} />}
-        {!isOpenReviews && <p>{levels.join(', ')}</p>}
+        {/* {!isOpenReviews && <p>{levels.join(', ')}</p>} */}
+        {!isOpenReviews && (
+          <ul className={css.contLevel}>
+            {levels.map((level, index) => (
+              <li key={index} className={css.levelItem}>
+                #{level}
+              </li>
+            ))}
+          </ul>
+        )}
       </div>
     </div>
   );

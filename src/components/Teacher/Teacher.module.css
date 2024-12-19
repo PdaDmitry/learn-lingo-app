@@ -161,3 +161,29 @@
   /* text-decoration: none; */
   color: #8a8a89;
 }
+
+.btnReadMore {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.5;
+  text-decoration: underline;
+  text-decoration-skip-ink: none;
+  border: none;
+  background-color: inherit;
+  padding-left: 0;
+  margin-bottom: 32px;
+}
+
+.contLevel {
+  display: flex;
+  gap: 8px;
+}
+
+.levelItem {
+  border: 1px solid rgba(18, 20, 23, 0.2);
+  border-radius: 35px;
+  padding: 8px 12px;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.14286;
+}
