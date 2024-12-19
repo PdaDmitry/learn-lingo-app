@@ -2,15 +2,18 @@ import { useSelector } from 'react-redux';
 import { selectTeachersById } from '../../redux/teachers/selectors';
 import { FiHeart } from 'react-icons/fi';
 import { LuBookOpen } from 'react-icons/lu';
+import { useState } from 'react';
+import { TeacherReviews } from '../TeacherReviews/TeacherReviews';
+
 import css from './Teacher.module.css';
-import { Outlet, useLocation, useNavigate } from 'react-router-dom';
-import { useEffect, useState } from 'react';
 
 export const Teacher = ({ id }) => {
+  const [isOpenReviews, setIsOpenReviews] = useState(() => {
+    const savedState = localStorage.getItem(`teacher-${id}-isOpen`);
+    return savedState ? JSON.parse(savedState) : false;
+  });
+
   const teacher = useSelector(selectTeachersById(id));
-  const navigate = useNavigate();
-  const location = useLocation(); // Чтобы отслеживать текущий маршрут
-  const [isReviewsVisible, setIsReviewsVisible] = useState(false);
 
   const {
     lessons_done,
@@ -25,17 +28,10 @@ export const Teacher = ({ id }) => {
     avatar_url,
   } = teacher;
 
-  useEffect(() => {
-    setIsReviewsVisible(location.pathname.includes('reviews'));
-  }, [location.pathname]);
-
-  const handleToggleReviews = () => {
-    if (isReviewsVisible) {
-      navigate('/teachers');
-    } else {
-      navigate('reviews');
-    }
-    setIsReviewsVisible(!isReviewsVisible);
+  const handleToggle = () => {
+    const newIsOpen = !isOpenReviews;
+    setIsOpenReviews(newIsOpen);
+    localStorage.setItem(`teacher-${id}-isOpen`, JSON.stringify(newIsOpen));
   };
 
   return (
@@ -93,12 +89,11 @@ export const Teacher = ({ id }) => {
           </li>
         </ul>
 
-        <button type="button" onClick={handleToggleReviews}>
-          {isReviewsVisible ? 'Hide' : 'Read more'}
+        <button type="button" onClick={handleToggle}>
+          {isOpenReviews ? 'Hide reviews' : 'Read more'}
         </button>
-        <Outlet />
-
-        <p>{levels.join(', ')}</p>
+        {isOpenReviews && <TeacherReviews id={id} />}
+        {!isOpenReviews && <p>{levels.join(', ')}</p>}
       </div>
     </div>
   );
