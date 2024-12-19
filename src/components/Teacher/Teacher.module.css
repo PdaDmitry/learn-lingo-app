@@ -172,6 +172,7 @@
   background-color: inherit;
   padding-left: 0;
   margin-bottom: 32px;
+  cursor: pointer;
 }
 
 .contLevel {

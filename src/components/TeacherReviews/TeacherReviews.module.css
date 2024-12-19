@@ -1,96 +1,96 @@
 .teacherExperience {
-    width: 968px;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 1.5;
-    margin-bottom: 32px;
+  width: 968px;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.5;
+  margin-bottom: 32px;
 }
 
 .contLevel {
-    display: flex;
-    gap: 8px;
-    margin-bottom: 32px;
+  display: flex;
+  gap: 8px;
+  margin-bottom: 32px;
 }
 
 .contReviews {
-    margin-bottom: 32px;
+  margin-bottom: 32px;
 }
 
 .contReviews li {
-    margin-bottom: 32px;
+  margin-bottom: 32px;
 }
 
 .contReviews li:last-child {
-    margin-bottom: 0;
+  margin-bottom: 0;
 }
 
 /* .reviewsElem {} */
 
 .contNameRating {
-    display: flex;
-    margin-bottom: 16px;
-    align-items: center;
+  display: flex;
+  margin-bottom: 16px;
+  align-items: center;
 }
 
 .avatar {
-    border-radius: 100px;
-    width: 44px;
-    height: 44px;
-    margin-right: 12px;
+  border-radius: 100px;
+  width: 44px;
+  height: 44px;
+  margin-right: 12px;
 }
 
 .textName {
-    font-weight: 500;
-    font-size: 16px;
-    line-height: 1.5;
-    color: #8a8a89;
-    margin-bottom: 2px;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #8a8a89;
+  margin-bottom: 2px;
 }
 
 .svgRating {
-    display: flex;
+  display: flex;
 }
 
 .svgStar {
-    display: block;
-    width: 16px;
-    height: 16px;
-    margin-right: 8px;
+  display: block;
+  width: 16px;
+  height: 16px;
+  margin-right: 8px;
 }
 
 .textComent {
-    font-weight: 500;
-    font-size: 16px;
-    line-height: 1.5;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.5;
 }
 
 .levelItem {
-    border: 1px solid rgba(18, 20, 23, 0.2);
-    border-radius: 35px;
-    padding: 8px 12px;
-    font-weight: 500;
-    font-size: 14px;
-    line-height: 1.14286;
+  border: 1px solid rgba(18, 20, 23, 0.2);
+  border-radius: 35px;
+  padding: 8px 12px;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.14286;
 }
 
 .noReviews {
-    margin-bottom: 32px;
+  margin-bottom: 32px;
 }
 
 .btnBookLesson {
-    border-radius: 12px;
-    padding: 16px 48px;
-    width: 232px;
-    height: 60px;
-    background: #f4c550;
-    border: none;
+  border-radius: 12px;
+  padding: 16px 48px;
+  width: 232px;
+  height: 60px;
+  background: #f4c550;
+  border: none;
 
-    font-weight: 700;
-    font-size: 18px;
-    line-height: 1.55556;
-
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 1.55556;
+  cursor: pointer;
 }
 
 .btnBookLesson:hover {
-    background: #ffdc86;
+  background: #ffdc86;
 }

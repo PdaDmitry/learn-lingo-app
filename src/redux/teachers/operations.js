@@ -28,29 +28,3 @@ export const fetchTeachersThunc = createAsyncThunk('fetchTeachers', async (_, th
     return thunkAPI.rejectWithValue(error.message);
   }
 });
-
-// export const getTeacherById = async teacherId => {
-//   try {
-//     // Получаем доступ к базе данных Firebase
-//     const db = getDatabase(app);
-
-//     // Создаем ссылку на конкретного преподавателя по его ID
-//     const teacherRef = ref(db, `/teachers/${teacherId}`); // Ссылка на конкретного преподавателя
-
-//     // Получаем данные о преподавателе
-//     const readingData = await get(teacherRef);
-
-//     if (readingData.exists()) {
-//       // Если данные есть, возвращаем их
-//       return {
-//         id: teacherId,
-//         ...readingData.val(), // Добавляем остальные данные о преподавателе
-//       };
-//     } else {
-//       throw new Error('Teacher not found');
-//     }
-//   } catch (error) {
-//     console.error('Error fetching teacher by ID:', error);
-//     throw error;
-//   }
-// };
