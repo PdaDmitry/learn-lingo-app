@@ -1,10 +1,11 @@
 import Modal from 'react-modal';
 
-Modal.setAppElement('#root');
+// Modal.setAppElement('#root');
 
 const modalStyles = {
   overlay: {
     backgroundColor: 'rgba(0, 0, 0, 0.7)',
+    zIndex: 2000,
   },
   content: {
     top: '50%',
@@ -15,7 +16,8 @@ const modalStyles = {
     transform: 'translate(-50%, -50%)',
     backgroundColor: 'transparent',
     border: 'none',
-    padding: '20px', // Можно добавить padding для лучшего визуального восприятия
+    // padding: '20px',
+    zIndex: 2001,
   },
 };
 
