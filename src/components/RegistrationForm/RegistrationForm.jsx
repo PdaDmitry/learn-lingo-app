@@ -2,7 +2,7 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { userSchema } from '../../validationSchemas';
 
-export const RegistrationForm = () => {
+export const RegistrationForm = ({ closeModal }) => {
   const {
     register,
     handleSubmit,
@@ -13,6 +13,7 @@ export const RegistrationForm = () => {
 
   const onSubmit = data => {
     console.log(data);
+    closeModal();
   };
 
   return (

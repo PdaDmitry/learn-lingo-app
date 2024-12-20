@@ -1,6 +1,10 @@
 import { NavLink, useNavigate } from 'react-router-dom';
 import clsx from 'clsx';
+
 import css from './Header.module.css';
+import { RegistrationForm } from '../RegistrationForm/RegistrationForm';
+import { useState } from 'react';
+import ModalWindow from '../ModalWindow/ModalWindow';
 
 const buildLinkClass = ({ isActive }) => {
   return clsx(css.link, isActive && css.active);
@@ -8,10 +12,14 @@ const buildLinkClass = ({ isActive }) => {
 
 export const Header = () => {
   const navigate = useNavigate();
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleLogoClick = () => {
     navigate('/');
   };
+
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
 
   return (
     <header className={css.contRout}>
@@ -43,10 +51,14 @@ export const Header = () => {
           Log in
         </button>
 
-        <button type="button" className={css.btnRegistration}>
+        <button type="button" className={css.btnRegistration} onClick={openModal}>
           Registration
         </button>
       </div>
+
+      <ModalWindow isOpen={isModalOpen} onClose={closeModal}>
+        <RegistrationForm closeModal={closeModal} />
+      </ModalWindow>
     </header>
   );
 };
