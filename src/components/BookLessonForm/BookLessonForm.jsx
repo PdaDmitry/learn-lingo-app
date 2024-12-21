@@ -55,7 +55,7 @@ export const BookLessonForm = ({ closeModal, id }) => {
           />
           <label htmlFor="career" className={css.radioLabel}>
             <img
-              src="../../../public/& RadioButton-gray.jpg"
+              src="../../../public/RadioButton-gray.jpg"
               alt="Radio button"
               className={css.img}
             />
@@ -72,7 +72,7 @@ export const BookLessonForm = ({ closeModal, id }) => {
           />
           <label htmlFor="lesson" className={css.radioLabel}>
             <img
-              src="../../../public/& RadioButton-gray.jpg"
+              src="../../../public/RadioButton-gray.jpg"
               alt="Radio button"
               className={css.img}
             />
@@ -89,7 +89,7 @@ export const BookLessonForm = ({ closeModal, id }) => {
           />
           <label htmlFor="living" className={css.radioLabel}>
             <img
-              src="../../../public/& RadioButton-gray.jpg"
+              src="../../../public/RadioButton-gray.jpg"
               alt="Radio button"
               className={css.img}
             />
@@ -106,7 +106,7 @@ export const BookLessonForm = ({ closeModal, id }) => {
           />
           <label htmlFor="exams" className={css.radioLabel}>
             <img
-              src="../../../public/& RadioButton-gray.jpg"
+              src="../../../public/RadioButton-gray.jpg"
               alt="Radio button"
               className={css.img}
             />
@@ -123,7 +123,7 @@ export const BookLessonForm = ({ closeModal, id }) => {
           />
           <label htmlFor="culture" className={css.radioLabel}>
             <img
-              src="../../../public/& RadioButton-gray.jpg"
+              src="../../../public/RadioButton-gray.jpg"
               alt="Radio button"
               className={css.img}
             />
