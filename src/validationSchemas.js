@@ -14,7 +14,7 @@ export const loginSchema = yup.object().shape({
   password: yup.string().required('Password is required'),
 });
 
-export const bookLesson = yup.object().shape({
+export const bookLessonSchema = yup.object().shape({
   fullName: yup.string().min(2, 'Too Short!').max(50, 'Too Long!').required('Required'),
   email: yup.string().email('Must be a valid email!').required('Required'),
   number: yup

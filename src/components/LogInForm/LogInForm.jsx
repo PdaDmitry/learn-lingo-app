@@ -25,7 +25,7 @@ export const LogInForm = ({ closeModal }) => {
   //   const onSubmit = async data => {
   //     try {
   //       const { email, password } = data;
-  //       // Логика для логина (например, с Firebase)
+  //
   //       await LogIn(email, password); // Функция для логина
   //       console.log('Logged in successfully');
   //     } catch (error) {

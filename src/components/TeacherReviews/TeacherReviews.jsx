@@ -2,8 +2,16 @@ import { useSelector } from 'react-redux';
 import { selectTeachersById } from '../../redux/teachers/selectors';
 import { avatarMap } from '../../avatarMap.js';
 import css from './TeacherReviews.module.css';
+import ModalWindow from '../ModalWindow/ModalWindow.jsx';
+import { BookLessonForm } from '../BookLessonForm/BookLessonForm.jsx';
+import { useState } from 'react';
 
 export const TeacherReviews = ({ id }) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
+
   const teacherReviews = useSelector(selectTeachersById(id));
 
   const { experience, reviews, levels } = teacherReviews;
@@ -45,9 +53,13 @@ export const TeacherReviews = ({ id }) => {
           </li>
         ))}
       </ul>
-      <button type="button" className={css.btnBookLesson}>
+      <button type="button" className={css.btnBookLesson} onClick={openModal}>
         Book trial lesson
       </button>
+
+      <ModalWindow isOpen={isModalOpen} onClose={closeModal}>
+        <BookLessonForm closeModal={closeModal} id={id} />
+      </ModalWindow>
     </div>
   );
 };

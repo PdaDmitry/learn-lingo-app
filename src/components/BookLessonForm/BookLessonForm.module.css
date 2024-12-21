@@ -1,0 +1,196 @@
+.contBookForm {
+  position: relative;
+  border-radius: 30px;
+  width: 599px;
+  height: 971px;
+  padding: 64px;
+  background: #fff;
+}
+
+.closeButton {
+  position: absolute;
+  display: block;
+  top: 20px;
+  right: 20px;
+  background: none;
+  border: none;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  padding: 0;
+}
+
+.titleText {
+  font-weight: 500;
+  font-size: 40px;
+  line-height: 120%;
+  letter-spacing: -0.02em;
+  margin-bottom: 20px;
+}
+
+.text {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 137%;
+  color: rgba(18, 20, 23, 0.8);
+  margin-bottom: 20px;
+}
+
+.contTeacherPhotoName {
+  display: flex;
+  gap: 14px;
+  margin-bottom: 40px;
+}
+
+.teacherPhoto {
+  border-radius: 100px;
+  width: 44px;
+  height: 44px;
+}
+
+.yourTeacher {
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 133%;
+  color: #8a8a89;
+  margin-bottom: 4px;
+}
+
+.teacherName {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 150%;
+}
+
+.survey {
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 133%;
+  margin-bottom: 20px;
+}
+
+.radioGroup {
+  margin-bottom: 40px;
+}
+
+.radioGroup li {
+  margin-bottom: 16px;
+}
+
+.radioGroup li:last-child {
+  margin-bottom: 0;
+}
+
+/* =============================radio=========================== */
+.radioOption {
+  margin-bottom: 12px;
+}
+
+.radioInput {
+  display: none;
+}
+
+.radioLabel {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.img {
+  margin-right: 8px;
+}
+
+.radioLabel img {
+  width: 24px;
+  height: 24px;
+  transition: transform 0.2s ease;
+}
+
+.textRadio {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 137%;
+}
+
+.radioInput:checked + .radioLabel img {
+  content: url('../../../public/& RadioButton.jpg');
+}
+
+.radioLabel p {
+  margin: 0;
+  font-size: 16px;
+  color: #333;
+}
+
+/* =========================================================== */
+
+.inputElem {
+  margin-bottom: 18px;
+}
+
+.textError {
+  font-size: 12px;
+  color: red;
+}
+
+.inputLastElem {
+  margin-bottom: 40px;
+}
+
+.input {
+  border: 1px solid rgba(18, 20, 23, 0.1);
+  border-radius: 12px;
+  padding: 16px 0 16px 18px;
+  width: 471px;
+  height: 54px;
+
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.375;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.input::placeholder {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 137%;
+  color: #121417;
+}
+
+/* ==================================================================== */
+
+.input:focus {
+  background-color: inherit;
+  border-color: #f4c550;
+}
+
+.input:-webkit-autofill {
+  background-color: white !important;
+  box-shadow: 0 0 0px 1000px white inset !important;
+  -webkit-box-shadow: 0 0 0px 1000px white inset !important; /* Для старых версий */
+  transition: background-color 0s;
+}
+
+.input:-webkit-autofill:focus {
+  background-color: white !important;
+}
+
+/* ===================================================================== */
+
+.btnBookForm {
+  border-radius: 12px;
+  /* padding: 16px 215px; */
+  width: 471px;
+  height: 60px;
+  background: #f4c550;
+  border: none;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 156%;
+  cursor: pointer;
+}
+
+.btnBookForm:hover {
+  background: #ffdc86;
+}

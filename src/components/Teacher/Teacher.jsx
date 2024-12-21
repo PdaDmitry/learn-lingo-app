@@ -75,8 +75,7 @@ export const Teacher = ({ id }) => {
           <li>
             <p className={css.categoriesText}>
               <span className={css.categoriesTextSpan}>Speaks:</span>{' '}
-              {/* <span className={css.speaks}>{languages.join(', ')}</span> */}
-              {languages && languages.length > 0 ? languages.join(', ') : 'No languages available'}
+              <span className={css.speaks}>{languages.join(', ')}</span>
             </p>
           </li>
           <li>
