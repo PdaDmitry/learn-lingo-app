@@ -14,6 +14,7 @@ export const Teacher = ({ id }) => {
   });
 
   const teacher = useSelector(selectTeachersById(id));
+  // console.log('teacher: ', teacher);
 
   const {
     lessons_done,
@@ -74,7 +75,8 @@ export const Teacher = ({ id }) => {
           <li>
             <p className={css.categoriesText}>
               <span className={css.categoriesTextSpan}>Speaks:</span>{' '}
-              <span className={css.speaks}>{languages.join(', ')}</span>
+              {/* <span className={css.speaks}>{languages.join(', ')}</span> */}
+              {languages && languages.length > 0 ? languages.join(', ') : 'No languages available'}
             </p>
           </li>
           <li>
@@ -93,7 +95,6 @@ export const Teacher = ({ id }) => {
           {isOpenReviews ? 'Hide reviews' : 'Read more'}
         </button>
         {isOpenReviews && <TeacherReviews id={id} />}
-        {/* {!isOpenReviews && <p>{levels.join(', ')}</p>} */}
         {!isOpenReviews && (
           <ul className={css.contLevel}>
             {levels.map((level, index) => (
