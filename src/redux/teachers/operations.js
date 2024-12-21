@@ -1,5 +1,5 @@
 import { getDatabase, ref, get, set } from 'firebase/database';
-import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
+import { getAuth, createUserWithEmailAndPassword, fetchSignInMethodsForEmail } from 'firebase/auth';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { app } from '../../../firebase';
 
@@ -30,23 +30,27 @@ export const fetchTeachersThunc = createAsyncThunk('fetchTeachers', async (_, th
   }
 });
 
-export const registerUser = async ({ name, email, password }) => {
+export const registerUser = async ({ email, password }) => {
   const auth = getAuth();
+
   const db = getDatabase();
+  // console.log('db: ', db);
 
   try {
+    const signInMethods = await fetchSignInMethodsForEmail(auth, email);
+    console.log('signInMethods ', signInMethods);
+    if (signInMethods.length > 0) {
+      throw new Error('Email already in use');
+    }
+
     // Register a user using email and password
     const userCredential = await createUserWithEmailAndPassword(auth, email, password);
     const user = userCredential.user;
 
-    // After registration, add the username to the Firebase Database
-    // await set(ref(db, 'users/' + user.uid), {
-    //   name: name,
-    //   email: email,
-    // });
-
     console.log('User registered with UID:', user.uid);
+    return user;
   } catch (error) {
     console.error('Error registering user:', error.message);
+    throw error;
   }
 };

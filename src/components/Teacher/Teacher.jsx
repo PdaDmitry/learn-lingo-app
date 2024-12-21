@@ -68,7 +68,7 @@ export const Teacher = ({ id }) => {
               </p>
             </li>
           </ul>
-          <FiHeart style={{ width: '26px', height: '26px' }} />
+          <FiHeart style={{ width: '26px', height: '26px', cursor: 'pointer' }} />
         </div>
         <h2 className={css.teacherName}>{`${name} ${surname}`}</h2>
         <ul className={css.categories}>

@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import css from './Home.module.css';
+import { Toaster } from 'react-hot-toast';
 
 export const Home = () => {
   const navigate = useNavigate();
@@ -10,6 +11,7 @@ export const Home = () => {
 
   return (
     <div className={css.contHome}>
+      <Toaster />
       <div className={css.homeImg}>
         <div className={css.contStarted}>
           <h1 className={css.titleText}>

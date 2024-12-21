@@ -5,6 +5,7 @@ import css from './Header.module.css';
 import { RegistrationForm } from '../RegistrationForm/RegistrationForm';
 import { useState } from 'react';
 import ModalWindow from '../ModalWindow/ModalWindow';
+import { LogInForm } from '../LogInForm/LogInForm';
 
 const buildLinkClass = ({ isActive }) => {
   return clsx(css.link, isActive && css.active);
@@ -13,6 +14,7 @@ const buildLinkClass = ({ isActive }) => {
 export const Header = () => {
   const navigate = useNavigate();
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [loginModalOpen, setLoginModalOpen] = useState(false);
 
   const handleLogoClick = () => {
     navigate('/');
@@ -20,6 +22,9 @@ export const Header = () => {
 
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
+
+  const openLoginModal = () => setLoginModalOpen(true);
+  const closeLoginModal = () => setLoginModalOpen(false);
 
   return (
     <header className={css.contRout}>
@@ -44,7 +49,7 @@ export const Header = () => {
         </ul>
       </nav>
       <div className={css.contAuthentication}>
-        <button type="button" className={css.btnLogIn}>
+        <button type="button" className={css.btnLogIn} onClick={openLoginModal}>
           <svg className={css.loginSvg}>
             <use href="/symbol-defs-before-registration.svg#icon-log-in-01"></use>
           </svg>
@@ -55,6 +60,10 @@ export const Header = () => {
           Registration
         </button>
       </div>
+
+      <ModalWindow isOpen={loginModalOpen} onClose={closeLoginModal}>
+        <LogInForm closeModal={closeLoginModal} />
+      </ModalWindow>
 
       <ModalWindow isOpen={isModalOpen} onClose={closeModal}>
         <RegistrationForm closeModal={closeModal} />

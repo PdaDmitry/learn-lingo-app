@@ -1,16 +1,13 @@
 import { useForm } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
-import { userSchema } from '../../validationSchemas';
+import { loginSchema } from '../../validationSchemas';
 import { IoMdClose } from 'react-icons/io';
-import css from './RegistrationForm.module.css';
-import { useState } from 'react';
-
 import { LuEyeOff } from 'react-icons/lu';
 import { LuEye } from 'react-icons/lu';
-import { registerUser } from '../../redux/teachers/operations';
-import toast from 'react-hot-toast';
+import { useState } from 'react';
+import { yupResolver } from '@hookform/resolvers/yup';
+import css from './LogInForm.module.css';
 
-export const RegistrationForm = ({ closeModal }) => {
+export const LogInForm = ({ closeModal }) => {
   const [showPassword, setShowPassword] = useState(false);
 
   const togglePasswordVisibility = () => {
@@ -22,48 +19,35 @@ export const RegistrationForm = ({ closeModal }) => {
     handleSubmit,
     formState: { errors },
   } = useForm({
-    resolver: yupResolver(userSchema),
+    resolver: yupResolver(loginSchema),
   });
 
-  const onSubmit = async data => {
-    closeModal();
-    try {
-      const user = await registerUser(data);
+  //   const onSubmit = async data => {
+  //     try {
+  //       const { email, password } = data;
+  //       // Логика для логина (например, с Firebase)
+  //       await LogIn(email, password); // Функция для логина
+  //       console.log('Logged in successfully');
+  //     } catch (error) {
+  //       console.error('Login failed:', error);
+  //     }
+  //   };
 
-      toast.success('User successfully registered!', {
-        duration: 4000,
-        position: 'top-center',
-        style: {
-          background: 'green',
-          color: 'white',
-        },
-      });
-    } catch (error) {
-      toast.error(`Email '${data.email}' is already in use`, {
-        duration: 4000,
-        position: 'bottom-center',
-        style: {
-          background: 'orange',
-          color: 'black',
-        },
-      });
-    }
+  const onSubmit = data => {
+    console.log(data);
+    closeModal();
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className={css.contRegistrationForm}>
+    <form onSubmit={handleSubmit(onSubmit)} className={css.contLogInForm}>
       <button type="button" className={css.closeButton} onClick={closeModal} aria-label="Close">
         <IoMdClose style={{ width: '32px', height: '32px' }} />
       </button>
-      <h1 className={css.titleText}>Registration</h1>
+      <h1 className={css.titleText}>Log In</h1>
       <p className={css.text}>
-        Thank you for your interest in our platform! In order to register, we need some information.
-        Please provide us with the following information
+        Welcome back! Please enter your credentials to access your account and continue your search
+        for an teacher.
       </p>
-      <div className={css.inputElem}>
-        <input {...register('name')} placeholder="Name" className={css.input} />
-        {errors.username && <p className={css.textError}>{errors.username.message}</p>}
-      </div>
       <div className={css.inputElem}>
         <input {...register('email')} placeholder="Email" className={css.input} />
         {errors.email && <p className={css.textError}>{errors.email.message}</p>}
@@ -91,8 +75,8 @@ export const RegistrationForm = ({ closeModal }) => {
         </div>
         {errors.password && <p className={css.textError}>{errors.password.message}</p>}
       </div>
-      <button type="submit" className={css.btnRegistrationForm}>
-        Sign Up
+      <button type="submit" className={css.btnLogInForm}>
+        Log In
       </button>
     </form>
   );
