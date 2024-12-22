@@ -11,6 +11,7 @@ import {
   persistReducer,
   persistStore,
 } from 'redux-persist';
+import { authReducer } from './auth/authSlice';
 
 const persistTeachersConfig = {
   key: 'teachers',
@@ -19,10 +20,19 @@ const persistTeachersConfig = {
   // blacklist: ['hasBeenFetched'], //то что мы не хотим сохранить из state
 };
 
+const persistAuthConfig = {
+  key: 'auth',
+  storage,
+  whitelist: ['user', 'isLoggedIn', 'refreshToken'],
+  // blacklist: ['error'],
+};
+
 const persistedReducer = persistReducer(persistTeachersConfig, teacherReducer);
+const persistedAuthReducer = persistReducer(persistAuthConfig, authReducer);
 
 export const store = configureStore({
   reducer: {
+    auth: persistedAuthReducer,
     teachers: persistedReducer,
   },
   middleware: getDefaultMiddleware =>

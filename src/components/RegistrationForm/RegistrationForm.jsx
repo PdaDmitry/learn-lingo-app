@@ -4,13 +4,14 @@ import { userSchema } from '../../validationSchemas';
 import { IoMdClose } from 'react-icons/io';
 import css from './RegistrationForm.module.css';
 import { useState } from 'react';
-
 import { LuEyeOff } from 'react-icons/lu';
 import { LuEye } from 'react-icons/lu';
-import { registerUser } from '../../redux/teachers/operations';
 import toast from 'react-hot-toast';
+import { registerUser } from '../../redux/auth/operationsAuth';
+import { useDispatch } from 'react-redux';
 
 export const RegistrationForm = ({ closeModal }) => {
+  const dispatch = useDispatch();
   const [showPassword, setShowPassword] = useState(false);
 
   const togglePasswordVisibility = () => {
@@ -26,26 +27,21 @@ export const RegistrationForm = ({ closeModal }) => {
   });
 
   const onSubmit = async data => {
-    closeModal();
     try {
-      const user = await registerUser(data);
+      const resultAction = await dispatch(registerUser(data)).unwrap();
+      console.log(resultAction);
 
-      toast.success('User successfully registered!', {
+      toast.success(`User ${data.name} successfully registered!`, {
         duration: 4000,
         position: 'top-center',
-        style: {
-          background: 'green',
-          color: 'white',
-        },
+        style: { background: 'green', color: 'white' },
       });
+      closeModal();
     } catch (error) {
       toast.error(`Email '${data.email}' is already in use`, {
         duration: 4000,
         position: 'bottom-center',
-        style: {
-          background: 'orange',
-          color: 'black',
-        },
+        style: { background: 'orange', color: 'black' },
       });
     }
   };
