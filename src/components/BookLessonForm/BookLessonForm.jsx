@@ -2,6 +2,9 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
 import { BooleanSchema } from 'yup';
 import { IoMdClose } from 'react-icons/io';
+import { MdRadioButtonUnchecked } from 'react-icons/md';
+import { MdOutlineRadioButtonChecked } from 'react-icons/md';
+
 import css from './BookLessonForm.module.css';
 import { useSelector } from 'react-redux';
 import { selectTeachersById } from '../../redux/teachers/selectors';
@@ -14,9 +17,12 @@ export const BookLessonForm = ({ closeModal, id }) => {
     register,
     handleSubmit,
     formState: { errors },
+    watch,
   } = useForm({
     resolver: yupResolver(BooleanSchema),
   });
+
+  const selectedValue = watch('assessmentType');
 
   const onSubmit = data => {
     console.log(data);
@@ -45,96 +51,45 @@ export const BookLessonForm = ({ closeModal, id }) => {
       <h2 className={css.survey}>What is your main reason for learning English?</h2>
 
       <ul className={css.radioGroup}>
-        <li className={css.radioOption}>
-          <input
-            type="radio"
-            id="career"
-            value="Career"
-            {...register('assessmentType')}
-            className={css.radioInput}
-          />
-          <label htmlFor="career" className={css.radioLabel}>
-            <img
-              src="../../../public/RadioButton-gray.jpg"
-              alt="Radio button"
-              className={css.img}
+        {[
+          'Career and business',
+          'Lesson for kids',
+          'Living abroad',
+          'Exams and coursework',
+          'Culture, travel or hobby',
+        ].map(option => (
+          <li key={option} className={css.radioOption}>
+            <input
+              type="radio"
+              id={option.toLowerCase()}
+              value={option}
+              {...register('assessmentType')}
+              className={css.radioInput}
             />
-            {/* <div className={css.radioBtnGray}></div> */}
-            <p className={css.textRadio}>Career and business</p>
-          </label>
-        </li>
-        <li className={css.radioOption}>
-          <input
-            type="radio"
-            id="lesson"
-            value="Lesson"
-            {...register('assessmentType')}
-            className={css.radioInput}
-          />
-          <label htmlFor="lesson" className={css.radioLabel}>
-            <img
-              src="../../../public/RadioButton-gray.jpg"
-              alt="Radio button"
-              className={css.img}
-            />
-            {/* <div className={css.radioBtnGray}></div> */}
-            <p className={css.textRadio}>Lesson for kids</p>
-          </label>
-        </li>
-        <li className={css.radioOption}>
-          <input
-            type="radio"
-            id="living"
-            value="Living"
-            {...register('assessmentType')}
-            className={css.radioInput}
-          />
-          <label htmlFor="living" className={css.radioLabel}>
-            <img
-              src="../../../public/RadioButton-gray.jpg"
-              alt="Radio button"
-              className={css.img}
-            />
-            {/* <div className={css.radioBtnGray}></div> */}
-            <p className={css.textRadio}>Living abroad</p>
-          </label>
-        </li>
-        <li className={css.radioOption}>
-          <input
-            type="radio"
-            id="exams"
-            value="Exams"
-            {...register('assessmentType')}
-            className={css.radioInput}
-          />
-          <label htmlFor="exams" className={css.radioLabel}>
-            <img
-              src="../../../public/RadioButton-gray.jpg"
-              alt="Radio button"
-              className={css.img}
-            />
-            {/* <div className={css.radioBtnGray}></div> */}
-            <p className={css.textRadio}>Exams and coursework</p>
-          </label>
-        </li>
-        <li className={css.radioOption}>
-          <input
-            type="radio"
-            id="culture"
-            value="Culture"
-            {...register('assessmentType')}
-            className={css.radioInput}
-          />
-          <label htmlFor="culture" className={css.radioLabel}>
-            <img
-              src="../../../public/RadioButton-gray.jpg"
-              alt="Radio button"
-              className={css.img}
-            />
-            {/* <div className={css.radioBtnGray}></div> */}
-            <p className={css.textRadio}>Culture, travel or hobby</p>
-          </label>
-        </li>
+            <label htmlFor={option.toLowerCase()} className={css.radioLabel}>
+              {selectedValue === option ? (
+                <MdOutlineRadioButtonChecked
+                  style={{
+                    width: '24px',
+                    height: '24px',
+                    marginRight: '8px',
+                    color: ' #f4c550',
+                  }}
+                />
+              ) : (
+                <MdRadioButtonUnchecked
+                  style={{
+                    width: '24px',
+                    height: '24px',
+                    marginRight: '8px',
+                    color: '#cac6c6',
+                  }}
+                />
+              )}
+              <p className={css.textRadio}>{option}</p>
+            </label>
+          </li>
+        ))}
       </ul>
 
       <div className={css.inputElem}>

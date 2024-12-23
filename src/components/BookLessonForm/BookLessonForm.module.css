@@ -81,10 +81,6 @@
   margin-bottom: 0;
 }
 
-/* =============================radio=========================== */
-.radioOption {
-  margin-bottom: 12px;
-}
 
 .radioInput {
   display: none;
@@ -96,52 +92,13 @@
   cursor: pointer;
 }
 
-.img {
-
-  margin-right: 8px;
-}
-
-.radioBtnGray {
-  width: 19.75px;
-  height: 19.75px;
-  border-radius: 50%;
-  border: 2px solid #cac6c6;
-  margin-right: 8px;
-  transition: background-image 0.3s ease;
-}
-
-.radioLabel img {
-  width: 24px;
-  height: 24px;
-  transition: transform 0.2s ease;
-}
 
 .textRadio {
   font-weight: 400;
   font-size: 16px;
   line-height: 137%;
+
 }
-
-.radioInput:checked+.radioLabel img {
-  content: url('../../../public/& RadioButton.jpg');
-}
-
-/* .radioInput:checked+.radioLabel .radioBtnGray {
-  background-image: url('../../../public/RadioButton.jpg');
-  background-size: cover;
- 
-  background-repeat: no-repeat;
-  border: none;
- 
-} */
-
-.radioLabel p {
-  margin: 0;
-  font-size: 16px;
-  color: #333;
-}
-
-/* =========================================================== */
 
 .inputElem {
   margin-bottom: 18px;
