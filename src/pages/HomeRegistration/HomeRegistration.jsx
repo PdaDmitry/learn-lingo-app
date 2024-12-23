@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import css from './HomeRegistration.module.css';
+import Avatar1 from '../../../public/block-1.jpg';
 
 export const HomeRegistration = () => {
   const navigate = useNavigate();
@@ -26,7 +27,7 @@ export const HomeRegistration = () => {
             Get started
           </button>
         </div>
-        <img src="../../../public/block-1.png" alt="Language learning" className={css.imgSvg} />
+        <img src={Avatar1} alt="Language learning" className={css.imgSvg} />
       </div>
 
       <ul className={css.teacherProfile}>
