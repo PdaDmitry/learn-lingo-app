@@ -16,7 +16,6 @@ function App() {
 
   return (
     <div>
-      {/* <Header /> */}
       {isLoggedIn ? <HeaderRegistration /> : <Header />}
       <Toaster />
       <Routes>

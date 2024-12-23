@@ -2,6 +2,8 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import clsx from 'clsx';
 
 import css from './HeaderRegistration.module.css';
+import { useDispatch } from 'react-redux';
+import { logoutUser } from '../../redux/auth/operationsAuth';
 // import { RegistrationForm } from '../RegistrationForm/RegistrationForm';
 // import { useState } from 'react';
 // import ModalWindow from '../ModalWindow/ModalWindow';
@@ -16,10 +18,15 @@ export const HeaderRegistration = () => {
   //   const [isModalOpen, setIsModalOpen] = useState(false);
   //   const [loginModalOpen, setLoginModalOpen] = useState(false);
 
+  const dispatch = useDispatch();
+
   const handleLogoClick = () => {
     navigate('/');
   };
 
+  const handleLogout = () => {
+    dispatch(logoutUser());
+  };
   //   const openModal = () => setIsModalOpen(true);
   //   const closeModal = () => setIsModalOpen(false);
 
@@ -49,7 +56,7 @@ export const HeaderRegistration = () => {
         </ul>
       </nav>
       <div className={css.contAuthentication}>
-        <button type="button" className={css.btnLogOut}>
+        <button type="button" className={css.btnLogOut} onClick={handleLogout}>
           <svg className={css.loginSvg}>
             <use href="/symbol-defs-log-out.svg#icon-log-out-01"></use>
           </svg>

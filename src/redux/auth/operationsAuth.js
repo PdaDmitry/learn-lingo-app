@@ -1,5 +1,11 @@
 import { getDatabase, ref, get, set } from 'firebase/database';
-import { getAuth, createUserWithEmailAndPassword, fetchSignInMethodsForEmail } from 'firebase/auth';
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  fetchSignInMethodsForEmail,
+  signOut,
+  signInWithEmailAndPassword,
+} from 'firebase/auth';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 export const registerUser = createAsyncThunk(
@@ -27,29 +33,46 @@ export const registerUser = createAsyncThunk(
       };
     } catch (error) {
       console.error('Error registering user:', error.message);
+      //  toast.error(error.message);
       return rejectWithValue(error.message);
     }
   }
 );
 
-// export const loginUser = createAsyncThunk(
-//   'auth/loginUser',
-//   async ({ email, password }, { rejectWithValue }) => {
-//     const auth = getAuth();
+// =====================================logoutUser===========================================
 
-//     try {
-//       // Логиним пользователя
-//       const userCredential = await signInWithEmailAndPassword(auth, email, password);
-//       const user = userCredential.user;
+export const logoutUser = createAsyncThunk('auth/logoutUser', async (_, { rejectWithValue }) => {
+  const auth = getAuth();
+  try {
+    await signOut(auth);
+    console.log('User logged out');
+    // return true;
+    return null;
+  } catch (error) {
+    console.error('Error logging out:', error.message);
+    return rejectWithValue(error.message);
+  }
+});
 
-//       return {
-//         localId: user.uid,
-//         email: user.email,
-//         refreshToken: user.stsTokenManager.refreshToken,
-//       };
-//     } catch (error) {
-//       console.error('Error logging in user:', error.message);
-//       return rejectWithValue(error.message);
-//     }
-//   }
-// );
+// =====================================loginUser===========================================
+
+export const loginUser = createAsyncThunk(
+  'auth/loginUser',
+  async ({ email, password }, { rejectWithValue }) => {
+    const auth = getAuth();
+
+    try {
+      const userCredential = await signInWithEmailAndPassword(auth, email, password);
+      const user = userCredential.user;
+
+      return {
+        localId: user.uid,
+        email: user.email,
+        refreshToken: user.stsTokenManager.refreshToken,
+      };
+    } catch (error) {
+      console.error('Error logging in user:', error.message);
+      return rejectWithValue(error.message);
+    }
+  }
+);

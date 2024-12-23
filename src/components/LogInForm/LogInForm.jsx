@@ -6,9 +6,12 @@ import { LuEye } from 'react-icons/lu';
 import { useState } from 'react';
 import { yupResolver } from '@hookform/resolvers/yup';
 import css from './LogInForm.module.css';
+import { useDispatch } from 'react-redux';
+import { loginUser } from '../../redux/auth/operationsAuth';
 
 export const LogInForm = ({ closeModal }) => {
   const [showPassword, setShowPassword] = useState(false);
+  const dispatch = useDispatch();
 
   const togglePasswordVisibility = () => {
     setShowPassword(prevState => !prevState);
@@ -22,19 +25,9 @@ export const LogInForm = ({ closeModal }) => {
     resolver: yupResolver(loginSchema),
   });
 
-  //   const onSubmit = async data => {
-  //     try {
-  //       const { email, password } = data;
-  //
-  //       await LogIn(email, password); // Функция для логина
-  //       console.log('Logged in successfully');
-  //     } catch (error) {
-  //       console.error('Login failed:', error);
-  //     }
-  //   };
-
   const onSubmit = data => {
     console.log(data);
+    dispatch(loginUser(data));
     closeModal();
   };
 
