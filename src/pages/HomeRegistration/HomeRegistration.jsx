@@ -26,7 +26,7 @@ export const HomeRegistration = () => {
             Get started
           </button>
         </div>
-        <img src="../../../public/block-1.png" alt="Language learning" className={css.imgSvg} />
+        <img src="../../assets/block-1.png" alt="Language learning" className={css.imgSvg} />
       </div>
 
       <ul className={css.teacherProfile}>

@@ -55,10 +55,11 @@ export const BookLessonForm = ({ closeModal, id }) => {
           />
           <label htmlFor="career" className={css.radioLabel}>
             <img
-              src="../../../public/RadioButton-gray.png"
+              src="../../../public/RadioButton-gray.jpg"
               alt="Radio button"
               className={css.img}
             />
+            {/* <div className={css.radioBtnGray}></div> */}
             <p className={css.textRadio}>Career and business</p>
           </label>
         </li>
@@ -72,10 +73,11 @@ export const BookLessonForm = ({ closeModal, id }) => {
           />
           <label htmlFor="lesson" className={css.radioLabel}>
             <img
-              src="../../../public/RadioButton-gray.png"
+              src="../../../public/RadioButton-gray.jpg"
               alt="Radio button"
               className={css.img}
             />
+            {/* <div className={css.radioBtnGray}></div> */}
             <p className={css.textRadio}>Lesson for kids</p>
           </label>
         </li>
@@ -89,10 +91,11 @@ export const BookLessonForm = ({ closeModal, id }) => {
           />
           <label htmlFor="living" className={css.radioLabel}>
             <img
-              src="../../../public/RadioButton-gray.png"
+              src="../../../public/RadioButton-gray.jpg"
               alt="Radio button"
               className={css.img}
             />
+            {/* <div className={css.radioBtnGray}></div> */}
             <p className={css.textRadio}>Living abroad</p>
           </label>
         </li>
@@ -106,10 +109,11 @@ export const BookLessonForm = ({ closeModal, id }) => {
           />
           <label htmlFor="exams" className={css.radioLabel}>
             <img
-              src="../../../public/RadioButton-gray.png"
+              src="../../../public/RadioButton-gray.jpg"
               alt="Radio button"
               className={css.img}
             />
+            {/* <div className={css.radioBtnGray}></div> */}
             <p className={css.textRadio}>Exams and coursework</p>
           </label>
         </li>
@@ -123,10 +127,11 @@ export const BookLessonForm = ({ closeModal, id }) => {
           />
           <label htmlFor="culture" className={css.radioLabel}>
             <img
-              src="../../../public/RadioButton-gray.png"
+              src="../../../public/RadioButton-gray.jpg"
               alt="Radio button"
               className={css.img}
             />
+            {/* <div className={css.radioBtnGray}></div> */}
             <p className={css.textRadio}>Culture, travel or hobby</p>
           </label>
         </li>

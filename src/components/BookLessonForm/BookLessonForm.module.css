@@ -97,7 +97,17 @@
 }
 
 .img {
+
   margin-right: 8px;
+}
+
+.radioBtnGray {
+  width: 19.75px;
+  height: 19.75px;
+  border-radius: 50%;
+  border: 2px solid #cac6c6;
+  margin-right: 8px;
+  transition: background-image 0.3s ease;
 }
 
 .radioLabel img {
@@ -112,9 +122,18 @@
   line-height: 137%;
 }
 
-.radioInput:checked + .radioLabel img {
+.radioInput:checked+.radioLabel img {
   content: url('../../../public/& RadioButton.jpg');
 }
+
+/* .radioInput:checked+.radioLabel .radioBtnGray {
+  background-image: url('../../../public/RadioButton.jpg');
+  background-size: cover;
+ 
+  background-repeat: no-repeat;
+  border: none;
+ 
+} */
 
 .radioLabel p {
   margin: 0;
@@ -168,7 +187,8 @@
 .input:-webkit-autofill {
   background-color: white !important;
   box-shadow: 0 0 0px 1000px white inset !important;
-  -webkit-box-shadow: 0 0 0px 1000px white inset !important; /* Для старых версий */
+  -webkit-box-shadow: 0 0 0px 1000px white inset !important;
+  /* Для старых версий */
   transition: background-color 0s;
 }
 
