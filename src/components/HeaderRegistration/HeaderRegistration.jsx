@@ -26,6 +26,7 @@ export const HeaderRegistration = () => {
 
   const handleLogout = () => {
     dispatch(logoutUser());
+    navigate('/');
   };
   //   const openModal = () => setIsModalOpen(true);
   //   const closeModal = () => setIsModalOpen(false);
@@ -51,6 +52,11 @@ export const HeaderRegistration = () => {
           <li className={css.contLiTeachers}>
             <NavLink to="/teachers" className={buildLinkClass}>
               Teachers
+            </NavLink>
+          </li>
+          <li className={css.contLiFavorites}>
+            <NavLink to="/favorites" className={buildLinkClass}>
+              Favorites
             </NavLink>
           </li>
         </ul>

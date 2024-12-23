@@ -21,6 +21,7 @@ function App() {
       <Routes>
         <Route path="/" element={isLoggedIn ? <HomeRegistration /> : <Home />} />
         <Route path="/teachers" element={<Teachers />} />
+        {isLoggedIn && <Route path="/favorites" element={<h1>Favorites</h1>} />}
         <Route path="*" element={<NotFound />} />
       </Routes>
     </div>

@@ -30,15 +30,17 @@
   font-weight: 400;
   font-size: 16px;
   line-height: 125%;
-  margin-right: 268px;
+  /* margin-right: 268px; */
+  margin-right: 169px;
 }
 
 .contLiHome {
   margin-right: 28px;
 }
 
-/* .contLiTeachers {
-} */
+.contLiTeachers {
+  margin-right: 28px;
+}
 
 .link {
   color: #121417;
