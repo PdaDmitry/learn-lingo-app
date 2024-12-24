@@ -4,6 +4,7 @@ import clsx from 'clsx';
 import css from './HeaderRegistration.module.css';
 import { useDispatch } from 'react-redux';
 import { logoutUser } from '../../redux/auth/operationsAuth';
+import { clearFavorites } from '../../redux/teachers/teachersSlice';
 // import { RegistrationForm } from '../RegistrationForm/RegistrationForm';
 // import { useState } from 'react';
 // import ModalWindow from '../ModalWindow/ModalWindow';
@@ -26,6 +27,7 @@ export const HeaderRegistration = () => {
 
   const handleLogout = () => {
     dispatch(logoutUser());
+    dispatch(clearFavorites());
     navigate('/');
   };
   //   const openModal = () => setIsModalOpen(true);
