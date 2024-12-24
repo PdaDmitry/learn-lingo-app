@@ -23,7 +23,7 @@ const persistTeachersConfig = {
 const persistAuthConfig = {
   key: 'auth',
   storage,
-  whitelist: ['user', 'isLoggedIn', 'refreshToken', 'favorites'],
+  whitelist: ['user', 'isLoggedIn', 'refreshToken'],
   // blacklist: ['error'],
 };
 

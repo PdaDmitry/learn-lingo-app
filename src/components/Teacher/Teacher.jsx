@@ -1,11 +1,13 @@
-import { useSelector } from 'react-redux';
-import { selectTeachersById } from '../../redux/teachers/selectors';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectFavoriteTeacherById, selectTeachersById } from '../../redux/teachers/selectors';
 import { FiHeart } from 'react-icons/fi';
 import { LuBookOpen } from 'react-icons/lu';
 import { useState } from 'react';
 import { TeacherReviews } from '../TeacherReviews/TeacherReviews';
 
 import css from './Teacher.module.css';
+import { selectUserID } from '../../redux/auth/selectorsAuth';
+import { toggleFavoriteTeacher } from '../../redux/teachers/operations';
 
 export const Teacher = ({ id }) => {
   const [isOpenReviews, setIsOpenReviews] = useState(() => {
@@ -13,7 +15,11 @@ export const Teacher = ({ id }) => {
     return savedState ? JSON.parse(savedState) : false;
   });
 
+  const dispatch = useDispatch();
+
   const teacher = useSelector(selectTeachersById(id));
+  const userId = useSelector(selectUserID);
+  const isFavorite = useSelector(selectFavoriteTeacherById(id));
   // console.log('teacher: ', teacher);
 
   const {
@@ -33,6 +39,10 @@ export const Teacher = ({ id }) => {
     const newIsOpen = !isOpenReviews;
     setIsOpenReviews(newIsOpen);
     localStorage.setItem(`teacher-${id}-isOpen`, JSON.stringify(newIsOpen));
+  };
+
+  const handleFavoriteClick = () => {
+    dispatch(toggleFavoriteTeacher({ userId, teacher }));
   };
 
   return (
@@ -68,7 +78,17 @@ export const Teacher = ({ id }) => {
               </p>
             </li>
           </ul>
-          <FiHeart style={{ width: '26px', height: '26px', cursor: 'pointer' }} />
+          <FiHeart
+            // {clickFavorite? style={{ width: '26px', height: '26px', cursor: 'pointer' }}: style={{ width: '26px', height: '26px', cursor: 'pointer',color:'red' }}}
+            style={{
+              width: '26px',
+              height: '26px',
+              cursor: 'pointer',
+              color: isFavorite ? ' #f4c550' : 'black',
+              fill: isFavorite ? ' #f4c550' : 'white',
+            }}
+            onClick={handleFavoriteClick}
+          />
         </div>
         <h2 className={css.teacherName}>{`${name} ${surname}`}</h2>
         <ul className={css.categories}>
