@@ -8,7 +8,7 @@ export const TeacherList = () => {
   // console.log(teachers);
 
   if (!teachers.length) {
-    return <div>No teachers available</div>;
+    return <p>No teachers available</p>;
   }
 
   return (

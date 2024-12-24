@@ -8,6 +8,7 @@ import { HeaderRegistration } from '../HeaderRegistration/HeaderRegistration';
 import { useSelector } from 'react-redux';
 import { selectIsLoggedIn } from '../../redux/auth/selectorsAuth';
 import { Toaster } from 'react-hot-toast';
+import { Favorites } from '../../pages/Favorites/Favorites';
 
 // import css from './App.module.css';
 
@@ -21,7 +22,7 @@ function App() {
       <Routes>
         <Route path="/" element={isLoggedIn ? <HomeRegistration /> : <Home />} />
         <Route path="/teachers" element={<Teachers />} />
-        {isLoggedIn && <Route path="/favorites" element={<h1>Favorites</h1>} />}
+        {isLoggedIn && <Route path="/favorites" element={<Favorites />} />}
         <Route path="*" element={<NotFound />} />
       </Routes>
     </div>

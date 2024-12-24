@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { fetchTeachersThunc, toggleFavoriteTeacher } from './operations';
+import { fetchFavoriteTeachers, fetchTeachersThunc, toggleFavoriteTeacher } from './operations';
 
 const initialState = {
   items: [],
@@ -11,6 +11,11 @@ const initialState = {
 const teachersSlice = createSlice({
   name: 'teachers',
   initialState,
+  reducers: {
+    clearFavorites: state => {
+      state.favorites = [];
+    },
+  },
   extraReducers: builder => {
     builder
       .addCase(fetchTeachersThunc.pending, (state, action) => {
@@ -37,8 +42,22 @@ const teachersSlice = createSlice({
       .addCase(toggleFavoriteTeacher.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = action.payload;
+      })
+      .addCase(fetchFavoriteTeachers.pending, (state, action) => {
+        state.isLoading = true;
+        state.isError = false;
+      })
+      .addCase(fetchFavoriteTeachers.fulfilled, (state, action) => {
+        // state.favorites = [];
+        state.isLoading = false;
+        state.favorites = action.payload;
+      })
+      .addCase(fetchFavoriteTeachers.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = action.payload || 'Something went wrong';
       });
   },
 });
 
+export const { clearFavorites } = teachersSlice.actions;
 export const teacherReducer = teachersSlice.reducer;

@@ -69,3 +69,27 @@ export const toggleFavoriteTeacher = createAsyncThunk(
     }
   }
 );
+
+// ====================================fetchFavoriteTeachers========================================
+
+export const fetchFavoriteTeachers = createAsyncThunk(
+  'fetchUserFavorites',
+  async (userId, thunkAPI) => {
+    console.log(userId);
+    try {
+      const db = getDatabase(app);
+      const userFavoritesRef = ref(db, `users/${userId}/favorites`); // Путь к избранным учителям в записи пользователя
+      const readingData = await get(userFavoritesRef);
+
+      if (readingData.exists()) {
+        const data = readingData.val();
+        return data; // Возвращаем массив избранных учителей для пользователя
+      } else {
+        throw new Error('No favorites available for this user');
+      }
+    } catch (error) {
+      console.error('Error fetching user favorites:', error);
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);

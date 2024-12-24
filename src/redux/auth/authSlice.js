@@ -1,12 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { loginUser, logoutUser, registerUser } from './operationsAuth';
+import { clearFavorites } from '../teachers/teachersSlice';
 
 const initialState = {
   user: {
     localId: null,
     name: null,
     email: null,
-    // favorites: [],
   },
   refreshToken: null,
   isLoggedIn: false,
@@ -47,6 +47,7 @@ const authSlice = createSlice({
         state.user = { localId: null, name: null, email: null };
         state.refreshToken = null;
         state.isLoggedIn = false;
+        clearFavorites();
       })
       .addCase(logoutUser.rejected, (state, action) => {
         state.loader = false;
