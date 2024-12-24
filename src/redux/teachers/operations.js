@@ -12,13 +12,17 @@ export const fetchTeachersThunc = createAsyncThunk('fetchTeachers', async (_, th
     if (readingData.exists()) {
       const data = readingData.val();
 
-      // We go through the data and add a unique ID, which is the Firebase key
-      const teachersWithId = Object.entries(data).map(([key, value]) => {
-        return {
-          id: key, // Using Firebase key as ID
-          ...value, // Adding the rest of the data
-        };
-      });
+      const userIdPattern = /^[a-zA-Z0-9]{28}$/;
+
+      const teachersWithId = Object.entries(data)
+        .filter(([key, value]) => {
+          // if the key matches users, skip it
+          return !key.startsWith('users') && !userIdPattern.test(key);
+        })
+        .map(([key, value]) => ({
+          id: key,
+          ...value,
+        }));
 
       return teachersWithId; // Sending data with ID to Redux
     } else {
@@ -29,28 +33,3 @@ export const fetchTeachersThunc = createAsyncThunk('fetchTeachers', async (_, th
     return thunkAPI.rejectWithValue(error.message);
   }
 });
-
-// export const registerUser = async ({ email, password }) => {
-//   const auth = getAuth();
-
-//   const db = getDatabase();
-//   // console.log('db: ', db);
-
-//   try {
-//     const signInMethods = await fetchSignInMethodsForEmail(auth, email);
-//     console.log('signInMethods ', signInMethods);
-//     if (signInMethods.length > 0) {
-//       throw new Error('Email already in use');
-//     }
-
-//     // Register a user using email and password
-//     const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-//     const user = userCredential.user;
-
-//     console.log('User registered with UID:', user.uid);
-//     return user;
-//   } catch (error) {
-//     console.error('Error registering user:', error.message);
-//     throw error;
-//   }
-// };

@@ -12,7 +12,7 @@ export const registerUser = createAsyncThunk(
   'auth/registerUser',
   async ({ name, email, password }, { rejectWithValue }) => {
     const auth = getAuth();
-    // const db = getDatabase();
+    const db = getDatabase();
 
     try {
       const signInMethods = await fetchSignInMethodsForEmail(auth, email);
@@ -24,6 +24,12 @@ export const registerUser = createAsyncThunk(
       const user = userCredential.user;
 
       console.log('User registered with UID:', user.uid);
+
+      await set(ref(db, `users/${user.uid}`), {
+        name,
+        email: user.email,
+        favorites: [], // Initializing an empty array
+      });
 
       return {
         localId: user.uid,
@@ -43,8 +49,11 @@ export const registerUser = createAsyncThunk(
 
 export const logoutUser = createAsyncThunk('auth/logoutUser', async (_, { rejectWithValue }) => {
   const auth = getAuth();
+  // console.log(auth);
+
   try {
     await signOut(auth);
+
     console.log('User logged out');
     // return true;
     return null;
@@ -69,6 +78,7 @@ export const loginUser = createAsyncThunk(
         localId: user.uid,
         email: user.email,
         refreshToken: user.stsTokenManager.refreshToken,
+        // favorites,
       };
     } catch (error) {
       console.error('Error logging in user:', error.message);

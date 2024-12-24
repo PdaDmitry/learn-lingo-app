@@ -6,6 +6,7 @@ const initialState = {
     localId: null,
     name: null,
     email: null,
+    favorites: [],
   },
   refreshToken: null,
   isLoggedIn: false,
