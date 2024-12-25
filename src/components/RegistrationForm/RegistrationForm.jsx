@@ -32,7 +32,7 @@ export const RegistrationForm = ({ closeModal }) => {
       // console.log(resultAction);
 
       toast.success(`User ${data.name} successfully registered!`, {
-        duration: 4000,
+        duration: 5000,
         position: 'top-center',
         style: { background: 'green', color: 'white' },
       });

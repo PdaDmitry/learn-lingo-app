@@ -4,12 +4,15 @@ import { FiHeart } from 'react-icons/fi';
 import { LuBookOpen } from 'react-icons/lu';
 import { useState } from 'react';
 import { TeacherReviews } from '../TeacherReviews/TeacherReviews';
-
+// import ModalWindow from '../ModalWindow/ModalWindow';
 import css from './Teacher.module.css';
 import { selectUserID } from '../../redux/auth/selectorsAuth';
 import { toggleFavoriteTeacher } from '../../redux/teachers/operations';
+// import { OnlyForAuthorized } from '../OnlyForAuthorized/OnlyForAuthorized';
+import toast from 'react-hot-toast';
 
 export const Teacher = ({ id }) => {
+  // const [isModalOpen, setIsModalOpen] = useState(false);
   const [isOpenReviews, setIsOpenReviews] = useState(() => {
     const savedState = localStorage.getItem(`teacher-${id}-isOpen`);
     return savedState ? JSON.parse(savedState) : false;
@@ -21,6 +24,7 @@ export const Teacher = ({ id }) => {
   const userId = useSelector(selectUserID);
   const isFavorite = useSelector(selectFavoriteTeacherById(id));
   // console.log('teacher: ', teacher);
+  // console.log(userId);
 
   const {
     lessons_done,
@@ -41,8 +45,20 @@ export const Teacher = ({ id }) => {
     localStorage.setItem(`teacher-${id}-isOpen`, JSON.stringify(newIsOpen));
   };
 
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
+
   const handleFavoriteClick = () => {
-    dispatch(toggleFavoriteTeacher({ userId, teacher }));
+    if (userId === null) {
+      // openModal();
+      toast.error('This functionality is available only to authorized users!', {
+        duration: 4000,
+        position: 'top-center',
+        style: { background: 'orange', color: 'black' },
+      });
+    } else {
+      dispatch(toggleFavoriteTeacher({ userId, teacher }));
+    }
   };
 
   return (
@@ -124,6 +140,10 @@ export const Teacher = ({ id }) => {
           </ul>
         )}
       </div>
+
+      {/* <ModalWindow isOpen={isModalOpen} onClose={closeModal}>
+        <OnlyForAuthorized closeModal={closeModal} />
+      </ModalWindow> */}
     </div>
   );
 };
