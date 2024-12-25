@@ -29,6 +29,7 @@ export const registerUser = createAsyncThunk(
         name,
         email: user.email,
         favorites: [], // Initializing an empty array
+        theme: '',
       });
 
       return {
@@ -36,6 +37,7 @@ export const registerUser = createAsyncThunk(
         name,
         email: user.email,
         refreshToken: user.stsTokenManager.refreshToken,
+        // theme: theme || 'default',
       };
     } catch (error) {
       console.error('Error registering user:', error.message);

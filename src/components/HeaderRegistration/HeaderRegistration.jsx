@@ -5,9 +5,10 @@ import css from './HeaderRegistration.module.css';
 import { useDispatch } from 'react-redux';
 import { logoutUser } from '../../redux/auth/operationsAuth';
 import { clearFavorites } from '../../redux/teachers/teachersSlice';
+import { ChangeThemeForm } from '../ChangeThemeForm/ChangeThemeForm';
+import { useState } from 'react';
 // import { RegistrationForm } from '../RegistrationForm/RegistrationForm';
-// import { useState } from 'react';
-// import ModalWindow from '../ModalWindow/ModalWindow';
+import ModalWindow from '../ModalWindow/ModalWindow';
 // import { LogInForm } from '../LogInForm/LogInForm';
 
 const buildLinkClass = ({ isActive }) => {
@@ -17,7 +18,7 @@ const buildLinkClass = ({ isActive }) => {
 export const HeaderRegistration = () => {
   const navigate = useNavigate();
   //   const [isModalOpen, setIsModalOpen] = useState(false);
-  //   const [loginModalOpen, setLoginModalOpen] = useState(false);
+  const [themeModalOpen, setThemeModalOpen] = useState(false);
 
   const dispatch = useDispatch();
 
@@ -33,8 +34,8 @@ export const HeaderRegistration = () => {
   //   const openModal = () => setIsModalOpen(true);
   //   const closeModal = () => setIsModalOpen(false);
 
-  //   const openLoginModal = () => setLoginModalOpen(true);
-  //   const closeLoginModal = () => setLoginModalOpen(false);
+  const openThemeModal = () => setThemeModalOpen(true);
+  const closeThemeModal = () => setThemeModalOpen(false);
 
   return (
     <header className={css.contRout}>
@@ -71,16 +72,16 @@ export const HeaderRegistration = () => {
           Logout
         </button>
 
-        <button type="button" className={css.btnRegistration}>
+        <button type="button" className={css.btnRegistration} onClick={openThemeModal}>
           Change theme
         </button>
       </div>
 
-      {/* <ModalWindow isOpen={loginModalOpen} onClose={closeLoginModal}>
-        <LogInForm closeModal={closeLoginModal} />
+      <ModalWindow isOpen={themeModalOpen} onClose={closeThemeModal}>
+        <ChangeThemeForm closeModal={closeThemeModal} />
       </ModalWindow>
 
-      <ModalWindow isOpen={isModalOpen} onClose={closeModal}>
+      {/* <ModalWindow isOpen={isModalOpen} onClose={closeModal}>
         <RegistrationForm closeModal={closeModal} />
       </ModalWindow> */}
     </header>

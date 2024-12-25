@@ -1,0 +1,77 @@
+.contChangeTheme {
+  position: relative;
+  border-radius: 30px;
+  width: 499px;
+  /* height: 971px; */
+  padding: 64px;
+  background: #fff;
+}
+
+.closeButton {
+  position: absolute;
+  display: block;
+  top: 20px;
+  right: 20px;
+  background: none;
+  border: none;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  padding: 0;
+}
+
+.titleText {
+  font-weight: 500;
+  font-size: 40px;
+  line-height: 120%;
+  letter-spacing: -0.02em;
+  margin-bottom: 20px;
+}
+
+.radioGroup {
+  margin-bottom: 40px;
+}
+
+.radioGroup li {
+  margin-bottom: 16px;
+}
+
+.radioGroup li:last-child {
+  margin-bottom: 0;
+}
+
+/* .radioOption {
+} */
+
+.radioInput {
+  display: none;
+}
+
+.radioLabel {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.textRadio {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 137%;
+}
+
+.btnChangeTheme {
+  border-radius: 12px;
+  /* padding: 16px 215px; */
+  width: 371px;
+  height: 60px;
+  background: #f4c550;
+  border: none;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 156%;
+  cursor: pointer;
+}
+
+.btnChangeTheme:hover {
+  background: #ffdc86;
+}

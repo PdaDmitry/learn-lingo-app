@@ -75,7 +75,7 @@ export const toggleFavoriteTeacher = createAsyncThunk(
 export const fetchFavoriteTeachers = createAsyncThunk(
   'fetchUserFavorites',
   async (userId, thunkAPI) => {
-    console.log(userId);
+    // console.log(userId);
     try {
       const db = getDatabase(app);
       const userFavoritesRef = ref(db, `users/${userId}/favorites`); // Путь к избранным учителям в записи пользователя
