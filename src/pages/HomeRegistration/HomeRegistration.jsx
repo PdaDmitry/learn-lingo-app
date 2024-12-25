@@ -1,9 +1,13 @@
 import { useNavigate } from 'react-router-dom';
 import css from './HomeRegistration.module.css';
 import Avatar1 from '../../../public/block-1.jpg';
+import { useSelector } from 'react-redux';
+import { selectUserTheme } from '../../redux/auth/selectorsAuth';
 
 export const HomeRegistration = () => {
   const navigate = useNavigate();
+  const userTheme = useSelector(selectUserTheme);
+  console.log('userTheme ', userTheme);
 
   const handleButtonClick = () => {
     navigate('/teachers');

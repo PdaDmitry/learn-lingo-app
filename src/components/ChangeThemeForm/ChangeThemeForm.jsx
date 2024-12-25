@@ -2,10 +2,13 @@ import { IoMdClose } from 'react-icons/io';
 import { MdOutlineRadioButtonChecked, MdRadioButtonUnchecked } from 'react-icons/md';
 import css from './ChangeThemeForm.module.css';
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectUserID } from '../../redux/auth/selectorsAuth';
+import { updateTheme } from '../../redux/auth/operationsAuth';
 
 export const ChangeThemeForm = ({ closeModal }) => {
   const [selectedTheme, setSelectedTheme] = useState(null);
+  const userId = useSelector(selectUserID);
 
   const dispatch = useDispatch();
 
@@ -19,7 +22,7 @@ export const ChangeThemeForm = ({ closeModal }) => {
 
   const handleSubmit = event => {
     event.preventDefault();
-    // console.log('Selected theme:', selectedTheme);
+    // console.log({ userId, selectedTheme });
     dispatch(updateTheme({ userId, theme: selectedTheme }));
     closeModal();
   };
