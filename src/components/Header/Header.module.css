@@ -85,3 +85,7 @@
   border: none;
   cursor: pointer;
 }
+
+.btnRegistration:hover {
+  background: #acacaa;
+}

@@ -40,7 +40,7 @@
   border-radius: 8px;
   width: 195px;
   height: 40px;
-  background: #fbe9ba;
+  /* background: #fbe9ba; */
   top: 165px;
   left: 236px;
   z-index: 0;
@@ -64,13 +64,13 @@
   /* padding: 16px 88px; */
   width: 267px;
   height: 60px;
-  background: #f4c550;
+  /* background: #f4c550; */
   cursor: pointer;
 }
 
-.btnStarted:hover {
+/* .btnStarted:hover {
   background: #ffdc86;
-}
+} */
 
 .imgSvg {
   width: 568px;
@@ -81,7 +81,7 @@
 
 .teacherProfile {
   display: flex;
-  border: 2px dashed #f4c550;
+  /* border: 2px dashed #f4c550; */
   border-radius: 30px;
   width: 1312px;
   height: 116px;

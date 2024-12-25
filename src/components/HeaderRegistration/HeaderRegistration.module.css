@@ -78,12 +78,12 @@
   font-weight: 700;
   font-size: 16px;
   line-height: 125%;
-  color: #fff;
+  /* color: #fff; */
   border-radius: 12px;
   /* padding: 14px 39px; */
   width: 166px;
   height: 48px;
-  background: #8a8a89;
+  /* background: #8a8a89; */
   border: none;
   cursor: pointer;
 }
