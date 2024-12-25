@@ -5,7 +5,7 @@ import { RegistrationForm } from '../RegistrationForm/RegistrationForm';
 import { IoMdClose } from 'react-icons/io';
 import css from './OnlyForAuthorized.module.css';
 
-export const OnlyForOnly for authorized = ({ closeModal }) => {
+export const OnlyForAuthorized = ({ closeModal }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [loginModalOpen, setLoginModalOpen] = useState(false);
 
