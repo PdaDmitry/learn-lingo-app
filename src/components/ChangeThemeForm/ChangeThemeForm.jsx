@@ -2,9 +2,12 @@ import { IoMdClose } from 'react-icons/io';
 import { MdOutlineRadioButtonChecked, MdRadioButtonUnchecked } from 'react-icons/md';
 import css from './ChangeThemeForm.module.css';
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 
 export const ChangeThemeForm = ({ closeModal }) => {
   const [selectedTheme, setSelectedTheme] = useState(null);
+
+  const dispatch = useDispatch();
 
   const themes = [
     { value: '#F4C550', label: 'Golden Yellow (base)' },
@@ -16,7 +19,8 @@ export const ChangeThemeForm = ({ closeModal }) => {
 
   const handleSubmit = event => {
     event.preventDefault();
-    console.log('Selected theme:', selectedTheme);
+    // console.log('Selected theme:', selectedTheme);
+    dispatch(updateTheme({ userId, theme: selectedTheme }));
     closeModal();
   };
 

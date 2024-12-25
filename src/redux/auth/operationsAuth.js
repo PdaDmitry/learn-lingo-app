@@ -1,4 +1,4 @@
-import { getDatabase, ref, get, set } from 'firebase/database';
+import { getDatabase, ref, get, set, update } from 'firebase/database';
 import {
   getAuth,
   createUserWithEmailAndPassword,
@@ -84,6 +84,27 @@ export const loginUser = createAsyncThunk(
       };
     } catch (error) {
       console.error('Error logging in user:', error.message);
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
+// =====================================updateTheme===========================================
+
+export const updateTheme = createAsyncThunk(
+  'auth/updateTheme', // Название экшена
+  async ({ userId, theme }, { rejectWithValue }) => {
+    const db = getDatabase();
+
+    try {
+      // Обновляем поле `theme` в Firebase для конкретного пользователя
+      await update(ref(db, `users/${userId}`), {
+        theme, // Сохраняем выбранную тему
+      });
+
+      return theme; // Возвращаем выбранную тему для дальнейшей работы в редьюсере
+    } catch (error) {
+      console.error('Error updating theme:', error);
       return rejectWithValue(error.message);
     }
   }

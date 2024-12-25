@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { loginUser, logoutUser, registerUser } from './operationsAuth';
+import { loginUser, logoutUser, registerUser, updateTheme } from './operationsAuth';
 // import { clearFavorites } from '../teachers/teachersSlice';
 
 const initialState = {
@@ -7,6 +7,7 @@ const initialState = {
     localId: null,
     name: null,
     email: null,
+    theme: null,
   },
   refreshToken: null,
   isLoggedIn: false,
@@ -69,6 +70,20 @@ const authSlice = createSlice({
       .addCase(loginUser.rejected, (state, action) => {
         state.loader = false;
         state.error = action.payload;
+      })
+
+      //updateTheme
+      .addCase(updateTheme.pending, state => {
+        state.loader = true; // Статус загрузки
+        state.error = null;
+      })
+      .addCase(updateTheme.fulfilled, (state, action) => {
+        state.loader = false;
+        state.user.theme = action.payload; // Обновляем тему пользователя
+      })
+      .addCase(updateTheme.rejected, (state, action) => {
+        state.loader = false;
+        state.error = action.payload; // Обрабатываем ошибку
       });
   },
 });
