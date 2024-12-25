@@ -29,7 +29,7 @@ export const RegistrationForm = ({ closeModal }) => {
   const onSubmit = async data => {
     try {
       const resultAction = await dispatch(registerUser(data)).unwrap();
-      console.log(resultAction);
+      // console.log(resultAction);
 
       toast.success(`User ${data.name} successfully registered!`, {
         duration: 4000,

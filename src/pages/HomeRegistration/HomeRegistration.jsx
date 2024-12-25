@@ -1,6 +1,10 @@
 import { useNavigate } from 'react-router-dom';
 import css from './HomeRegistration.module.css';
 import Avatar1 from '../../../public/block-1.jpg';
+import Avatar2 from '../../../public/block-2.jpg';
+import Avatar3 from '../../../public/block-3.jpg';
+import Avatar4 from '../../../public/block-4.jpg';
+import Avatar5 from '../../../public/block-5.jpg';
 import { useSelector } from 'react-redux';
 import { selectUserTheme } from '../../redux/auth/selectorsAuth';
 
@@ -8,6 +12,14 @@ export const HomeRegistration = () => {
   const navigate = useNavigate();
   const userTheme = useSelector(selectUserTheme);
   console.log('userTheme ', userTheme);
+
+  const Avatar = {
+    '#F4C550': Avatar1,
+    '#9FBAAE': Avatar2,
+    '#9FB7CE': Avatar3,
+    '#E0A39A': Avatar4,
+    '#F0AA8D': Avatar5,
+  };
 
   const handleButtonClick = () => {
     navigate('/teachers');
@@ -31,7 +43,12 @@ export const HomeRegistration = () => {
             Get started
           </button>
         </div>
-        <img src={Avatar1} alt="Language learning" className={css.imgSvg} />
+        <img
+          src={userTheme ? Avatar[userTheme] : Avatar['#F4C550']}
+          // src={Avatar[userTheme]}
+          alt="Language learning"
+          className={css.imgSvg}
+        />
       </div>
 
       <ul className={css.teacherProfile}>

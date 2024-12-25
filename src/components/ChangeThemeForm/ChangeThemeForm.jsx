@@ -27,13 +27,6 @@ export const ChangeThemeForm = ({ closeModal }) => {
     closeModal();
   };
 
-  //   const handleKeyDown = event => {
-  //     if (event.key === 'Enter' && selectedTheme) {
-  //       event.preventDefault(); // Отключаем стандартное поведение
-  //       handleSubmit(event); // Отправляем форму вручную
-  //     }
-  //   };
-
   return (
     <form onSubmit={handleSubmit} className={css.contChangeTheme}>
       <button type="button" className={css.closeButton} onClick={closeModal} aria-label="Close">

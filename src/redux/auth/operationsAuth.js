@@ -71,14 +71,19 @@ export const loginUser = createAsyncThunk(
   'auth/loginUser',
   async ({ email, password }, { rejectWithValue }) => {
     const auth = getAuth();
+    const db = getDatabase();
 
     try {
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
 
+      const themeSnapshot = await get(ref(db, `users/${user.uid}/theme`));
+      const theme = themeSnapshot.exists() ? themeSnapshot.val() : '#F4C550';
+
       return {
         localId: user.uid,
         email: user.email,
+        theme, //////////////////
         refreshToken: user.stsTokenManager.refreshToken,
         // favorites,
       };
