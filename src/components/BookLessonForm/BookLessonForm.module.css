@@ -81,7 +81,6 @@
   margin-bottom: 0;
 }
 
-
 .radioInput {
   display: none;
 }
@@ -92,12 +91,10 @@
   cursor: pointer;
 }
 
-
 .textRadio {
   font-weight: 400;
   font-size: 16px;
   line-height: 137%;
-
 }
 
 .inputElem {

@@ -6,7 +6,7 @@ import { LuEye } from 'react-icons/lu';
 import { useState } from 'react';
 import { yupResolver } from '@hookform/resolvers/yup';
 import css from './LogInForm.module.css';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { loginUser } from '../../redux/auth/operationsAuth';
 
 export const LogInForm = ({ closeModal }) => {
@@ -26,7 +26,6 @@ export const LogInForm = ({ closeModal }) => {
   });
 
   const onSubmit = data => {
-    // console.log(data);
     dispatch(loginUser(data));
     closeModal();
   };

@@ -1,0 +1,73 @@
+.contAction {
+  position: relative;
+  border-radius: 30px;
+  width: 565px;
+  /* height: 505px; */
+  padding: 64px;
+  background: #fff;
+}
+
+.closeButton {
+  position: absolute;
+  display: block;
+  top: 20px;
+  right: 20px;
+  background: none;
+  border: none;
+  /* font-size: 24px; */
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  padding: 0;
+}
+
+.titletext {
+  /* text-align: center; */
+  font-weight: 500;
+  font-size: 40px;
+  line-height: 120%;
+  letter-spacing: -0.02em;
+  padding-left: 27px;
+  margin-bottom: 40px;
+}
+
+.choiceAction {
+  display: flex;
+  justify-content: space-between;
+}
+
+.btnLogout {
+  display: block;
+  border-radius: 12px;
+  /* padding: 16px 210px; */
+  width: 200px;
+  height: 60px;
+  background: #f4c550;
+  border: none;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 1.55556;
+  cursor: pointer;
+}
+
+.btnLogout:hover {
+  background: #ffdc86;
+}
+
+.btnCancel {
+  display: block;
+  border-radius: 12px;
+  /* padding: 16px 210px; */
+  width: 200px;
+  height: 60px;
+  background: #f4c550;
+  border: none;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 1.55556;
+  cursor: pointer;
+}
+
+.btnCancel:hover {
+  background: #ffdc86;
+}

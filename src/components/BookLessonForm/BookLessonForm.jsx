@@ -1,6 +1,6 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
-import { BooleanSchema } from 'yup';
+// import { BooleanSchema } from 'yup';
 import { IoMdClose } from 'react-icons/io';
 import { MdRadioButtonUnchecked } from 'react-icons/md';
 import { MdOutlineRadioButtonChecked } from 'react-icons/md';
@@ -8,6 +8,8 @@ import { MdOutlineRadioButtonChecked } from 'react-icons/md';
 import css from './BookLessonForm.module.css';
 import { useSelector } from 'react-redux';
 import { selectTeachersById } from '../../redux/teachers/selectors';
+import { bookLessonSchema } from '../../validationSchemas';
+import toast from 'react-hot-toast';
 
 export const BookLessonForm = ({ closeModal, id }) => {
   const teacherData = useSelector(selectTeachersById(id));
@@ -19,13 +21,21 @@ export const BookLessonForm = ({ closeModal, id }) => {
     formState: { errors },
     watch,
   } = useForm({
-    resolver: yupResolver(BooleanSchema),
+    resolver: yupResolver(bookLessonSchema),
   });
 
   const selectedValue = watch('assessmentType');
 
   const onSubmit = data => {
     console.log(data);
+    toast.success(
+      `${data.fullName}, your order has been processed. Expect confirmation to your email.`,
+      {
+        duration: 4000,
+        position: 'top-center',
+        style: { background: 'green', color: 'white' },
+      }
+    );
     closeModal();
   };
 
@@ -50,6 +60,7 @@ export const BookLessonForm = ({ closeModal, id }) => {
 
       <h2 className={css.survey}>What is your main reason for learning English?</h2>
 
+      {errors.assessmentType && <p className={css.textError}>{errors.assessmentType.message}</p>}
       <ul className={css.radioGroup}>
         {[
           'Career and business',
@@ -93,8 +104,8 @@ export const BookLessonForm = ({ closeModal, id }) => {
       </ul>
 
       <div className={css.inputElem}>
-        <input {...register('name')} placeholder="Full Name" className={css.input} />
-        {errors.username && <p className={css.textError}>{errors.username.message}</p>}
+        <input {...register('fullName')} placeholder="Full Name" className={css.input} />
+        {errors.fullName && <p className={css.textError}>{errors.fullName.message}</p>}
       </div>
 
       <div className={css.inputElem}>
@@ -103,8 +114,8 @@ export const BookLessonForm = ({ closeModal, id }) => {
       </div>
 
       <div className={css.inputLastElem}>
-        <input {...register('phone')} placeholder="Phone number" className={css.input} />
-        {errors.phone && <p className={css.textError}>{errors.phone.message}</p>}
+        <input {...register('number')} placeholder="Phone number" className={css.input} />
+        {errors.number && <p className={css.textError}>{errors.number.message}</p>}
       </div>
       <button type="submit" className={css.btnBookForm}>
         Book

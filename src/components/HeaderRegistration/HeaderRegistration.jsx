@@ -9,6 +9,7 @@ import { ChangeThemeForm } from '../ChangeThemeForm/ChangeThemeForm';
 import { useState } from 'react';
 import ModalWindow from '../ModalWindow/ModalWindow';
 import { selectUserTheme } from '../../redux/auth/selectorsAuth';
+import { ActionConfirmation } from '../ActionConfirmation/ActionConfirmation';
 
 const buildLinkClass = ({ isActive }) => {
   return clsx(css.link, isActive && css.active);
@@ -33,7 +34,7 @@ const iconDependence = {
 export const HeaderRegistration = () => {
   const [isHovered, setIsHovered] = useState(false);
   const navigate = useNavigate();
-
+  const [actionConfirm, setActionConfirm] = useState(false);
   const [themeModalOpen, setThemeModalOpen] = useState(false);
   const userTheme = useSelector(selectUserTheme);
 
@@ -60,6 +61,9 @@ export const HeaderRegistration = () => {
 
   const openThemeModal = () => setThemeModalOpen(true);
   const closeThemeModal = () => setThemeModalOpen(false);
+
+  const openActionConfirm = () => setActionConfirm(true);
+  const closeActionConfirm = () => setActionConfirm(false);
 
   return (
     <header className={css.contRout}>
@@ -89,9 +93,8 @@ export const HeaderRegistration = () => {
         </ul>
       </nav>
       <div className={css.contAuthentication}>
-        <button type="button" className={css.btnLogOut} onClick={handleLogout}>
+        <button type="button" className={css.btnLogOut} onClick={openActionConfirm}>
           <svg className={css.loginSvg}>
-            {/* <use href="/symbol-defs-log-out.svg#icon-log-out-03"></use> */}
             <use href={`/symbol-defs-log-out.svg#icon-log-out-0${iconDependence[userTheme]}`} />
           </svg>
           Logout
@@ -113,9 +116,9 @@ export const HeaderRegistration = () => {
         <ChangeThemeForm closeModal={closeThemeModal} />
       </ModalWindow>
 
-      {/* <ModalWindow isOpen={isModalOpen} onClose={closeModal}>
-        <RegistrationForm closeModal={closeModal} />
-      </ModalWindow> */}
+      <ModalWindow isOpen={actionConfirm} onClose={closeActionConfirm}>
+        <ActionConfirmation closeModal={closeActionConfirm} logOut={handleLogout} />
+      </ModalWindow>
     </header>
   );
 };

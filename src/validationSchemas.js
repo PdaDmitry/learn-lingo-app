@@ -19,8 +19,7 @@ export const bookLessonSchema = yup.object().shape({
   email: yup.string().email('Must be a valid email!').required('Required'),
   number: yup
     .string()
-    .min(3, 'Too Short!')
-    .max(50, 'Too Long!')
     .required('Required')
     .matches(/^[\d-]+$/, 'Number can only contain digits and dashes'),
+  assessmentType: yup.string().required('Please select an option'),
 });

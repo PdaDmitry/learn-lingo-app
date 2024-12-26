@@ -7,6 +7,7 @@ import {
   signInWithEmailAndPassword,
 } from 'firebase/auth';
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import toast from 'react-hot-toast';
 
 export const registerUser = createAsyncThunk(
   'auth/registerUser',
@@ -55,9 +56,13 @@ export const logoutUser = createAsyncThunk('auth/logoutUser', async (_, { reject
 
   try {
     await signOut(auth);
+    // console.log('User logged out');
+    toast.success('User logged out', {
+      duration: 4000,
+      position: 'top-center',
+      style: { background: 'orange', color: 'white' },
+    });
 
-    console.log('User logged out');
-    // return true;
     return null;
   } catch (error) {
     console.error('Error logging out:', error.message);
@@ -79,16 +84,25 @@ export const loginUser = createAsyncThunk(
 
       const themeSnapshot = await get(ref(db, `users/${user.uid}/theme`));
       const theme = themeSnapshot.exists() ? themeSnapshot.val() : '#F4C550';
-
+      toast.success(`User ${email} has successfully logged in!`, {
+        duration: 4000,
+        position: 'top-center',
+        style: { background: 'green', color: 'white' },
+      });
       return {
         localId: user.uid,
         email: user.email,
-        theme, //////////////////
+        theme,
         refreshToken: user.stsTokenManager.refreshToken,
         // favorites,
       };
     } catch (error) {
-      console.error('Error logging in user:', error.message);
+      // console.error('Error logging in user:', error.message);
+      toast.error('Incorrect email or password', {
+        duration: 4000,
+        position: 'bottom-center',
+        style: { background: 'orange', color: 'black' },
+      });
       return rejectWithValue(error.message);
     }
   }
