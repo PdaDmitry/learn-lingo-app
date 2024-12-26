@@ -5,6 +5,21 @@ import css from './TeacherReviews.module.css';
 import ModalWindow from '../ModalWindow/ModalWindow.jsx';
 import { BookLessonForm } from '../BookLessonForm/BookLessonForm.jsx';
 import { useState } from 'react';
+import avatarFrank from '../../../public/image Frank.jpg';
+import avatarEve from '../../../public/image Eve.jpg';
+import avatarGrace from '../../../public/image Grace.jpg';
+import avatarHenry from '../../../public/image Henry.jpg';
+import avatarAlex from '../../../public/image Alex.jpg';
+import avatarEmily from '../../../public/image Emily.jpg';
+
+const avatar = {
+  Frank: avatarFrank,
+  Eve: avatarEve,
+  Grace: avatarGrace,
+  Henry: avatarHenry,
+  Alex: avatarAlex,
+  Emily: avatarEmily,
+};
 
 export const TeacherReviews = ({ id }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -25,7 +40,7 @@ export const TeacherReviews = ({ id }) => {
               <div className={css.contNameRating}>
                 {/* <p className={css.avatar}>Avatar</p> */}
                 <img
-                  src={avatarMap[review.reviewer_name]}
+                  src={avatarMap[review.reviewer_name] || avatar[review.reviewer_name]}
                   alt={review.reviewer_name}
                   className={css.avatar}
                 />
