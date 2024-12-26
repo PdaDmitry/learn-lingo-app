@@ -58,7 +58,7 @@ export const RegistrationForm = ({ closeModal }) => {
       </p>
       <div className={css.inputElem}>
         <input {...register('name')} placeholder="Name" className={css.input} />
-        {errors.username && <p className={css.textError}>{errors.username.message}</p>}
+        {errors.name && <p className={css.textError}>{errors.name.message}</p>}
       </div>
       <div className={css.inputElem}>
         <input {...register('email')} placeholder="Email" className={css.input} />

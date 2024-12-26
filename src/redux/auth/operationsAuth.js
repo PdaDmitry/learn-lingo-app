@@ -60,7 +60,7 @@ export const logoutUser = createAsyncThunk('auth/logoutUser', async (_, { reject
     toast.success('User logged out', {
       duration: 4000,
       position: 'top-center',
-      style: { background: 'orange', color: 'white' },
+      style: { background: 'orange', color: 'black' },
     });
 
     return null;
