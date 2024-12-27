@@ -1,6 +1,7 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import css from './TeacherFilterForm.module.css';
+import { fetchTeachersThunc } from '../../redux/teachers/operations';
 // import { fetchTeachersThunc } from './path-to-your-thunk';
 
 export const TeacherFilterForm = () => {
@@ -9,34 +10,37 @@ export const TeacherFilterForm = () => {
   const [price, setPrice] = useState('');
   const dispatch = useDispatch();
 
-  const handleSubmit = e => {
-    e.preventDefault();
-
-    // Формируем объект фильтров
+  useEffect(() => {
     const filters = {
-      language,
-      level,
-      price: price ? parseFloat(price) : 0, // Конвертируем цену в число
+      language: language || '',
+      level: level || '',
+      price: price ? parseFloat(price) : '',
     };
     console.log(filters);
-    // Передаем фильтры в thunk
-    // dispatch(fetchTeachersThunc(filters));
-  };
+    dispatch(fetchTeachersThunc(filters));
+  }, [language, level, price, dispatch]);
 
   return (
-    <form onSubmit={handleSubmit} className={css.contFilter}>
+    <form className={css.contFilter}>
       <div className={css.contLanguage}>
         <label htmlFor="language">Language:</label>
         <select
           id="language"
           value={language}
-          onChange={e => setLanguage(e.target.value)}
+          onChange={e => {
+            setLanguage(e.target.value);
+          }}
           className={css.languageField}
         >
           <option value="">Select Language</option>
           <option value="English">English</option>
-          <option value="Spanish">Spanish</option>
           <option value="French">French</option>
+          <option value="German">German</option>
+          <option value="Italian">Italian</option>
+          <option value="Korean">Korean</option>
+          <option value="Mandarin Chinese">Mandarin Chinese</option>
+          <option value="Spanish">Spanish</option>
+          <option value="Vietnamese">Vietnamese</option>
         </select>
       </div>
 
@@ -45,13 +49,18 @@ export const TeacherFilterForm = () => {
         <select
           id="level"
           value={level}
-          onChange={e => setLevel(e.target.value)}
+          onChange={e => {
+            setLevel(e.target.value);
+          }}
           className={css.levelField}
         >
           <option value="">Select Level</option>
-          <option value="#C2 Proficient">#C2 Proficient</option>
-          <option value="#B1 Intermediate">#B1 Intermediate</option>
-          <option value="#A2 Elementary">#A2 Elementary</option>
+          <option value="A1 Beginner">#A1 Beginner</option>
+          <option value="A2 Elementary">#A2 Elementary</option>
+          <option value="B1 Intermediate">#B1 Intermediate</option>
+          <option value="B2 Upper-Intermediate">#B2 Upper-Intermediate</option>
+          <option value="C1 Advanced">#C1 Advanced</option>
+          <option value="C2 Proficient">#C2 Proficient</option>
         </select>
       </div>
 
@@ -60,17 +69,20 @@ export const TeacherFilterForm = () => {
         <select
           id="price"
           value={price}
-          onChange={e => setPrice(e.target.value)}
+          onChange={e => {
+            setPrice(e.target.value);
+          }}
           className={css.priceField}
         >
           <option value="">Select Price</option>
+          <option value="10">10</option>
+          <option value="20">20</option>
           <option value="30">30</option>
+          <option value="40">40</option>
           <option value="50">50</option>
-          <option value="100">100</option>
         </select>
+        {/* <p>$</p> */}
       </div>
-
-      <button type="submit">Filter Teachers</button>
     </form>
   );
 };

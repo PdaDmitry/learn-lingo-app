@@ -1,3 +1,7 @@
+/* ul {
+  margin-bottom: 0;
+} */
+
 .contCard {
   display: flex;
   /* gap: 48px; */
@@ -5,7 +9,8 @@
   padding: 24px;
   width: 1184px;
   /* height: 328px; */
-  background: #faf9f9;
+  background: #eceaea;
+  margin-bottom: 32px;
   /* background: #fff; */
 }
 

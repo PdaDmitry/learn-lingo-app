@@ -3,7 +3,7 @@ import { getDatabase, ref, get, set, update } from 'firebase/database';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { app } from '../../../firebase';
 
-export const fetchTeachersThunc = createAsyncThunk('fetchTeachers', async (_, thunkAPI) => {
+export const fetchTeachersThunc = createAsyncThunk('fetchTeachers', async (filters, thunkAPI) => {
   try {
     const db = getDatabase(app);
     const dbReference = ref(db, '/'); // Link to database root
@@ -19,6 +19,15 @@ export const fetchTeachersThunc = createAsyncThunk('fetchTeachers', async (_, th
           // if the key matches users, skip it
           return !key.startsWith('users') && !userIdPattern.test(key);
         })
+        .filter(([key, value]) => {
+          const speaksLanguage = filters.language
+            ? value.languages.includes(filters.language)
+            : true;
+          const matchesLevel = filters.level ? value.levels.includes(filters.level) : true;
+          const matchesPrice = filters.price ? value.price_per_hour <= filters.price : true;
+
+          return speaksLanguage && matchesLevel && matchesPrice;
+        })
         .map(([key, value]) => ({
           id: key,
           ...value,
@@ -30,7 +39,7 @@ export const fetchTeachersThunc = createAsyncThunk('fetchTeachers', async (_, th
       throw new Error('No data available');
     }
   } catch (error) {
-    console.error('Error fetching teachers:', error);
+    // console.error('Error fetching teachers:', error);
     return thunkAPI.rejectWithValue(error.message);
   }
 });
