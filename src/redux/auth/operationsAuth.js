@@ -31,6 +31,11 @@ export const registerUser = createAsyncThunk(
         email: user.email,
         favorites: [], // Initializing an empty array
         theme: '',
+        filters: {
+          language: 'English', // Начальные значения фильтров
+          level: '',
+          price: '',
+        },
       });
 
       return {
@@ -125,6 +130,27 @@ export const updateTheme = createAsyncThunk(
     } catch (error) {
       console.error('Error updating theme:', error);
       return rejectWithValue(error.message);
+    }
+  }
+);
+
+// =====================================updateUserFilters===========================================
+
+export const updateUserFilters = createAsyncThunk(
+  'auth/updateUserFilters', // Название экшена
+  async ({ userId, filters }, { rejectWithValue }) => {
+    const db = getDatabase();
+
+    try {
+      // Обновляем поле `filters` в Firebase для конкретного пользователя
+      await update(ref(db, `users/${userId}`), {
+        filters, // Сохраняем новые фильтры
+      });
+
+      return filters; // Возвращаем обновленные фильтры для дальнейшей работы в редьюсере
+    } catch (error) {
+      // console.error('Error updating user filters:', error);
+      return rejectWithValue(error.message); // Обработка ошибки
     }
   }
 );

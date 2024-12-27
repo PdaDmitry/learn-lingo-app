@@ -24,7 +24,6 @@ const teachersSlice = createSlice({
       })
       .addCase(fetchTeachersThunc.fulfilled, (state, action) => {
         state.isLoading = false;
-        // state.items = Object.values(action.payload);
         state.items = action.payload;
       })
       .addCase(fetchTeachersThunc.rejected, (state, action) => {
@@ -48,7 +47,6 @@ const teachersSlice = createSlice({
         state.isError = false;
       })
       .addCase(fetchFavoriteTeachers.fulfilled, (state, action) => {
-        // state.favorites = [];
         state.isLoading = false;
         state.favorites = action.payload;
       })

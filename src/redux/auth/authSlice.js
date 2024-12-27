@@ -1,5 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { loginUser, logoutUser, registerUser, updateTheme } from './operationsAuth';
+import {
+  loginUser,
+  logoutUser,
+  registerUser,
+  updateTheme,
+  updateUserFilters,
+} from './operationsAuth';
 // import { clearFavorites } from '../teachers/teachersSlice';
 
 const initialState = {
@@ -8,6 +14,11 @@ const initialState = {
     name: null,
     email: null,
     theme: null,
+    // filters: {
+    //   language: '', // Начальные значения фильтров
+    //   level: '',
+    //   price: '',
+    // },
   },
   refreshToken: null,
   isLoggedIn: false,
@@ -67,6 +78,7 @@ const authSlice = createSlice({
         state.refreshToken = action.payload.refreshToken;
         state.isLoggedIn = true;
         state.user.theme = action.payload.theme; //////////////
+        // state.user.filters = action.payload.filters;
       })
       .addCase(loginUser.rejected, (state, action) => {
         state.loader = false;
@@ -83,6 +95,20 @@ const authSlice = createSlice({
         state.user.theme = action.payload; // Обновляем тему пользователя
       })
       .addCase(updateTheme.rejected, (state, action) => {
+        state.loader = false;
+        state.error = action.payload; // Обрабатываем ошибку
+      })
+
+      //updateUserFilters
+      .addCase(updateUserFilters.pending, state => {
+        state.loader = true; // Статус загрузки
+        state.error = null;
+      })
+      .addCase(updateUserFilters.fulfilled, (state, action) => {
+        state.loader = false;
+        state.user.filters = action.payload;
+      })
+      .addCase(updateUserFilters.rejected, (state, action) => {
         state.loader = false;
         state.error = action.payload; // Обрабатываем ошибку
       });

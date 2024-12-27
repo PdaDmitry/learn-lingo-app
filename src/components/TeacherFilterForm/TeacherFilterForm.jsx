@@ -1,13 +1,23 @@
 import { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import css from './TeacherFilterForm.module.css';
 import { fetchTeachersThunc } from '../../redux/teachers/operations';
-// import { fetchTeachersThunc } from './path-to-your-thunk';
+// import { selectUser, selectUserFilters } from '../../redux/auth/selectorsAuth';
+// import { updateUserFilters } from '../../redux/auth/operationsAuth';
+// import { selectFilters } from '../../redux/teachers/selectors';
 
 export const TeacherFilterForm = () => {
+  // const userFilters = useSelector(selectUserFilters);
+  // const user = useSelector(selectUser);
+  // console.log(user);
+  // console.log('userFilters:', userFilters);
+
   const [language, setLanguage] = useState('');
   const [level, setLevel] = useState('');
   const [price, setPrice] = useState('');
+  // const [language, setLanguage] = useState(filtersInitial.language || '');
+  // const [level, setLevel] = useState(filtersInitial.level || '');
+  // const [price, setPrice] = useState(filtersInitial.price || '');
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -18,6 +28,8 @@ export const TeacherFilterForm = () => {
     };
     console.log(filters);
     dispatch(fetchTeachersThunc(filters));
+    // dispatch(updateUserFilters(filters));
+    // dispatch(updateUserFilters({ userId, filters: { language, level, price } }));
   }, [language, level, price, dispatch]);
 
   return (

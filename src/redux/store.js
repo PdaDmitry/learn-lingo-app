@@ -16,7 +16,7 @@ import { authReducer } from './auth/authSlice';
 const persistTeachersConfig = {
   key: 'teachers',
   storage,
-  //witelist: [a, d, c], //то что мы хотим сохранить из state
+  witelist: ['items'],
   // blacklist: ['favorites'],
 };
 

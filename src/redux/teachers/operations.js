@@ -33,8 +33,8 @@ export const fetchTeachersThunc = createAsyncThunk('fetchTeachers', async (filte
           ...value,
           favorites: [],
         }));
-
-      return teachersWithId; // Sending data with ID to Redux
+      return teachersWithId;
+      // return { teachersWithId, filters }; // Sending data with ID to Redux
     } else {
       throw new Error('No data available');
     }
@@ -97,7 +97,7 @@ export const fetchFavoriteTeachers = createAsyncThunk(
         throw new Error('No favorites available for this user');
       }
     } catch (error) {
-      console.error('Error fetching user favorites:', error);
+      // console.error('Error fetching user favorites:', error);
       return thunkAPI.rejectWithValue(error.message);
     }
   }
