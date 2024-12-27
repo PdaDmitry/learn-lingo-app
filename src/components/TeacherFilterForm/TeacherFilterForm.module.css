@@ -1,0 +1,43 @@
+.contFilter {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 32px;
+}
+
+.contLanguage,
+.contLevel,
+.contPrice {
+  display: flex;
+  gap: 8px;
+  flex-direction: column;
+}
+
+.languageField {
+  border-radius: 14px;
+  padding: 14px 0 14px 18px;
+  width: 221px;
+  height: 48px;
+  background: #fff;
+}
+
+/* .contLevel {
+} */
+
+.levelField {
+  border-radius: 14px;
+  padding: 14px 0 14px 18px;
+  width: 198px;
+  height: 48px;
+  background: #fff;
+}
+
+/* .contPrice {
+} */
+
+.priceField {
+  border-radius: 14px;
+  padding: 14px 18px;
+  width: 124px;
+  height: 48px;
+  background: #fff;
+}

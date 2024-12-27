@@ -4,6 +4,7 @@ import { useEffect } from 'react';
 import { fetchFavoriteTeachers, fetchTeachersThunc } from '../../redux/teachers/operations';
 import css from './Teachers.module.css';
 import { selectUserID } from '../../redux/auth/selectorsAuth';
+import { TeacherFilterForm } from '../../components/TeacherFilterForm/TeacherFilterForm';
 // import { Toaster } from 'react-hot-toast';
 
 export const Teachers = () => {
@@ -19,7 +20,7 @@ export const Teachers = () => {
 
   return (
     <div className={css.contTeachersPage}>
-      {/* <Toaster /> */}
+      <TeacherFilterForm />
       <TeacherList />
     </div>
   );
