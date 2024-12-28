@@ -30,7 +30,7 @@ const teachersSlice = createSlice({
       })
       .addCase(fetchTeachersThunc.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.items = action.payload;
+        state.items = action.payload || [];
         // state.teacherForById = action.payload;
       })
       .addCase(fetchTeachersThunc.rejected, (state, action) => {
@@ -47,7 +47,7 @@ const teachersSlice = createSlice({
       .addCase(fetchTeacherForId.fulfilled, (state, action) => {
         state.isLoading = false;
         // state.teacherById = action.payload;
-        state.teacherForId = action.payload;
+        state.teacherForId = action.payload || [];
       })
       .addCase(fetchTeacherForId.rejected, (state, action) => {
         state.isLoading = false;

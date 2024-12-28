@@ -45,7 +45,7 @@ export const fetchTeachersThunc = createAsyncThunk('fetchTeachers', async (filte
 
 // ===================================fetchTeacherForId ===============================
 
-export const fetchTeacherForId = createAsyncThunk('teachers/fetchById', async (_, thunkAPI) => {
+export const fetchTeacherForId = createAsyncThunk('fetchTeachersForId', async (_, thunkAPI) => {
   try {
     const db = getDatabase(app);
     const dbReference = ref(db, '/');
