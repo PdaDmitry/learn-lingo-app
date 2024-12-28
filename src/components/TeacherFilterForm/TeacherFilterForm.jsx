@@ -6,24 +6,33 @@ import { selectUserFilters, selectUserID } from '../../redux/auth/selectorsAuth'
 import { updateUserFilters } from '../../redux/auth/operationsAuth';
 
 export const TeacherFilterForm = () => {
-  const userId = useSelector(selectUserID);
-  const userFilters = useSelector(selectUserFilters);
-
-  // console.log('userFilters:', userFilters);
-
   const [language, setLanguage] = useState('');
   const [level, setLevel] = useState('');
   const [price, setPrice] = useState('');
 
+  const userId = useSelector(selectUserID);
+  const userFilters = useSelector(selectUserFilters);
+
+  // console.log('userId ', userId);
+  // console.log('userFilters:', userFilters);
+
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (userFilters) {
+    if (!userId || !userFilters) {
+      // console.log('Loading all teachers without filters.');
+      dispatch(fetchTeachersThunc({}));
+    }
+  }, [userId, userFilters, dispatch]);
+
+  useEffect(() => {
+    if (userId && userFilters) {
       setLanguage(userFilters.language || '');
       setLevel(userFilters.level || '');
       setPrice(userFilters.price?.toString() || '');
     }
-  }, [userFilters]);
+    // dispatch(fetchTeachersThunc);
+  }, [userId, userFilters]);
 
   useEffect(() => {
     if (language || level || price) {
@@ -32,6 +41,7 @@ export const TeacherFilterForm = () => {
         level: level || '',
         price: price ? parseFloat(price) : '',
       };
+
       dispatch(fetchTeachersThunc(filters)); // Загружаем учителей с новыми фильтрами
       if (userId) {
         dispatch(updateUserFilters({ userId, filters })); // Сохраняем фильтры в базе
