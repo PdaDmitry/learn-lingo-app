@@ -39,7 +39,7 @@ export const HomeRegistration = () => {
       background: userTheme || '#F4C550',
     },
     teacherProfile: {
-      border: `2px dashed ${userTheme}`,
+      border: userTheme ? `2px dashed ${userTheme}` : `2px dashed #f4c550`,
     },
   };
 

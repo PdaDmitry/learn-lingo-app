@@ -38,6 +38,8 @@ export const HeaderRegistration = () => {
   const [themeModalOpen, setThemeModalOpen] = useState(false);
   const userTheme = useSelector(selectUserTheme);
 
+  // console.log(userTheme);
+
   const dynamicStyles = {
     dinamicBackground: {
       background: colorDependence[userTheme] || '#FBE9BA',
@@ -95,7 +97,14 @@ export const HeaderRegistration = () => {
       <div className={css.contAuthentication}>
         <button type="button" className={css.btnLogOut} onClick={openActionConfirm}>
           <svg className={css.loginSvg}>
-            <use href={`/symbol-defs-log-out.svg#icon-log-out-0${iconDependence[userTheme]}`} />
+            {/* <use href={`/symbol-defs-log-out.svg#icon-log-out-0${iconDependence[userTheme]}`} /> */}
+            <use
+              href={
+                userTheme
+                  ? `/symbol-defs-log-out.svg#icon-log-out-0${iconDependence[userTheme]}`
+                  : '/symbol-defs-log-out.svg#icon-log-out-01'
+              }
+            />
           </svg>
           Logout
         </button>

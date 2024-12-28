@@ -81,7 +81,7 @@
 
 .teacherProfile {
   display: flex;
-  /* border: 2px dashed #f4c550; */
+  border: 2px dashed #f4c550;
   border-radius: 30px;
   width: 1312px;
   height: 116px;
