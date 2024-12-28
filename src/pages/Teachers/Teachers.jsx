@@ -1,7 +1,11 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { TeacherList } from '../../components/TeacherList/TeacherList';
 import { useEffect } from 'react';
-import { fetchFavoriteTeachers, fetchTeachersThunc } from '../../redux/teachers/operations';
+import {
+  fetchFavoriteTeachers,
+  fetchTeacherForId,
+  fetchTeachersThunc,
+} from '../../redux/teachers/operations';
 import css from './Teachers.module.css';
 import { selectUserID } from '../../redux/auth/selectorsAuth';
 import { TeacherFilterForm } from '../../components/TeacherFilterForm/TeacherFilterForm';
@@ -16,6 +20,7 @@ export const Teachers = () => {
       dispatch(fetchFavoriteTeachers(userId));
     }
     dispatch(fetchTeachersThunc());
+    dispatch(fetchTeacherForId());
   }, [dispatch, userId]);
 
   return (

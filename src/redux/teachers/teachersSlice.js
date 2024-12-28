@@ -1,11 +1,17 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { fetchFavoriteTeachers, fetchTeachersThunc, toggleFavoriteTeacher } from './operations';
+import {
+  fetchFavoriteTeachers,
+  fetchTeacherForId,
+  fetchTeachersThunc,
+  toggleFavoriteTeacher,
+} from './operations';
 
 const initialState = {
   items: [],
   isLoading: false,
   isError: false,
   favorites: [],
+  teacherForId: [],
 };
 
 const teachersSlice = createSlice({
@@ -25,11 +31,31 @@ const teachersSlice = createSlice({
       .addCase(fetchTeachersThunc.fulfilled, (state, action) => {
         state.isLoading = false;
         state.items = action.payload;
+        // state.teacherForById = action.payload;
       })
       .addCase(fetchTeachersThunc.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = action.payload || 'Something went wrong';
+        state.isError = true;
       })
+
+      //ForId
+      .addCase(fetchTeacherForId.pending, (state, action) => {
+        state.isLoading = true;
+        state.isError = false;
+      })
+      .addCase(fetchTeacherForId.fulfilled, (state, action) => {
+        state.isLoading = false;
+        // state.teacherById = action.payload;
+        state.teacherForId = action.payload;
+      })
+      .addCase(fetchTeacherForId.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = action.payload || 'Something went wrong';
+        state.isError = true;
+      })
+
+      //
       .addCase(toggleFavoriteTeacher.pending, (state, action) => {
         state.isLoading = true;
         state.isError = false;
@@ -41,7 +67,10 @@ const teachersSlice = createSlice({
       .addCase(toggleFavoriteTeacher.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = action.payload;
+        state.isError = true;
       })
+
+      //
       .addCase(fetchFavoriteTeachers.pending, (state, action) => {
         state.isLoading = true;
         state.isError = false;
@@ -53,6 +82,7 @@ const teachersSlice = createSlice({
       .addCase(fetchFavoriteTeachers.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = action.payload || 'Something went wrong';
+        state.isError = true;
       });
   },
 });

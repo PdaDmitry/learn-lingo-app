@@ -1,5 +1,10 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { selectFavoriteTeacherById, selectTeachersById } from '../../redux/teachers/selectors';
+import {
+  selectFavoriteTeacherById,
+  selectIsLoading,
+  selectTeacherForId,
+  selectTeachersById,
+} from '../../redux/teachers/selectors';
 import { FiHeart } from 'react-icons/fi';
 import { LuBookOpen } from 'react-icons/lu';
 import { useState } from 'react';
@@ -12,7 +17,6 @@ import { toggleFavoriteTeacher } from '../../redux/teachers/operations';
 import toast from 'react-hot-toast';
 
 export const Teacher = ({ id }) => {
-  // const [isModalOpen, setIsModalOpen] = useState(false);
   const [isOpenReviews, setIsOpenReviews] = useState(() => {
     const savedState = localStorage.getItem(`teacher-${id}-isOpen`);
     return savedState ? JSON.parse(savedState) : false;
@@ -23,8 +27,6 @@ export const Teacher = ({ id }) => {
   const teacher = useSelector(selectTeachersById(id));
   const userId = useSelector(selectUserID);
   const isFavorite = useSelector(selectFavoriteTeacherById(id));
-  // console.log('teacher: ', teacher);
-  // console.log(userId);
 
   const {
     lessons_done,

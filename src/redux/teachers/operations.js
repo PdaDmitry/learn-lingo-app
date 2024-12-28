@@ -34,12 +34,42 @@ export const fetchTeachersThunc = createAsyncThunk('fetchTeachers', async (filte
           favorites: [],
         }));
       return teachersWithId;
-      // return { teachersWithId, filters }; // Sending data with ID to Redux
     } else {
       throw new Error('No data available');
     }
   } catch (error) {
     // console.error('Error fetching teachers:', error);
+    return thunkAPI.rejectWithValue(error.message);
+  }
+});
+
+// ===================================fetchTeacherForId ===============================
+
+export const fetchTeacherForId = createAsyncThunk('teachers/fetchById', async (_, thunkAPI) => {
+  try {
+    const db = getDatabase(app);
+    const dbReference = ref(db, '/');
+    const readingData = await get(dbReference);
+
+    if (readingData.exists()) {
+      const data = readingData.val();
+
+      const userIdPattern = /^[a-zA-Z0-9]{28}$/;
+
+      const teacherData = Object.entries(data)
+        .filter(([key, value]) => {
+          return !key.startsWith('users') && !userIdPattern.test(key);
+        })
+        .map(([key, value]) => ({
+          id: key,
+          ...value,
+        }));
+
+      return teacherData;
+    } else {
+      throw new Error('No data available');
+    }
+  } catch (error) {
     return thunkAPI.rejectWithValue(error.message);
   }
 });

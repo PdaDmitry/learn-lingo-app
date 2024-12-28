@@ -1,12 +1,14 @@
 import { createSelector } from '@reduxjs/toolkit';
 
 export const selectTeachers = state => state.teachers.items;
-// export const selectFilters = state =>
-//   state.teachers.filters || { language: null, level: null, price: null };
+export const selectTeacherForId = state => state.teachers.teacherForId;
+
+export const selectIsLoading = state => state.teachers.isLoading;
 
 export const selectTeachersById = id =>
   createSelector(
-    [selectTeachers], // array of all Teachers
+    // [selectTeachers], // array of all Teachers
+    [selectTeacherForId],
     teachers => teachers.find(teacher => teacher.id === id) // Looking for a Teacher by ID
   );
 
