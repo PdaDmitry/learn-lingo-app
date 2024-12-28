@@ -2,35 +2,46 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import css from './TeacherFilterForm.module.css';
 import { fetchTeachersThunc } from '../../redux/teachers/operations';
-// import { selectUser, selectUserFilters } from '../../redux/auth/selectorsAuth';
-// import { updateUserFilters } from '../../redux/auth/operationsAuth';
-// import { selectFilters } from '../../redux/teachers/selectors';
+import { selectUserFilters, selectUserID } from '../../redux/auth/selectorsAuth';
+import { updateUserFilters } from '../../redux/auth/operationsAuth';
 
 export const TeacherFilterForm = () => {
-  // const userFilters = useSelector(selectUserFilters);
-  // const user = useSelector(selectUser);
-  // console.log(user);
+  const userId = useSelector(selectUserID);
+  const userFilters = useSelector(selectUserFilters);
+
   // console.log('userFilters:', userFilters);
 
   const [language, setLanguage] = useState('');
   const [level, setLevel] = useState('');
   const [price, setPrice] = useState('');
-  // const [language, setLanguage] = useState(filtersInitial.language || '');
-  // const [level, setLevel] = useState(filtersInitial.level || '');
-  // const [price, setPrice] = useState(filtersInitial.price || '');
+
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const filters = {
-      language: language || '',
-      level: level || '',
-      price: price ? parseFloat(price) : '',
-    };
-    console.log(filters);
-    dispatch(fetchTeachersThunc(filters));
-    // dispatch(updateUserFilters(filters));
-    // dispatch(updateUserFilters({ userId, filters: { language, level, price } }));
-  }, [language, level, price, dispatch]);
+    if (userFilters) {
+      setLanguage(userFilters.language || '');
+      setLevel(userFilters.level || '');
+      setPrice(userFilters.price?.toString() || '');
+    }
+  }, [userFilters]);
+
+  useEffect(() => {
+    if (language || level || price) {
+      const filters = {
+        language: language || '',
+        level: level || '',
+        price: price ? parseFloat(price) : '',
+      };
+      dispatch(fetchTeachersThunc(filters)); // Загружаем учителей с новыми фильтрами
+      if (userId) {
+        dispatch(updateUserFilters({ userId, filters })); // Сохраняем фильтры в базе
+      }
+    }
+  }, [language, level, price, dispatch, userId]);
+
+  // const handleFormSubmit = e => {
+  //   e.preventDefault(); // Останавливает перезагрузку страницы
+  // };   onSubmit={handleFormSubmit}
 
   return (
     <form className={css.contFilter}>

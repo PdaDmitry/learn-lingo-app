@@ -45,8 +45,8 @@ export const Teacher = ({ id }) => {
     localStorage.setItem(`teacher-${id}-isOpen`, JSON.stringify(newIsOpen));
   };
 
-  const openModal = () => setIsModalOpen(true);
-  const closeModal = () => setIsModalOpen(false);
+  // const openModal = () => setIsModalOpen(true);
+  // const closeModal = () => setIsModalOpen(false);
 
   const handleFavoriteClick = () => {
     if (userId === null) {

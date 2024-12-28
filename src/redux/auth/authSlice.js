@@ -14,11 +14,11 @@ const initialState = {
     name: null,
     email: null,
     theme: null,
-    // filters: {
-    //   language: '', // Начальные значения фильтров
-    //   level: '',
-    //   price: '',
-    // },
+    filters: {
+      language: '', // Начальные значения фильтров
+      level: '',
+      price: '',
+    },
   },
   refreshToken: null,
   isLoggedIn: false,
@@ -78,7 +78,8 @@ const authSlice = createSlice({
         state.refreshToken = action.payload.refreshToken;
         state.isLoggedIn = true;
         state.user.theme = action.payload.theme; //////////////
-        // state.user.filters = action.payload.filters;
+        state.user.filters = action.payload.filters;
+        // state.user.language = action.payload.filters.language;
       })
       .addCase(loginUser.rejected, (state, action) => {
         state.loader = false;

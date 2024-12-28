@@ -9,6 +9,8 @@ import {
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import toast from 'react-hot-toast';
 
+// =========================================registerUser==========================================
+
 export const registerUser = createAsyncThunk(
   'auth/registerUser',
   async ({ name, email, password }, { rejectWithValue }) => {
@@ -32,7 +34,7 @@ export const registerUser = createAsyncThunk(
         favorites: [], // Initializing an empty array
         theme: '',
         filters: {
-          language: 'English', // Начальные значения фильтров
+          language: '', // Начальные значения фильтров
           level: '',
           price: '',
         },
@@ -89,6 +91,13 @@ export const loginUser = createAsyncThunk(
 
       const themeSnapshot = await get(ref(db, `users/${user.uid}/theme`));
       const theme = themeSnapshot.exists() ? themeSnapshot.val() : '#F4C550';
+
+      // Получаем фильтры пользователя
+      const filtersSnapshot = await get(ref(db, `users/${user.uid}/filters`));
+      const filters = filtersSnapshot.exists()
+        ? filtersSnapshot.val()
+        : { language: '', level: '', price: '' };
+
       toast.success(`User ${email} has successfully logged in!`, {
         duration: 4000,
         position: 'top-center',
@@ -99,6 +108,7 @@ export const loginUser = createAsyncThunk(
         email: user.email,
         theme,
         refreshToken: user.stsTokenManager.refreshToken,
+        filters,
         // favorites,
       };
     } catch (error) {

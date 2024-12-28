@@ -5,4 +5,5 @@ export const selectLoader = state => state.auth.loader;
 
 export const selectUserID = state => state.auth.user.localId;
 export const selectUserTheme = state => state.auth.user.theme;
-// export const selectUserFilters = state => state.auth.user.filters;
+// export const selectUserFilters = state => state.auth.user.language;
+export const selectUserFilters = state => state.auth.user.filters;
