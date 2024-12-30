@@ -3,6 +3,7 @@ import {
   selectFavoriteTeacherById,
   selectIsLoading,
   selectTeacherForId,
+  // selectTeachers,
   selectTeachersById,
 } from '../../redux/teachers/selectors';
 import { FiHeart } from 'react-icons/fi';

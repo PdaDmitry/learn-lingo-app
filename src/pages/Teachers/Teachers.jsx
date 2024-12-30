@@ -1,11 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { TeacherList } from '../../components/TeacherList/TeacherList';
 import { useEffect } from 'react';
-import {
-  fetchFavoriteTeachers,
-  fetchTeacherForId,
-  fetchTeachersThunc,
-} from '../../redux/teachers/operations';
+import { fetchFavoriteTeachers, fetchTeacherForId } from '../../redux/teachers/operations';
 import css from './Teachers.module.css';
 import { selectUserID } from '../../redux/auth/selectorsAuth';
 import { TeacherFilterForm } from '../../components/TeacherFilterForm/TeacherFilterForm';
@@ -21,21 +17,11 @@ export const Teachers = () => {
     if (userId) {
       dispatch(fetchFavoriteTeachers(userId));
     }
-    dispatch(fetchTeacherForId());
-    // dispatch(fetchTeachersThunc());
   }, [dispatch, userId]);
 
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     if (userId) {
-  //       await dispatch(fetchFavoriteTeachers(userId));
-  //     }
-  //     await dispatch(fetchTeacherForId());
-  //     await dispatch(fetchTeachersThunc());
-  //   };
-
-  //   fetchData();
-  // }, [dispatch, userId]);
+  useEffect(() => {
+    dispatch(fetchTeacherForId());
+  }, [dispatch]);
 
   return (
     <div className={css.contTeachersPage}>

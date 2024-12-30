@@ -13,14 +13,10 @@ export const TeacherFilterForm = () => {
   const userId = useSelector(selectUserID);
   const userFilters = useSelector(selectUserFilters);
 
-  // console.log('userId ', userId);
-  // console.log('userFilters:', userFilters);
-
   const dispatch = useDispatch();
 
   useEffect(() => {
     if (!userId || !userFilters) {
-      // console.log('Loading all teachers without filters.');
       dispatch(fetchTeachersThunc({}));
     }
   }, [userId, userFilters, dispatch]);
@@ -31,8 +27,18 @@ export const TeacherFilterForm = () => {
       setLevel(userFilters.level || '');
       setPrice(userFilters.price?.toString() || '');
     }
-    // dispatch(fetchTeachersThunc);
-  }, [userId, userFilters]);
+    // dispatch(fetchTeachersThunc({ language: '', level: '', price: '' }));
+  }, [userId, userFilters, dispatch]);
+
+  // useEffect(() => {
+  //   if (!userId || !userFilters) {
+  //     dispatch(fetchTeachersThunc({}));
+  //   } else {
+  //     setLanguage(userFilters.language || '');
+  //     setLevel(userFilters.level || '');
+  //     setPrice(userFilters.price?.toString() || '');
+  //   }
+  // }, [userId, userFilters, dispatch]);
 
   useEffect(() => {
     if (language || level || price) {
@@ -49,9 +55,19 @@ export const TeacherFilterForm = () => {
     }
   }, [language, level, price, dispatch, userId]);
 
-  // const handleFormSubmit = e => {
-  //   e.preventDefault(); // Останавливает перезагрузку страницы
-  // };   onSubmit={handleFormSubmit}
+  // useEffect(() => {
+  //   if (language === '' && level === '' && price === '') {
+  //     const filters = {
+  //       language: '',
+  //       level: '',
+  //       price: price ? parseFloat(price) : '',
+  //     };
+  //     if (userId) {
+  //       dispatch(updateUserFilters({ userId, filters })); // Сохраняем фильтры в базе
+  //       dispatch(fetchTeachersThunc({}));
+  //     }
+  //   }
+  // }, [language, level, price, dispatch, userId]);
 
   return (
     <form className={css.contFilter}>
@@ -61,6 +77,7 @@ export const TeacherFilterForm = () => {
           id="language"
           value={language}
           onChange={e => {
+            // console.log('New language:', e.target.value);
             setLanguage(e.target.value);
           }}
           className={css.languageField}
@@ -83,6 +100,7 @@ export const TeacherFilterForm = () => {
           id="level"
           value={level}
           onChange={e => {
+            // console.log('New level:', e.target.value);
             setLevel(e.target.value);
           }}
           className={css.levelField}
@@ -103,6 +121,7 @@ export const TeacherFilterForm = () => {
           id="price"
           value={price}
           onChange={e => {
+            // console.log('New price:', e.target.value);
             setPrice(e.target.value);
           }}
           className={css.priceField}
