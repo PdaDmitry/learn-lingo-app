@@ -29,6 +29,10 @@ export const Teacher = ({ id }) => {
   const userId = useSelector(selectUserID);
   const isFavorite = useSelector(selectFavoriteTeacherById(id));
 
+  if (!teacher) {
+    return <p>Teacher not found.</p>; // или какой-то другой UI для отсутствия данных
+  }
+
   const {
     lessons_done,
     rating,

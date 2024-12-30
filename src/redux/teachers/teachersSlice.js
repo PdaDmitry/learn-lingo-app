@@ -24,7 +24,7 @@ const teachersSlice = createSlice({
   },
   extraReducers: builder => {
     builder
-      .addCase(fetchTeachersThunc.pending, (state, action) => {
+      .addCase(fetchTeachersThunc.pending, state => {
         state.isLoading = true;
         state.isError = false;
       })
@@ -40,7 +40,7 @@ const teachersSlice = createSlice({
       })
 
       //ForId
-      .addCase(fetchTeacherForId.pending, (state, action) => {
+      .addCase(fetchTeacherForId.pending, state => {
         state.isLoading = true;
         state.isError = false;
       })
@@ -56,7 +56,7 @@ const teachersSlice = createSlice({
       })
 
       //
-      .addCase(toggleFavoriteTeacher.pending, (state, action) => {
+      .addCase(toggleFavoriteTeacher.pending, state => {
         state.isLoading = true;
         state.isError = false;
       })
@@ -71,7 +71,7 @@ const teachersSlice = createSlice({
       })
 
       //
-      .addCase(fetchFavoriteTeachers.pending, (state, action) => {
+      .addCase(fetchFavoriteTeachers.pending, state => {
         state.isLoading = true;
         state.isError = false;
       })

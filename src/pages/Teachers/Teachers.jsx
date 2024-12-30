@@ -22,7 +22,7 @@ export const Teachers = () => {
       dispatch(fetchFavoriteTeachers(userId));
     }
     dispatch(fetchTeacherForId());
-    dispatch(fetchTeachersThunc());
+    // dispatch(fetchTeachersThunc());
   }, [dispatch, userId]);
 
   // useEffect(() => {
