@@ -16,63 +16,45 @@ export const TeacherFilterForm = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (!userId || !userFilters) {
-      dispatch(fetchTeachersThunc({}));
-    }
-  }, [userId, userFilters, dispatch]);
-
-  useEffect(() => {
     if (userId && userFilters) {
       setLanguage(userFilters.language || '');
       setLevel(userFilters.level || '');
       setPrice(userFilters.price?.toString() || '');
+
+      console.log('userFilters: ', userFilters);
+
+      // dispatch(fetchTeachersThunc(userFilters));
     }
-    // dispatch(fetchTeachersThunc({ language: '', level: '', price: '' }));
   }, [userId, userFilters, dispatch]);
 
-  // useEffect(() => {
-  //   if (!userId || !userFilters) {
-  //     dispatch(fetchTeachersThunc({}));
-  //   } else {
-  //     setLanguage(userFilters.language || '');
-  //     setLevel(userFilters.level || '');
-  //     setPrice(userFilters.price?.toString() || '');
-  //   }
-  // }, [userId, userFilters, dispatch]);
-
   useEffect(() => {
-    if (language || level || price) {
+    if (userId && (language || level || price)) {
       const filters = {
         language: language || '',
         level: level || '',
-        price: price ? parseFloat(price) : '',
+        price: price ? parseFloat(price) : '', // Обрабатываем цену как число
       };
 
-      dispatch(fetchTeachersThunc(filters)); // Загружаем учителей с новыми фильтрами
-      if (userId) {
-        dispatch(updateUserFilters({ userId, filters })); // Сохраняем фильтры в базе
-      }
+      // Отправляем обновленные фильтры в базу данных
+      dispatch(updateUserFilters({ userId, filters }));
     }
-  }, [language, level, price, dispatch, userId]);
+  }, [userId, language, level, price, dispatch]);
 
-  // useEffect(() => {
-  //   if (language === '' && level === '' && price === '') {
-  //     const filters = {
-  //       language: '',
-  //       level: '',
-  //       price: price ? parseFloat(price) : '',
-  //     };
-  //     if (userId) {
-  //       dispatch(updateUserFilters({ userId, filters })); // Сохраняем фильтры в базе
-  //       dispatch(fetchTeachersThunc({}));
-  //     }
-  //   }
-  // }, [language, level, price, dispatch, userId]);
+  useEffect(() => {
+    const filters = {
+      language: language || '',
+      level: level || '',
+      price: price ? parseFloat(price) : '', // Обрабатываем цену как число
+    };
+
+    dispatch(fetchTeachersThunc(filters)); // Загружаем учителей с новыми фильтрами
+  }, [language, level, price, dispatch]);
 
   return (
     <form className={css.contFilter}>
       <div className={css.contLanguage}>
         <label htmlFor="language">Language:</label>
+
         <select
           id="language"
           value={language}
@@ -96,6 +78,7 @@ export const TeacherFilterForm = () => {
 
       <div className={css.contLevel}>
         <label htmlFor="level">Level:</label>
+
         <select
           id="level"
           value={level}
@@ -117,6 +100,7 @@ export const TeacherFilterForm = () => {
 
       <div className={css.contPrice}>
         <label htmlFor="price">Minimum Price ($):</label>
+
         <select
           id="price"
           value={price}
