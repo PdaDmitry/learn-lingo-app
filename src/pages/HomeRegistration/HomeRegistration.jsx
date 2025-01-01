@@ -6,8 +6,9 @@ import Avatar3 from '../../../public/block-3.jpg';
 import Avatar4 from '../../../public/block-4.jpg';
 import Avatar5 from '../../../public/block-5.jpg';
 import { useSelector } from 'react-redux';
-import { selectUserTheme } from '../../redux/auth/selectorsAuth';
+import { selectLoader, selectUserTheme } from '../../redux/auth/selectorsAuth';
 import { useState } from 'react';
+import Loader from '../../components/Loader/Loader';
 
 const Avatar = {
   '#F4C550': Avatar1,
@@ -29,7 +30,7 @@ export const HomeRegistration = () => {
   const [isHovered, setIsHovered] = useState(false);
   const navigate = useNavigate();
   const userTheme = useSelector(selectUserTheme);
-  // console.log('userTheme ', userTheme);
+  const loading = useSelector(selectLoader);
 
   const dynamicStyles = {
     dinamicBackground: {
@@ -46,6 +47,14 @@ export const HomeRegistration = () => {
   const handleButtonClick = () => {
     navigate('/teachers');
   };
+
+  if (loading) {
+    return (
+      <div>
+        <Loader />
+      </div>
+    );
+  }
 
   return (
     <div className={css.contHome}>

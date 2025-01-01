@@ -32,10 +32,9 @@ export const TeacherFilterForm = () => {
       const filters = {
         language: language || '',
         level: level || '',
-        price: price ? parseFloat(price) : '', // Обрабатываем цену как число
+        price: price ? parseFloat(price) : '',
       };
 
-      // Отправляем обновленные фильтры в базу данных
       dispatch(updateUserFilters({ userId, filters }));
     }
   }, [userId, language, level, price, dispatch]);
@@ -44,10 +43,10 @@ export const TeacherFilterForm = () => {
     const filters = {
       language: language || '',
       level: level || '',
-      price: price ? parseFloat(price) : '', // Обрабатываем цену как число
+      price: price ? parseFloat(price) : '',
     };
 
-    dispatch(fetchTeachersThunc(filters)); // Загружаем учителей с новыми фильтрами
+    dispatch(fetchTeachersThunc(filters));
   }, [language, level, price, dispatch]);
 
   return (
@@ -83,7 +82,6 @@ export const TeacherFilterForm = () => {
           id="level"
           value={level}
           onChange={e => {
-            // console.log('New level:', e.target.value);
             setLevel(e.target.value);
           }}
           className={css.levelField}
@@ -105,7 +103,6 @@ export const TeacherFilterForm = () => {
           id="price"
           value={price}
           onChange={e => {
-            // console.log('New price:', e.target.value);
             setPrice(e.target.value);
           }}
           className={css.priceField}

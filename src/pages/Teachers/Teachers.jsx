@@ -6,7 +6,7 @@ import css from './Teachers.module.css';
 import { selectUserID } from '../../redux/auth/selectorsAuth';
 import { TeacherFilterForm } from '../../components/TeacherFilterForm/TeacherFilterForm';
 import { selectIsLoading } from '../../redux/teachers/selectors';
-// import { Toaster } from 'react-hot-toast';
+import Loader from '../../components/Loader/Loader';
 
 export const Teachers = () => {
   const userId = useSelector(selectUserID);
@@ -26,12 +26,7 @@ export const Teachers = () => {
   return (
     <div className={css.contTeachersPage}>
       <TeacherFilterForm />
-      {/* <TeacherList /> */}
-      {loading ? (
-        <p>Loading...</p> // или можно заменить на спиннер
-      ) : (
-        <TeacherList />
-      )}
+      {loading ? <Loader /> : <TeacherList />}
     </div>
   );
 };

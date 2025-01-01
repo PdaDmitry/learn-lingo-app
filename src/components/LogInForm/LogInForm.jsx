@@ -6,11 +6,14 @@ import { LuEye } from 'react-icons/lu';
 import { useState } from 'react';
 import { yupResolver } from '@hookform/resolvers/yup';
 import css from './LogInForm.module.css';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { loginUser } from '../../redux/auth/operationsAuth';
+// import { selectLoader } from '../../redux/auth/selectorsAuth';
+// import Loader from '../Loader/Loader';
 
 export const LogInForm = ({ closeModal }) => {
   const [showPassword, setShowPassword] = useState(false);
+
   const dispatch = useDispatch();
 
   const togglePasswordVisibility = () => {
