@@ -12,8 +12,21 @@ export const TeacherFilterForm = () => {
 
   const userId = useSelector(selectUserID);
   const userFilters = useSelector(selectUserFilters);
+  // console.log('userFilters: ', userFilters);
 
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (!userId) {
+      const filters = {
+        language: language || '',
+        level: level || '',
+        price: price ? parseFloat(price) : '',
+      };
+
+      dispatch(fetchTeachersThunc(filters));
+    }
+  }, [language, level, price, dispatch, userId]);
 
   useEffect(() => {
     if (userId && userFilters) {
@@ -23,12 +36,12 @@ export const TeacherFilterForm = () => {
 
       console.log('userFilters: ', userFilters);
 
-      // dispatch(fetchTeachersThunc(userFilters));
+      dispatch(fetchTeachersThunc(userFilters));
     }
   }, [userId, userFilters, dispatch]);
 
   useEffect(() => {
-    if (userId && (language || level || price)) {
+    if (userId) {
       const filters = {
         language: language || '',
         level: level || '',
@@ -36,18 +49,9 @@ export const TeacherFilterForm = () => {
       };
 
       dispatch(updateUserFilters({ userId, filters }));
+      // dispatch(fetchTeachersThunc(filters));
     }
-  }, [userId, language, level, price, dispatch]);
-
-  useEffect(() => {
-    const filters = {
-      language: language || '',
-      level: level || '',
-      price: price ? parseFloat(price) : '',
-    };
-
-    dispatch(fetchTeachersThunc(filters));
-  }, [language, level, price, dispatch]);
+  }, [language, level, price, userId, dispatch]);
 
   return (
     <form className={css.contFilter}>
