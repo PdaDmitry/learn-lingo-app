@@ -10,6 +10,7 @@ export const TeacherFilterForm = () => {
   const [language, setLanguage] = useState('');
   const [level, setLevel] = useState('');
   const [price, setPrice] = useState('');
+  const [isInitialized, setIsInitialized] = useState(false);
 
   const userId = useSelector(selectUserID);
   const userFilters = useSelector(selectUserFilters);
@@ -46,12 +47,22 @@ export const TeacherFilterForm = () => {
     }
   }, [logOutFilters, dispatch, userId]);
 
+  useEffect(() => {
+    // Эффект для вызова dispatch, если фильтры готовы
+    if (userId && userFilters) {
+      dispatch(fetchTeachersThunc(userFilters)); // Вызываем только fetch
+    }
+  }, [userId, userFilters, isInitialized, dispatch]);
+
   // Для авторизованных: загрузка фильтров из состояния пользователя
   useEffect(() => {
-    if (userId && userFilters) {
+    if (userId && userFilters && !isInitialized) {
+      // dispatch(fetchTeachersThunc(userFilters));
       setLanguage(userFilters.language || '');
       setLevel(userFilters.level || '');
       setPrice(userFilters.price ? parseFloat(userFilters.price) : '');
+
+      setIsInitialized(true); // Помечаем, что данные загружены
       console.log(
         'useEffect 2! filters from base:',
         userFilters.language,
@@ -59,13 +70,11 @@ export const TeacherFilterForm = () => {
         userFilters.price
       );
       console.log('\n');
-
-      dispatch(fetchTeachersThunc(userFilters));
     }
-  }, [userId, userFilters, dispatch]);
+  }, [userId, userFilters, dispatch, isInitialized]);
 
   useEffect(() => {
-    if (userId) {
+    if (userId && isInitialized) {
       const filters = {
         language,
         level,
@@ -77,7 +86,7 @@ export const TeacherFilterForm = () => {
 
       dispatch(updateUserFilters({ userId, filters }));
     }
-  }, [userId, language, level, price, dispatch]);
+  }, [userId, language, level, price, dispatch, isInitialized]);
 
   return (
     <form className={css.contFilter}>
