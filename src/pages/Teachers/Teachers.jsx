@@ -20,9 +20,9 @@ export const Teachers = () => {
     }
   }, [dispatch, userId]);
 
-  useEffect(() => {
-    dispatch(fetchTeacherForId());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(fetchTeacherForId());
+  // }, [dispatch]);
 
   return (
     <div className={css.contTeachersPage}>

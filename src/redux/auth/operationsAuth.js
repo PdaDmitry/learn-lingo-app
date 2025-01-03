@@ -27,17 +27,23 @@ export const registerUser = createAsyncThunk(
       const user = userCredential.user;
 
       console.log('User registered with UID:', user.uid);
+      const initialFilters = {
+        language: '',
+        level: '',
+        price: '',
+      };
 
       await set(ref(db, `users/${user.uid}`), {
         name,
         email: user.email,
         favorites: [], // Initializing an empty array
         theme: '',
-        filters: {
-          language: '', // Начальные значения фильтров
-          level: '',
-          price: '',
-        },
+        // filters: {
+        //   language: '', // Начальные значения фильтров
+        //   level: '',
+        //   price: '',
+        // },
+        filters: initialFilters,
       });
 
       return {
@@ -45,6 +51,7 @@ export const registerUser = createAsyncThunk(
         name,
         email: user.email,
         refreshToken: user.stsTokenManager.refreshToken,
+        filters: initialFilters,
         // theme: theme || 'default',
       };
     } catch (error) {

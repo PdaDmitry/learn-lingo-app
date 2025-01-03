@@ -48,8 +48,9 @@ export const TeacherFilterForm = () => {
   }, [logOutFilters, dispatch, userId]);
 
   useEffect(() => {
-    // Эффект для вызова dispatch, если фильтры готовы
     if (userId && userFilters) {
+      console.log('useEffect 2');
+
       dispatch(fetchTeachersThunc(userFilters)); // Вызываем только fetch
     }
   }, [userId, userFilters, isInitialized, dispatch]);
@@ -64,7 +65,7 @@ export const TeacherFilterForm = () => {
 
       setIsInitialized(true); // Помечаем, что данные загружены
       console.log(
-        'useEffect 2! filters from base:',
+        'useEffect 3! filters from base:',
         userFilters.language,
         userFilters.level,
         userFilters.price
@@ -81,7 +82,7 @@ export const TeacherFilterForm = () => {
         price,
       };
 
-      console.log('useEffect 3 for registered user:', filters);
+      console.log('useEffect 4 for registered user:', filters);
       console.log('\n');
 
       dispatch(updateUserFilters({ userId, filters }));

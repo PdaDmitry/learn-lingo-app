@@ -43,6 +43,7 @@ const authSlice = createSlice({
         state.user.email = action.payload.email;
         state.refreshToken = action.payload.refreshToken;
         state.isLoggedIn = true;
+        state.user.filters = action.payload.filters; //////////// Обновляем фильтры
       })
       .addCase(registerUser.rejected, (state, action) => {
         state.loader = false;
@@ -79,7 +80,6 @@ const authSlice = createSlice({
         state.isLoggedIn = true;
         state.user.theme = action.payload.theme; //////////////
         state.user.filters = action.payload.filters;
-        // state.user.language = action.payload.filters.language;
       })
       .addCase(loginUser.rejected, (state, action) => {
         state.loader = false;
