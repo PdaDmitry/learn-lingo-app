@@ -6,6 +6,7 @@ import { selectUserFilters, selectUserID } from '../../redux/auth/selectorsAuth'
 import { updateUserFilters } from '../../redux/auth/operationsAuth';
 
 export const TeacherFilterForm = () => {
+  const [logOutFilters, setLogOutFilters] = useState({ language: '', level: '', price: '' });
   const [language, setLanguage] = useState('');
   const [level, setLevel] = useState('');
   const [price, setPrice] = useState('');
@@ -16,25 +17,48 @@ export const TeacherFilterForm = () => {
 
   const dispatch = useDispatch();
 
+  // Обработчик изменений для фильтров
+  const handleFilterChange = (field, value) => {
+    if (userId) {
+      // Для авторизованных
+      if (field === 'language') setLanguage(value);
+      if (field === 'level') setLevel(value);
+      if (field === 'price') setPrice(value);
+    } else {
+      // Для гостей
+      setLogOutFilters(prev => ({ ...prev, [field]: value }));
+    }
+  };
+
+  // Для гостей: обновление фильтров
   useEffect(() => {
     if (!userId) {
       const filters = {
-        language: language || '',
-        level: level || '',
-        price: price ? parseFloat(price) : '',
+        language: logOutFilters.language || '',
+        level: logOutFilters.level || '',
+        price: logOutFilters.price ? parseFloat(logOutFilters.price) : '',
       };
+
+      console.log('useEffect 1 LogOut users:', filters);
+      console.log('\n');
 
       dispatch(fetchTeachersThunc(filters));
     }
-  }, [language, level, price, dispatch, userId]);
+  }, [logOutFilters, dispatch, userId]);
 
+  // Для авторизованных: загрузка фильтров из состояния пользователя
   useEffect(() => {
     if (userId && userFilters) {
       setLanguage(userFilters.language || '');
       setLevel(userFilters.level || '');
-      setPrice(userFilters.price?.toString() || '');
-
-      console.log('userFilters: ', userFilters);
+      setPrice(userFilters.price ? parseFloat(userFilters.price) : '');
+      console.log(
+        'useEffect 2! filters from base:',
+        userFilters.language,
+        userFilters.level,
+        userFilters.price
+      );
+      console.log('\n');
 
       dispatch(fetchTeachersThunc(userFilters));
     }
@@ -43,15 +67,17 @@ export const TeacherFilterForm = () => {
   useEffect(() => {
     if (userId) {
       const filters = {
-        language: language || '',
-        level: level || '',
-        price: price ? parseFloat(price) : '',
+        language,
+        level,
+        price,
       };
 
+      console.log('useEffect 3 for registered user:', filters);
+      console.log('\n');
+
       dispatch(updateUserFilters({ userId, filters }));
-      // dispatch(fetchTeachersThunc(filters));
     }
-  }, [language, level, price, userId, dispatch]);
+  }, [userId, language, level, price, dispatch]);
 
   return (
     <form className={css.contFilter}>
@@ -60,11 +86,8 @@ export const TeacherFilterForm = () => {
 
         <select
           id="language"
-          value={language}
-          onChange={e => {
-            // console.log('New language:', e.target.value);
-            setLanguage(e.target.value);
-          }}
+          value={userId ? language : logOutFilters.language}
+          onChange={e => handleFilterChange('language', e.target.value)}
           className={css.languageField}
         >
           <option value="">Select Language</option>
@@ -84,10 +107,8 @@ export const TeacherFilterForm = () => {
 
         <select
           id="level"
-          value={level}
-          onChange={e => {
-            setLevel(e.target.value);
-          }}
+          value={userId ? level : logOutFilters.level}
+          onChange={e => handleFilterChange('level', e.target.value)}
           className={css.levelField}
         >
           <option value="">Select Level</option>
@@ -105,10 +126,8 @@ export const TeacherFilterForm = () => {
 
         <select
           id="price"
-          value={price}
-          onChange={e => {
-            setPrice(e.target.value);
-          }}
+          value={userId ? price : logOutFilters.price}
+          onChange={e => handleFilterChange('price', e.target.value)}
           className={css.priceField}
         >
           <option value="">Select Price</option>
@@ -123,3 +142,9 @@ export const TeacherFilterForm = () => {
     </form>
   );
 };
+
+// useEffect(() => {
+//   if (userId) {
+//     dispatch(updateUserFilters({ userId, loginFilters }));
+//   }
+// }, [userId, loginFilters, dispatch]);

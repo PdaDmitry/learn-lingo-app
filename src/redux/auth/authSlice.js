@@ -108,6 +108,7 @@ const authSlice = createSlice({
       .addCase(updateUserFilters.fulfilled, (state, action) => {
         state.loader = false;
         state.user.filters = action.payload;
+        // console.log('Payload:', action.payload);
       })
       .addCase(updateUserFilters.rejected, (state, action) => {
         state.loader = false;

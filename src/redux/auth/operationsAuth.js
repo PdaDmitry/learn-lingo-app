@@ -154,6 +154,7 @@ export const updateUserFilters = createAsyncThunk(
     try {
       // Обновляем поле `filters` в Firebase для конкретного пользователя
       await update(ref(db, `users/${userId}`), {
+        // filters: { ...filters },
         filters, // Сохраняем новые фильтры
       });
 

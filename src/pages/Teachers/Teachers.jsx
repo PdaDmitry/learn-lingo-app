@@ -7,7 +7,7 @@ import { selectUserID } from '../../redux/auth/selectorsAuth';
 import { TeacherFilterForm } from '../../components/TeacherFilterForm/TeacherFilterForm';
 import { selectIsLoading } from '../../redux/teachers/selectors';
 import Loader from '../../components/Loader/Loader';
-import LoadMoreBtn from '../../components/LoadMoreBtn/LoadMoreBtn';
+// import LoadMoreBtn from '../../components/LoadMoreBtn/LoadMoreBtn';
 
 export const Teachers = () => {
   const userId = useSelector(selectUserID);
@@ -28,7 +28,7 @@ export const Teachers = () => {
     <div className={css.contTeachersPage}>
       <TeacherFilterForm />
       {loading ? <Loader /> : <TeacherList />}
-      <LoadMoreBtn />
+      {/* <LoadMoreBtn /> */}
     </div>
   );
 };
