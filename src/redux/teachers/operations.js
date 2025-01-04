@@ -33,6 +33,7 @@ export const fetchTeachersThunc = createAsyncThunk('fetchTeachers', async (filte
           ...value,
           favorites: [],
         }));
+
       return teachersWithId;
     } else {
       throw new Error('No data available');

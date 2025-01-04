@@ -12,6 +12,9 @@ const initialState = {
   isError: false,
   favorites: [],
   teacherForId: [],
+  perPage: 4,
+  total: 0,
+  maxPage: 1,
 };
 
 const teachersSlice = createSlice({
@@ -32,6 +35,8 @@ const teachersSlice = createSlice({
         state.isLoading = false;
         state.items = action.payload || [];
         // state.teacherForById = action.payload;
+        state.total = state.items.length;
+        state.maxPage = Math.ceil(state.total / state.perPage);
       })
       .addCase(fetchTeachersThunc.rejected, (state, action) => {
         state.isLoading = false;
