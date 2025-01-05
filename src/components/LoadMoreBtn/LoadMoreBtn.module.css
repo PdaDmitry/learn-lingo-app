@@ -1,18 +1,19 @@
 .btnLoad {
-    display: block;
-    margin-left: 500px;
-    border-radius: 12px;
-    /* padding: 16px 48px; */
-    width: 183px;
-    height: 60px;
-    background: #f4c550;
-    border: none;
-    font-weight: 700;
-    font-size: 18px;
-    line-height: 1.55556;
-    margin-top: 64px;
+  display: block;
+  margin-left: 500px;
+  border-radius: 12px;
+  /* padding: 16px 48px; */
+  width: 183px;
+  height: 60px;
+  background: #f4c550;
+  border: none;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 1.55556;
+  margin-top: 64px;
+  cursor: pointer;
 }
 
 .btnLoad:hover {
-    background-color: #FBE9BA;
+  background-color: #fbe9ba;
 }

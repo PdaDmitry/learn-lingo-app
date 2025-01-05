@@ -3,7 +3,7 @@ import { TeacherList } from '../../components/TeacherList/TeacherList';
 import { useEffect, useState } from 'react';
 import { fetchFavoriteTeachers, fetchTeacherForId } from '../../redux/teachers/operations';
 import css from './Teachers.module.css';
-import { selectUserID } from '../../redux/auth/selectorsAuth';
+import { selectUserFilters, selectUserID } from '../../redux/auth/selectorsAuth';
 import { TeacherFilterForm } from '../../components/TeacherFilterForm/TeacherFilterForm';
 import { selectIsLoading, selectMaxPage, selectTotal } from '../../redux/teachers/selectors';
 import Loader from '../../components/Loader/Loader';
@@ -12,7 +12,9 @@ import LoadMoreBtn from '../../components/LoadMoreBtn/LoadMoreBtn';
 export const Teachers = () => {
   const [page, setPage] = useState(1);
   const [loadMore, setLoadMore] = useState(true);
+  const [filterLevel, setFilterLevel] = useState('');
   const userId = useSelector(selectUserID);
+  const userFilters = useSelector(selectUserFilters);
   const loading = useSelector(selectIsLoading);
   const maxPage = useSelector(selectMaxPage);
   const totalTeachers = useSelector(selectTotal);
@@ -27,7 +29,7 @@ export const Teachers = () => {
 
   useEffect(() => {
     setPage(1);
-  }, [maxPage, totalTeachers]);
+  }, [maxPage, totalTeachers]); //, userFilters
 
   const handleLoadMore = () => {
     if (page < maxPage) {
@@ -47,10 +49,12 @@ export const Teachers = () => {
   //   dispatch(fetchTeacherForId());
   // }, [dispatch]);
 
+  console.log('filterLevel: ', filterLevel);
+
   return (
     <div className={css.contTeachersPage}>
-      <TeacherFilterForm />
-      {loading ? <Loader /> : <TeacherList page={page} />}
+      <TeacherFilterForm setFilterLevel={setFilterLevel} />
+      {loading ? <Loader /> : <TeacherList page={page} filterLevel={filterLevel} />}
       {loadMore && <LoadMoreBtn onClick={handleLoadMore} />}
     </div>
   );

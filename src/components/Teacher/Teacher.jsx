@@ -15,7 +15,7 @@ import { toggleFavoriteTeacher } from '../../redux/teachers/operations';
 // import { OnlyForAuthorized } from '../OnlyForAuthorized/OnlyForAuthorized';
 import toast from 'react-hot-toast';
 
-export const Teacher = ({ id }) => {
+export const Teacher = ({ id, filterLevel }) => {
   const [isOpenReviews, setIsOpenReviews] = useState(() => {
     const savedState = localStorage.getItem(`teacher-${id}-isOpen`);
     return savedState ? JSON.parse(savedState) : false;
@@ -135,11 +135,15 @@ export const Teacher = ({ id }) => {
         <button type="button" className={css.btnReadMore} onClick={handleToggle}>
           {isOpenReviews ? 'Hide reviews' : 'Read more'}
         </button>
-        {isOpenReviews && <TeacherReviews id={id} />}
+        {isOpenReviews && <TeacherReviews id={id} filterLevel={filterLevel} />}
         {!isOpenReviews && (
           <ul className={css.contLevel}>
             {levels.map((level, index) => (
-              <li key={index} className={css.levelItem}>
+              <li
+                key={index}
+                className={`${css.levelItem} ${level === filterLevel ? css.selectedLevel : ''}`}
+                // className={css.levelItem}
+              >
                 #{level}
               </li>
             ))}

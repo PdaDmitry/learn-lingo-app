@@ -5,7 +5,7 @@ import { fetchTeachersThunc } from '../../redux/teachers/operations';
 import { selectUserFilters, selectUserID } from '../../redux/auth/selectorsAuth';
 import { updateUserFilters } from '../../redux/auth/operationsAuth';
 
-export const TeacherFilterForm = () => {
+export const TeacherFilterForm = ({ setFilterLevel }) => {
   const [logOutFilters, setLogOutFilters] = useState({ language: '', level: '', price: '' });
   const [language, setLanguage] = useState('');
   const [level, setLevel] = useState('');
@@ -23,11 +23,15 @@ export const TeacherFilterForm = () => {
     if (userId) {
       // Для авторизованных
       if (field === 'language') setLanguage(value);
-      if (field === 'level') setLevel(value);
+      if (field === 'level') {
+        setLevel(value);
+        setFilterLevel(value);
+      }
       if (field === 'price') setPrice(value);
     } else {
       // Для гостей
       setLogOutFilters(prev => ({ ...prev, [field]: value }));
+      if (field === 'level') setFilterLevel(value);
     }
   };
 
@@ -50,6 +54,7 @@ export const TeacherFilterForm = () => {
   // Для авторизованных: загрузка фильтров из состояния пользователя
   useEffect(() => {
     if (userId && userFilters && !isInitialized) {
+      setFilterLevel(userFilters.level || '');
       setLanguage(userFilters.language || '');
       setLevel(userFilters.level || '');
       setPrice(userFilters.price ? parseFloat(userFilters.price) : '');

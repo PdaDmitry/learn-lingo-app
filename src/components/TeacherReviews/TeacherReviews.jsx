@@ -21,7 +21,7 @@ const avatar = {
   Emily: avatarEmily,
 };
 
-export const TeacherReviews = ({ id }) => {
+export const TeacherReviews = ({ id, filterLevel }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const openModal = () => setIsModalOpen(true);
@@ -63,7 +63,11 @@ export const TeacherReviews = ({ id }) => {
       )}
       <ul className={css.contLevel}>
         {levels.map((level, index) => (
-          <li key={index} className={css.levelItem}>
+          <li
+            key={index}
+            // className={css.levelItem}
+            className={`${css.levelItem} ${level === filterLevel ? css.selectedLevel : ''}`}
+          >
             #{level}
           </li>
         ))}
