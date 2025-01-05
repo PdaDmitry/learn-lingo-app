@@ -47,23 +47,14 @@ export const TeacherFilterForm = () => {
     }
   }, [logOutFilters, dispatch, userId]);
 
-  useEffect(() => {
-    if (userId && userFilters) {
-      console.log('useEffect 2');
-
-      dispatch(fetchTeachersThunc(userFilters)); // Вызываем только fetch
-    }
-  }, [userId, userFilters, isInitialized, dispatch]);
-
   // Для авторизованных: загрузка фильтров из состояния пользователя
   useEffect(() => {
     if (userId && userFilters && !isInitialized) {
-      // dispatch(fetchTeachersThunc(userFilters));
       setLanguage(userFilters.language || '');
       setLevel(userFilters.level || '');
       setPrice(userFilters.price ? parseFloat(userFilters.price) : '');
 
-      setIsInitialized(true); // Помечаем, что данные загружены
+      // setIsInitialized(true); // Помечаем, что данные загружены//////////////////
       console.log(
         'useEffect 3! filters from base:',
         userFilters.language,
@@ -75,6 +66,14 @@ export const TeacherFilterForm = () => {
   }, [userId, userFilters, dispatch, isInitialized]);
 
   useEffect(() => {
+    if (userId && userFilters) {
+      console.log('useEffect 2');
+      setIsInitialized(true);
+      dispatch(fetchTeachersThunc(userFilters)); // Вызываем только fetch
+    }
+  }, [userId, userFilters, dispatch]);
+
+  useEffect(() => {
     if (userId && isInitialized) {
       const filters = {
         language,
@@ -82,12 +81,18 @@ export const TeacherFilterForm = () => {
         price,
       };
 
-      console.log('useEffect 4 for registered user:', filters);
-      console.log('\n');
+      if (
+        filters.language !== userFilters.language ||
+        filters.level !== userFilters.level ||
+        +filters.price !== +userFilters.price
+      ) {
+        console.log('useEffect 4: filters are different');
+        dispatch(updateUserFilters({ userId, filters }));
+      }
 
-      dispatch(updateUserFilters({ userId, filters }));
+      // dispatch(updateUserFilters({ userId, filters }));
     }
-  }, [userId, language, level, price, dispatch, isInitialized]);
+  }, [userId, language, level, price, dispatch, isInitialized, userFilters]);
 
   return (
     <form className={css.contFilter}>

@@ -42,7 +42,7 @@ export const Teacher = ({ id }) => {
     lesson_info,
     conditions,
     levels,
-    // avatar_url,
+    avatar_url,
   } = teacher;
 
   const handleToggle = () => {
@@ -72,7 +72,7 @@ export const Teacher = ({ id }) => {
       <div className={css.photoWrapper}>
         <div className={css.backgroundYellow}></div>
         <div className={css.backgroundWhite}></div>
-        {/* <img src={avatar_url} alt="Teacher's photo" className={css.teacherPhoto} /> */}
+        <img src={avatar_url} alt="Teacher's photo" className={css.teacherPhoto} />
         <svg className={css.iconGroup}>
           <use href="/symbol-defs-teacher-card.svg#icon-Group-82"></use>
         </svg>
