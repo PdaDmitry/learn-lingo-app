@@ -44,8 +44,8 @@ export const TeacherFilterForm = ({ setFilterLevel }) => {
         price: logOutFilters.price ? parseFloat(logOutFilters.price) : '',
       };
 
-      console.log('useEffect 1 LogOut users:', filters);
-      console.log('\n');
+      // console.log('useEffect 1 LogOut users:', filters);
+      // console.log('\n');
 
       dispatch(fetchTeachersThunc(filters));
     }
@@ -60,19 +60,19 @@ export const TeacherFilterForm = ({ setFilterLevel }) => {
       setPrice(userFilters.price ? parseFloat(userFilters.price) : '');
 
       // setIsInitialized(true); // Помечаем, что данные загружены//////////////////
-      console.log(
-        'useEffect 3! filters from base:',
-        userFilters.language,
-        userFilters.level,
-        userFilters.price
-      );
-      console.log('\n');
+      // console.log(
+      //   'useEffect 3! filters from base:',
+      //   userFilters.language,
+      //   userFilters.level,
+      //   userFilters.price
+      // );
+      // console.log('\n');
     }
   }, [userId, userFilters, dispatch, isInitialized]);
 
   useEffect(() => {
     if (userId && userFilters) {
-      console.log('useEffect 2');
+      // console.log('useEffect 2');
       setIsInitialized(true);
       dispatch(fetchTeachersThunc(userFilters)); // Вызываем только fetch
     }
@@ -91,7 +91,7 @@ export const TeacherFilterForm = ({ setFilterLevel }) => {
         filters.level !== userFilters.level ||
         +filters.price !== +userFilters.price
       ) {
-        console.log('useEffect 4: filters are different');
+        // console.log('useEffect 4: filters are different');
         dispatch(updateUserFilters({ userId, filters }));
       }
 

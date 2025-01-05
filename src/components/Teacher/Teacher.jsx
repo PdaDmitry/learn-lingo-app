@@ -24,7 +24,7 @@ export const Teacher = ({ id, filterLevel }) => {
   const dispatch = useDispatch();
 
   const teacher = useSelector(selectTeachersById(id));
-  // console.log('teacher: ', teacher);
+  console.log('teacher: ', teacher);
   const userId = useSelector(selectUserID);
   const isFavorite = useSelector(selectFavoriteTeacherById(id));
 

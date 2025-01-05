@@ -49,7 +49,7 @@ export const Teachers = () => {
   //   dispatch(fetchTeacherForId());
   // }, [dispatch]);
 
-  console.log('filterLevel: ', filterLevel);
+  // console.log('filterLevel: ', filterLevel);
 
   return (
     <div className={css.contTeachersPage}>
