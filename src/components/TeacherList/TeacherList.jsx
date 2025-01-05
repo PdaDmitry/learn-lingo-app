@@ -22,7 +22,7 @@ export const TeacherList = ({ page, filterLevel }) => {
   // console.log('perPage: ', perPage);
   // console.log('page: ', page);
 
-  if (!teachers.length) {
+  if (teachers.length === 0) {
     return <p>No teachers available</p>;
   }
 
