@@ -45,9 +45,9 @@ export const Teachers = () => {
     }
   }, [page, maxPage]);
 
-  // useEffect(() => {
-  //   dispatch(fetchTeacherForId());
-  // }, [dispatch]);
+  useEffect(() => {
+    dispatch(fetchTeacherForId());
+  }, [dispatch]);
 
   // console.log('filterLevel: ', filterLevel);
 
