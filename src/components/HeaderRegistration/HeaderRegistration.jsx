@@ -33,9 +33,9 @@ const iconDependence = {
 
 export const HeaderRegistration = () => {
   const [isHovered, setIsHovered] = useState(false);
-  const navigate = useNavigate();
   const [actionConfirm, setActionConfirm] = useState(false);
   const [themeModalOpen, setThemeModalOpen] = useState(false);
+  const navigate = useNavigate();
   const userTheme = useSelector(selectUserTheme);
 
   // console.log(userTheme);

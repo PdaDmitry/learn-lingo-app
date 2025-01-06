@@ -10,7 +10,7 @@ import { useState } from 'react';
 import { TeacherReviews } from '../TeacherReviews/TeacherReviews';
 // import ModalWindow from '../ModalWindow/ModalWindow';
 import css from './Teacher.module.css';
-import { selectUserID } from '../../redux/auth/selectorsAuth';
+import { selectUserID, selectUserTheme } from '../../redux/auth/selectorsAuth';
 import { toggleFavoriteTeacher } from '../../redux/teachers/operations';
 // import { OnlyForAuthorized } from '../OnlyForAuthorized/OnlyForAuthorized';
 import toast from 'react-hot-toast';
@@ -26,6 +26,7 @@ export const Teacher = ({ id, filterLevel }) => {
   const teacher = useSelector(selectTeachersById(id));
   // console.log('teacher: ', teacher);
   const userId = useSelector(selectUserID);
+  const userTheme = useSelector(selectUserTheme);
   const isFavorite = useSelector(selectFavoriteTeacherById(id));
 
   if (!teacher) {
@@ -141,8 +142,15 @@ export const Teacher = ({ id, filterLevel }) => {
             {levels.map((level, index) => (
               <li
                 key={index}
-                className={`${css.levelItem} ${level === filterLevel ? css.selectedLevel : ''}`}
-                // className={css.levelItem}
+                // className={`${css.levelItem} ${level === filterLevel ? css.selectedLevel : ''}`}
+                className={`${css.levelItem} ${
+                  level === filterLevel && userTheme == null ? css.selectedLevel : ''
+                }`}
+                style={
+                  level === filterLevel && userTheme != null
+                    ? { backgroundColor: userTheme, border: 'none' }
+                    : {}
+                }
               >
                 #{level}
               </li>
