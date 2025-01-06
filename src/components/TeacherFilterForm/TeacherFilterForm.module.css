@@ -12,32 +12,23 @@
   flex-direction: column;
 }
 
-.languageField {
-  border-radius: 14px;
-  padding: 14px 0 14px 18px;
-  width: 221px;
-  height: 48px;
-  background: #fff;
+.filterTitle {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 129%;
+  color: #8a8a89;
 }
 
-/* .contLevel {
-} */
+.languageField {
+  width: 221px;
+}
 
 .levelField {
-  border-radius: 14px;
-  padding: 14px 0 14px 18px;
   width: 198px;
-  height: 48px;
-  background: #fff;
+}
+.levelField option {
 }
 
-/* .contPrice {
-} */
-
 .priceField {
-  border-radius: 14px;
-  padding: 14px 18px;
   width: 124px;
-  height: 48px;
-  background: #fff;
 }

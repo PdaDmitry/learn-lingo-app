@@ -11,7 +11,7 @@ import { Toaster } from 'react-hot-toast';
 import { Favorites } from '../../pages/Favorites/Favorites';
 // import Loader from '../Loader/Loader';
 
-// import css from './App.module.css';
+import css from './App.module.css';
 
 function App() {
   const isLoggedIn = useSelector(selectIsLoggedIn);
@@ -26,7 +26,7 @@ function App() {
   // }
 
   return (
-    <div>
+    <div className={css.contApp}>
       {isLoggedIn ? <HeaderRegistration /> : <Header />}
       <Toaster />
       <Routes>
