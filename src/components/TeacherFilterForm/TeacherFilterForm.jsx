@@ -112,9 +112,9 @@ export const TeacherFilterForm = ({ setFilterLevel }) => {
           options={languageOptions}
           value={
             userId
-              ? { value: language, label: language }
+              ? { value: language, label: language || 'Select Language' }
               : {
-                  value: logOutFilters.language,
+                  value: logOutFilters.language || '',
                   label: logOutFilters.language || 'Select Language',
                 }
           }
@@ -134,8 +134,8 @@ export const TeacherFilterForm = ({ setFilterLevel }) => {
           options={levelOptions}
           value={
             userId
-              ? { value: level, label: level }
-              : { value: logOutFilters.level, label: logOutFilters.level || 'Select Level' }
+              ? { value: level, label: level || 'Select Level' }
+              : { value: logOutFilters.level || '', label: logOutFilters.level || 'Select Level' }
           }
           onChange={option => handleFilterChange('level', option?.value || '')}
           styles={customStyles}
@@ -153,8 +153,8 @@ export const TeacherFilterForm = ({ setFilterLevel }) => {
           options={priceOptions}
           value={
             userId
-              ? { value: price, label: price }
-              : { value: logOutFilters.price, label: logOutFilters.price || 'Select Price' }
+              ? { value: price, label: price || 'Select Price' }
+              : { value: logOutFilters.price || '', label: logOutFilters.price || 'Select Price' }
           }
           onChange={option => handleFilterChange('price', option?.value || '')}
           styles={customStyles}
