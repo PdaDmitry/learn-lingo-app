@@ -10,26 +10,27 @@ import { useState } from 'react';
 import ModalWindow from '../ModalWindow/ModalWindow';
 import { selectUserTheme } from '../../redux/auth/selectorsAuth';
 import { ActionConfirmation } from '../ActionConfirmation/ActionConfirmation';
+import { colorDependence, iconDependence } from '../../options';
 
 const buildLinkClass = ({ isActive }) => {
   return clsx(css.link, isActive && css.active);
 };
 
-const colorDependence = {
-  '#F4C550': '#FBE9BA',
-  '#9FBAAE': '#CBDED3',
-  '#9FB7CE': '#BFD6EA',
-  '#E0A39A': '#F2C0BD',
-  '#F0AA8D': '#F4C8BA',
-};
+// const colorDependence = {
+//   '#F4C550': '#FBE9BA',
+//   '#9FBAAE': '#CBDED3',
+//   '#9FB7CE': '#BFD6EA',
+//   '#E0A39A': '#F2C0BD',
+//   '#F0AA8D': '#F4C8BA',
+// };
 
-const iconDependence = {
-  '#F4C550': 1,
-  '#9FBAAE': 2,
-  '#9FB7CE': 3,
-  '#E0A39A': 4,
-  '#F0AA8D': 5,
-};
+// const iconDependence = {
+//   '#F4C550': 1,
+//   '#9FBAAE': 2,
+//   '#9FB7CE': 3,
+//   '#E0A39A': 4,
+//   '#F0AA8D': 5,
+// };
 
 export const HeaderRegistration = () => {
   const [isHovered, setIsHovered] = useState(false);

@@ -9,6 +9,7 @@ import { useSelector } from 'react-redux';
 import { selectLoader, selectUserTheme } from '../../redux/auth/selectorsAuth';
 import { useState } from 'react';
 import Loader from '../../components/Loader/Loader';
+import { colorDependence } from '../../options';
 
 const Avatar = {
   '#F4C550': Avatar1,
@@ -18,13 +19,13 @@ const Avatar = {
   '#F0AA8D': Avatar5,
 };
 
-const colorDependence = {
-  '#F4C550': '#FBE9BA',
-  '#9FBAAE': '#CBDED3',
-  '#9FB7CE': '#BFD6EA',
-  '#E0A39A': '#F2C0BD',
-  '#F0AA8D': '#F4C8BA',
-};
+// const colorDependence = {
+//   '#F4C550': '#FBE9BA',
+//   '#9FBAAE': '#CBDED3',
+//   '#9FB7CE': '#BFD6EA',
+//   '#E0A39A': '#F2C0BD',
+//   '#F0AA8D': '#F4C8BA',
+// };
 
 export const HomeRegistration = () => {
   const [isHovered, setIsHovered] = useState(false);

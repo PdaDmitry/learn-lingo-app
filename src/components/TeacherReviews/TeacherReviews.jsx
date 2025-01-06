@@ -12,6 +12,7 @@ import avatarHenry from '../../../public/image Henry.jpg';
 import avatarAlex from '../../../public/image Alex.jpg';
 import avatarEmily from '../../../public/image Emily.jpg';
 import { selectUserTheme } from '../../redux/auth/selectorsAuth.js';
+import { colorDependence } from '../../options.js';
 
 const avatar = {
   Frank: avatarFrank,
@@ -22,13 +23,13 @@ const avatar = {
   Emily: avatarEmily,
 };
 
-const colorDependence = {
-  '#F4C550': '#FBE9BA',
-  '#9FBAAE': '#CBDED3',
-  '#9FB7CE': '#BFD6EA',
-  '#E0A39A': '#F2C0BD',
-  '#F0AA8D': '#F4C8BA',
-};
+// const colorDependence = {
+//   '#F4C550': '#FBE9BA',
+//   '#9FBAAE': '#CBDED3',
+//   '#9FB7CE': '#BFD6EA',
+//   '#E0A39A': '#F2C0BD',
+//   '#F0AA8D': '#F4C8BA',
+// };
 
 export const TeacherReviews = ({ id, filterLevel }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);

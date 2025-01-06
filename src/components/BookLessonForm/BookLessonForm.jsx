@@ -4,15 +4,22 @@ import { useForm } from 'react-hook-form';
 import { IoMdClose } from 'react-icons/io';
 import { MdRadioButtonUnchecked } from 'react-icons/md';
 import { MdOutlineRadioButtonChecked } from 'react-icons/md';
-
+import { useState } from 'react';
 import css from './BookLessonForm.module.css';
 import { useSelector } from 'react-redux';
 import { selectTeachersById } from '../../redux/teachers/selectors';
 import { bookLessonSchema } from '../../validationSchemas';
 import toast from 'react-hot-toast';
+import { selectUserTheme } from '../../redux/auth/selectorsAuth.js';
+import { colorDependence } from '../../options.js';
 
 export const BookLessonForm = ({ closeModal, id }) => {
+  const [isHovered, setIsHovered] = useState(false);
+  const [isFocusedFullName, setIsFocusedFullName] = useState(false);
+  const [isFocusedEmail, setIsFocusedEmail] = useState(false);
+  const [isFocusedNumber, setIsFocusedNumber] = useState(false);
   const teacherData = useSelector(selectTeachersById(id));
+  const userTheme = useSelector(selectUserTheme);
   const { avatar_url, name, surname } = teacherData;
 
   const {
@@ -38,6 +45,19 @@ export const BookLessonForm = ({ closeModal, id }) => {
     );
     closeModal();
   };
+
+  const dynamicStyles = {
+    dinamicBackground: {
+      background: colorDependence[userTheme] || '#FBE9BA',
+    },
+    btnTheme: {
+      background: userTheme || '#F4C550',
+    },
+  };
+
+  const dynamicBorderColorFullName = isFocusedFullName ? userTheme : 'rgba(18, 20, 23, 0.1)';
+  const dynamicBorderColorEmail = isFocusedEmail ? userTheme : 'rgba(18, 20, 23, 0.1)';
+  const dynamicBorderColorNumber = isFocusedNumber ? userTheme : 'rgba(18, 20, 23, 0.1)';
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={css.contBookForm}>
@@ -84,7 +104,8 @@ export const BookLessonForm = ({ closeModal, id }) => {
                     width: '24px',
                     height: '24px',
                     marginRight: '8px',
-                    color: ' #f4c550',
+                    color: userTheme ? userTheme : ' #f4c550',
+                    // color: ' #f4c550',
                   }}
                 />
               ) : (
@@ -104,20 +125,53 @@ export const BookLessonForm = ({ closeModal, id }) => {
       </ul>
 
       <div className={css.inputElem}>
-        <input {...register('fullName')} placeholder="Full Name" className={css.input} />
+        <input
+          {...register('fullName')}
+          placeholder="Full Name"
+          className={css.input}
+          onFocus={() => setIsFocusedFullName(true)} // Фокус на поле
+          onBlur={() => setIsFocusedFullName(false)} // Потеря фокуса
+          style={{
+            borderColor: dynamicBorderColorFullName, // Меняем цвет рамки
+          }}
+        />
         {errors.fullName && <p className={css.textError}>{errors.fullName.message}</p>}
       </div>
 
       <div className={css.inputElem}>
-        <input {...register('email')} placeholder="Email" className={css.input} />
+        <input
+          {...register('email')}
+          placeholder="Email"
+          className={css.input}
+          onFocus={() => setIsFocusedEmail(true)} // Фокус на поле
+          onBlur={() => setIsFocusedEmail(false)} // Потеря фокуса
+          style={{
+            borderColor: dynamicBorderColorEmail, // Меняем цвет рамки
+          }}
+        />
         {errors.email && <p className={css.textError}>{errors.email.message}</p>}
       </div>
 
       <div className={css.inputLastElem}>
-        <input {...register('number')} placeholder="Phone number" className={css.input} />
+        <input
+          {...register('number')}
+          placeholder="Phone number"
+          className={css.input}
+          onFocus={() => setIsFocusedNumber(true)} // Фокус на поле
+          onBlur={() => setIsFocusedNumber(false)} // Потеря фокуса
+          style={{
+            borderColor: dynamicBorderColorNumber, // Меняем цвет рамки
+          }}
+        />
         {errors.number && <p className={css.textError}>{errors.number.message}</p>}
       </div>
-      <button type="submit" className={css.btnBookForm}>
+      <button
+        type="submit"
+        className={css.btnBookForm}
+        style={isHovered ? dynamicStyles.dinamicBackground : dynamicStyles.btnTheme}
+        onMouseEnter={() => setIsHovered(true)} // When the mouse hovers, change the state
+        onMouseLeave={() => setIsHovered(false)}
+      >
         Book
       </button>
     </form>

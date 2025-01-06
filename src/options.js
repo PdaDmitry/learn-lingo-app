@@ -81,3 +81,19 @@ export const customStyles = {
     display: 'none', // Скрыть вертикальный слэш
   }),
 };
+
+export const colorDependence = {
+  '#F4C550': '#FBE9BA',
+  '#9FBAAE': '#CBDED3',
+  '#9FB7CE': '#BFD6EA',
+  '#E0A39A': '#F2C0BD',
+  '#F0AA8D': '#F4C8BA',
+};
+
+export const iconDependence = {
+  '#F4C550': 1,
+  '#9FBAAE': 2,
+  '#9FB7CE': 3,
+  '#E0A39A': 4,
+  '#F0AA8D': 5,
+};
