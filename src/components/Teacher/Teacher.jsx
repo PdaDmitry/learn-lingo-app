@@ -16,8 +16,12 @@ import { toggleFavoriteTeacher } from '../../redux/teachers/operations';
 import toast from 'react-hot-toast';
 
 export const Teacher = ({ id, filterLevel }) => {
+  const userId = useSelector(selectUserID);
+
   const [isOpenReviews, setIsOpenReviews] = useState(() => {
-    const savedState = localStorage.getItem(`teacher-${id}-isOpen`);
+    if (!userId) return false; /////////////////
+
+    const savedState = localStorage.getItem(`teacher-${id}-isOpen-${userId}`);
     return savedState ? JSON.parse(savedState) : false;
   });
 
@@ -25,7 +29,7 @@ export const Teacher = ({ id, filterLevel }) => {
 
   const teacher = useSelector(selectTeachersById(id));
   // console.log('teacher: ', teacher);
-  const userId = useSelector(selectUserID);
+
   const userTheme = useSelector(selectUserTheme);
   // console.log('userTheme: ', userTheme);
   const isFavorite = useSelector(selectFavoriteTeacherById(id));
@@ -50,7 +54,11 @@ export const Teacher = ({ id, filterLevel }) => {
   const handleToggle = () => {
     const newIsOpen = !isOpenReviews;
     setIsOpenReviews(newIsOpen);
-    localStorage.setItem(`teacher-${id}-isOpen`, JSON.stringify(newIsOpen));
+    // localStorage.setItem(`teacher-${id}-isOpen`, JSON.stringify(newIsOpen));
+    if (userId) {
+      // Сохраняем данные для текущего авторизованного пользователя
+      localStorage.setItem(`teacher-${id}-isOpen-${userId}`, JSON.stringify(newIsOpen));
+    }
   };
 
   // const openModal = () => setIsModalOpen(true);
