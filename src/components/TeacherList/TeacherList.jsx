@@ -19,23 +19,25 @@ export const TeacherList = ({ page, filterLevel }) => {
   const perPage = useSelector(selectPerPage);
   const containerRef = useRef(null);
 
-  // console.log('teachers:', teachers);
-  // useEffect(() => {
-  //   // console.log('Effect 1');
+  useEffect(() => {
+    // console.log('Effect 1');
 
-  //   console.log('totalTeachers: ', totalTeachers);
-  //   console.log('maxPage: ', maxPage);
-  //   console.log('page: ', page);
-  //   console.log('\n');
-  // }, [totalTeachers, maxPage, page]);
+    console.log('totalTeachers: ', totalTeachers);
+    console.log('maxPage: ', maxPage);
+    console.log('page: ', page);
+    console.log('\n');
+  }, [totalTeachers, maxPage, page]);
 
   if (teachers.length === 0) {
+    console.log('teachers.length: ', teachers.length);
     return <p>No teachers available</p>;
   }
 
   useEffect(() => {
     const startIndex = (page - 1) * perPage;
     const endIndex = startIndex + perPage;
+    console.log('teachers:', teachers);
+    console.log('Page: ', page);
 
     if (page === 1) {
       setDisplayedTeachers(teachers.slice(startIndex, endIndex));
@@ -45,6 +47,7 @@ export const TeacherList = ({ page, filterLevel }) => {
   }, [page, teachers]);
 
   useEffect(() => {
+    console.log('displayedTeachers: ', displayedTeachers);
     if (lastTeacherRef.current) {
       lastTeacherRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }

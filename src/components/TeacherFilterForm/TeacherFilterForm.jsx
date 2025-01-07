@@ -7,7 +7,11 @@ import { selectUserFilters, selectUserID } from '../../redux/auth/selectorsAuth'
 import { updateUserFilters } from '../../redux/auth/operationsAuth';
 import { customStyles, languageOptions, levelOptions, priceOptions } from '../../options';
 
-export const TeacherFilterForm = ({ setFilterLevel }) => {
+export const TeacherFilterForm = ({
+  setFilterLevel,
+  setGuestFilterLanguage,
+  setGuestFilterPrice,
+}) => {
   const [logOutFilters, setLogOutFilters] = useState({ language: '', level: '', price: '' });
   const [language, setLanguage] = useState('');
   const [level, setLevel] = useState('');
@@ -33,7 +37,9 @@ export const TeacherFilterForm = ({ setFilterLevel }) => {
     } else {
       // Для гостей
       setLogOutFilters(prev => ({ ...prev, [field]: value }));
+      if (field === 'language') setGuestFilterLanguage(value);
       if (field === 'level') setFilterLevel(value);
+      if (field === 'price') setGuestFilterPrice(value);
     }
   };
 

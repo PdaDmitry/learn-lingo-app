@@ -12,7 +12,9 @@ import LoadMoreBtn from '../../components/LoadMoreBtn/LoadMoreBtn';
 export const Teachers = () => {
   const [page, setPage] = useState(1);
   const [loadMore, setLoadMore] = useState(true);
+  const [guestFilterLanguage, setGuestFilterLanguage] = useState('');
   const [filterLevel, setFilterLevel] = useState('');
+  const [guestFilterPrice, setGuestFilterPrice] = useState('');
   const userId = useSelector(selectUserID);
   const userFilters = useSelector(selectUserFilters);
   const loading = useSelector(selectIsLoading);
@@ -32,7 +34,7 @@ export const Teachers = () => {
 
   useEffect(() => {
     setPage(1);
-  }, [userFilters]);
+  }, [userFilters, guestFilterLanguage, filterLevel, guestFilterPrice]);
 
   const handleLoadMore = () => {
     if (page < maxPage) {
@@ -50,7 +52,11 @@ export const Teachers = () => {
 
   return (
     <div className={css.contTeachersPage}>
-      <TeacherFilterForm setFilterLevel={setFilterLevel} />
+      <TeacherFilterForm
+        setGuestFilterLanguage={setGuestFilterLanguage}
+        setFilterLevel={setFilterLevel}
+        setGuestFilterPrice={setGuestFilterPrice}
+      />
       {loading ? <Loader /> : <TeacherList page={page} filterLevel={filterLevel} />}
       {!loading && loadMore && <LoadMoreBtn onClick={handleLoadMore} />}
     </div>
