@@ -6,6 +6,17 @@ import {
   toggleFavoriteTeacher,
 } from './operations';
 
+const handleIsLoadingState = state => {
+  state.isLoading = true;
+  state.isError = false;
+};
+
+const handleIsErrorState = (state, action) => {
+  state.isLoading = false;
+  state.isError = action.payload || 'Something went wrong';
+  // state.isError = true;
+};
+
 const initialState = {
   items: [],
   isLoading: false,
@@ -27,10 +38,7 @@ const teachersSlice = createSlice({
   },
   extraReducers: builder => {
     builder
-      .addCase(fetchTeachersThunc.pending, state => {
-        state.isLoading = true;
-        state.isError = false;
-      })
+      .addCase(fetchTeachersThunc.pending, handleIsLoadingState)
       .addCase(fetchTeachersThunc.fulfilled, (state, action) => {
         state.isLoading = false;
         state.items = action.payload || [];
@@ -38,57 +46,32 @@ const teachersSlice = createSlice({
         state.total = state.items.length;
         state.maxPage = Math.ceil(state.total / state.perPage);
       })
-      .addCase(fetchTeachersThunc.rejected, (state, action) => {
-        state.isLoading = false;
-        state.isError = action.payload || 'Something went wrong';
-        state.isError = true;
-      })
+      .addCase(fetchTeachersThunc.rejected, handleIsErrorState)
 
       //ForId
-      .addCase(fetchTeacherForId.pending, state => {
-        state.isLoading = true;
-        state.isError = false;
-      })
+      .addCase(fetchTeacherForId.pending, handleIsLoadingState)
       .addCase(fetchTeacherForId.fulfilled, (state, action) => {
         state.isLoading = false;
         // state.teacherById = action.payload;
         state.teacherForId = action.payload || [];
       })
-      .addCase(fetchTeacherForId.rejected, (state, action) => {
-        state.isLoading = false;
-        state.isError = action.payload || 'Something went wrong';
-        state.isError = true;
-      })
+      .addCase(fetchTeacherForId.rejected, handleIsErrorState)
 
       //
-      .addCase(toggleFavoriteTeacher.pending, state => {
-        state.isLoading = true;
-        state.isError = false;
-      })
+      .addCase(toggleFavoriteTeacher.pending, handleIsLoadingState)
       .addCase(toggleFavoriteTeacher.fulfilled, (state, action) => {
         state.isLoading = false;
         state.favorites = action.payload;
       })
-      .addCase(toggleFavoriteTeacher.rejected, (state, action) => {
-        state.isLoading = false;
-        state.isError = action.payload;
-        state.isError = true;
-      })
+      .addCase(toggleFavoriteTeacher.rejected, handleIsErrorState)
 
       //
-      .addCase(fetchFavoriteTeachers.pending, state => {
-        state.isLoading = true;
-        state.isError = false;
-      })
+      .addCase(fetchFavoriteTeachers.pending, handleIsLoadingState)
       .addCase(fetchFavoriteTeachers.fulfilled, (state, action) => {
         state.isLoading = false;
         state.favorites = action.payload;
       })
-      .addCase(fetchFavoriteTeachers.rejected, (state, action) => {
-        state.isLoading = false;
-        state.isError = action.payload || 'Something went wrong';
-        state.isError = true;
-      });
+      .addCase(fetchFavoriteTeachers.rejected, handleIsErrorState);
   },
 });
 

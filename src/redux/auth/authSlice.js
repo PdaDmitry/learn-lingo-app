@@ -8,6 +8,16 @@ import {
 } from './operationsAuth';
 // import { clearFavorites } from '../teachers/teachersSlice';
 
+const handleLoaderState = state => {
+  state.loader = true;
+  state.error = null;
+};
+
+const handleErrorState = (state, action) => {
+  state.loader = false;
+  state.error = action.payload;
+};
+
 const initialState = {
   user: {
     localId: null,
@@ -32,10 +42,7 @@ const authSlice = createSlice({
   extraReducers: builder => {
     builder
       // Register User
-      .addCase(registerUser.pending, (state, action) => {
-        state.loader = true;
-        state.error = null;
-      })
+      .addCase(registerUser.pending, handleLoaderState)
       .addCase(registerUser.fulfilled, (state, action) => {
         state.loader = false;
         state.user.localId = action.payload.localId;
@@ -45,16 +52,10 @@ const authSlice = createSlice({
         state.isLoggedIn = true;
         state.user.filters = action.payload.filters; //////////// Обновляем фильтры
       })
-      .addCase(registerUser.rejected, (state, action) => {
-        state.loader = false;
-        state.error = action.payload;
-      })
+      .addCase(registerUser.rejected, handleErrorState)
 
       // Log Out
-      .addCase(logoutUser.pending, state => {
-        state.loader = true;
-        state.error = null;
-      })
+      .addCase(logoutUser.pending, handleLoaderState)
       .addCase(logoutUser.fulfilled, state => {
         state.loader = false;
         state.user = { localId: null, name: null, email: null };
@@ -62,16 +63,10 @@ const authSlice = createSlice({
         state.isLoggedIn = false;
         // dispatch(clearFavorites());
       })
-      .addCase(logoutUser.rejected, (state, action) => {
-        state.loader = false;
-        state.error = action.payload;
-      })
+      .addCase(logoutUser.rejected, handleErrorState)
 
       // Log In
-      .addCase(loginUser.pending, state => {
-        state.loader = true;
-        state.error = null;
-      })
+      .addCase(loginUser.pending, handleLoaderState)
       .addCase(loginUser.fulfilled, (state, action) => {
         state.loader = false;
         state.user.localId = action.payload.localId;
@@ -81,39 +76,24 @@ const authSlice = createSlice({
         state.user.theme = action.payload.theme; //////////////
         state.user.filters = action.payload.filters;
       })
-      .addCase(loginUser.rejected, (state, action) => {
-        state.loader = false;
-        state.error = action.payload;
-      })
+      .addCase(loginUser.rejected, handleErrorState)
 
       //updateTheme
-      .addCase(updateTheme.pending, state => {
-        state.loader = true; // Статус загрузки
-        state.error = null;
-      })
+      .addCase(updateTheme.pending, handleLoaderState)
       .addCase(updateTheme.fulfilled, (state, action) => {
         state.loader = false;
         state.user.theme = action.payload; // Обновляем тему пользователя
       })
-      .addCase(updateTheme.rejected, (state, action) => {
-        state.loader = false;
-        state.error = action.payload; // Обрабатываем ошибку
-      })
+      .addCase(updateTheme.rejected, handleErrorState)
 
       //updateUserFilters
-      .addCase(updateUserFilters.pending, state => {
-        state.loader = true; // Статус загрузки
-        state.error = null;
-      })
+      .addCase(updateUserFilters.pending, handleLoaderState)
       .addCase(updateUserFilters.fulfilled, (state, action) => {
         state.loader = false;
         state.user.filters = action.payload;
         // console.log('Payload:', action.payload);
       })
-      .addCase(updateUserFilters.rejected, (state, action) => {
-        state.loader = false;
-        state.error = action.payload; // Обрабатываем ошибку
-      });
+      .addCase(updateUserFilters.rejected, handleErrorState);
   },
 });
 
