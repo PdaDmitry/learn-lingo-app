@@ -55,7 +55,7 @@ export const Teachers = () => {
     <div className={css.contTeachersPage}>
       <TeacherFilterForm setFilterLevel={setFilterLevel} />
       {loading ? <Loader /> : <TeacherList page={page} filterLevel={filterLevel} />}
-      {loadMore && <LoadMoreBtn onClick={handleLoadMore} />}
+      {!loading && loadMore && <LoadMoreBtn onClick={handleLoadMore} />}
     </div>
   );
 };

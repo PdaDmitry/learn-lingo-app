@@ -1,3 +1,8 @@
 /* .last {
   margin-bottom: 0;
 } */
+
+.scrollableContainer {
+  max-height: 80vh; /* Установите максимальную высоту */
+  overflow-y: auto; /* Включить вертикальную прокрутку */
+}
