@@ -27,6 +27,7 @@ export const Teacher = ({ id, filterLevel }) => {
   // console.log('teacher: ', teacher);
   const userId = useSelector(selectUserID);
   const userTheme = useSelector(selectUserTheme);
+  // console.log('userTheme: ', userTheme);
   const isFavorite = useSelector(selectFavoriteTeacherById(id));
 
   if (!teacher) {
@@ -68,10 +69,20 @@ export const Teacher = ({ id, filterLevel }) => {
     }
   };
 
+  const dynamicStyles = {
+    color: {
+      background: userTheme,
+    },
+  };
+
   return (
     <div className={css.contCard}>
       <div className={css.photoWrapper}>
-        <div className={css.backgroundYellow}></div>
+        {/* <div className={css.backgroundPhoto}></div> */}
+        <div
+          className={`${css.backgroundPhoto} ${userTheme ? '' : css.backgroundColorPhoto}`}
+          style={userTheme ? dynamicStyles.color : {}}
+        ></div>
         <div className={css.backgroundWhite}></div>
         <img src={avatar_url} alt="Teacher's photo" className={css.teacherPhoto} />
         <svg className={css.iconGroup}>

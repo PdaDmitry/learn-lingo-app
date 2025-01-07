@@ -39,8 +39,6 @@ export const HeaderRegistration = () => {
   const navigate = useNavigate();
   const userTheme = useSelector(selectUserTheme);
 
-  // console.log(userTheme);
-
   const dynamicStyles = {
     dinamicBackground: {
       background: colorDependence[userTheme] || '#FBE9BA',

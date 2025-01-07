@@ -3,12 +3,15 @@ import { MdOutlineRadioButtonChecked, MdRadioButtonUnchecked } from 'react-icons
 import css from './ChangeThemeForm.module.css';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectUserID } from '../../redux/auth/selectorsAuth';
+import { selectUserID, selectUserTheme } from '../../redux/auth/selectorsAuth';
 import { updateTheme } from '../../redux/auth/operationsAuth';
+import { colorDependence } from '../../options';
 
 export const ChangeThemeForm = ({ closeModal }) => {
+  const [isHovered, setIsHovered] = useState(false);
   const [selectedTheme, setSelectedTheme] = useState(null);
   const userId = useSelector(selectUserID);
+  const userTheme = useSelector(selectUserTheme);
 
   const dispatch = useDispatch();
 
@@ -25,6 +28,15 @@ export const ChangeThemeForm = ({ closeModal }) => {
     // console.log({ userId, selectedTheme });
     dispatch(updateTheme({ userId, theme: selectedTheme }));
     closeModal();
+  };
+
+  const dynamicStyles = {
+    dinamicBackground: {
+      background: colorDependence[userTheme] || '#FBE9BA',
+    },
+    btnTheme: {
+      background: userTheme || '#F4C550',
+    },
   };
 
   return (
@@ -72,7 +84,14 @@ export const ChangeThemeForm = ({ closeModal }) => {
         ))}
       </ul>
 
-      <button type="submit" className={css.btnChangeTheme} disabled={!selectedTheme}>
+      <button
+        type="submit"
+        className={css.btnChangeTheme}
+        disabled={!selectedTheme}
+        style={isHovered ? dynamicStyles.dinamicBackground : dynamicStyles.btnTheme}
+        onMouseEnter={() => setIsHovered(true)} // When the mouse hovers, change the state
+        onMouseLeave={() => setIsHovered(false)}
+      >
         Change theme
       </button>
     </form>

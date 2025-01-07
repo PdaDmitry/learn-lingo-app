@@ -21,15 +21,18 @@
   margin-right: 48px;
 }
 
-.backgroundYellow {
+.backgroundPhoto {
   position: absolute;
   top: 0;
   left: 0;
   width: 120px;
   height: 120px;
   border-radius: 50%;
-  background-color: #fbe9ba;
   z-index: 1;
+}
+
+.backgroundColorPhoto {
+  background-color: #fbe9ba;
 }
 
 .backgroundWhite {
