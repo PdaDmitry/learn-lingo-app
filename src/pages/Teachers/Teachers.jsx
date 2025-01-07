@@ -5,7 +5,7 @@ import { fetchFavoriteTeachers, fetchTeacherForId } from '../../redux/teachers/o
 import css from './Teachers.module.css';
 import { selectUserFilters, selectUserID } from '../../redux/auth/selectorsAuth';
 import { TeacherFilterForm } from '../../components/TeacherFilterForm/TeacherFilterForm';
-import { selectIsLoading, selectMaxPage, selectTotal } from '../../redux/teachers/selectors';
+import { selectIsLoading, selectMaxPage } from '../../redux/teachers/selectors';
 import Loader from '../../components/Loader/Loader';
 import LoadMoreBtn from '../../components/LoadMoreBtn/LoadMoreBtn';
 
@@ -17,9 +17,12 @@ export const Teachers = () => {
   const userFilters = useSelector(selectUserFilters);
   const loading = useSelector(selectIsLoading);
   const maxPage = useSelector(selectMaxPage);
-  const totalTeachers = useSelector(selectTotal);
-  //попробовать добавить изменения фильтров для сброса page setPage(1);
+  // const totalTeachers = useSelector(selectTotal);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchTeacherForId());
+  }, [dispatch]);
 
   useEffect(() => {
     if (userId) {
@@ -29,7 +32,7 @@ export const Teachers = () => {
 
   useEffect(() => {
     setPage(1);
-  }, [maxPage, totalTeachers]); //, userFilters
+  }, [userFilters]);
 
   const handleLoadMore = () => {
     if (page < maxPage) {
@@ -44,12 +47,6 @@ export const Teachers = () => {
       setLoadMore(true);
     }
   }, [page, maxPage]);
-
-  useEffect(() => {
-    dispatch(fetchTeacherForId());
-  }, [dispatch]);
-
-  // console.log('filterLevel: ', filterLevel);
 
   return (
     <div className={css.contTeachersPage}>
