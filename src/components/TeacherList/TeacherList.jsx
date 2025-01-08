@@ -36,12 +36,13 @@ export const TeacherList = ({ page, filterLevel }) => {
   useEffect(() => {
     const startIndex = (page - 1) * perPage;
     const endIndex = startIndex + perPage;
-    console.log('teachers:', teachers);
-    console.log('Page: ', page);
+    // console.log('teachers:', teachers);
+    // console.log('Page: ', page);
 
     if (page === 1) {
       setDisplayedTeachers(teachers.slice(startIndex, endIndex));
     } else {
+      //Добавить проверку через состояние, если сработала функция
       setDisplayedTeachers(prev => [...prev, ...teachers.slice(startIndex, endIndex)]);
     }
   }, [page, teachers]);
