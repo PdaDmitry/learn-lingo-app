@@ -6,24 +6,14 @@ import { NotFound } from '../../pages/NotFound/NotFound';
 import { HomeRegistration } from '../../pages/HomeRegistration/HomeRegistration';
 import { HeaderRegistration } from '../HeaderRegistration/HeaderRegistration';
 import { useSelector } from 'react-redux';
-import { selectIsLoggedIn, selectLoader } from '../../redux/auth/selectorsAuth';
+import { selectIsLoggedIn } from '../../redux/auth/selectorsAuth';
 import { Toaster } from 'react-hot-toast';
 import { Favorites } from '../../pages/Favorites/Favorites';
-// import Loader from '../Loader/Loader';
 
 import css from './App.module.css';
 
 function App() {
   const isLoggedIn = useSelector(selectIsLoggedIn);
-  // const loading = useSelector(selectLoader);
-
-  // if (loading) {
-  //   return (
-  //     <div>
-  //       <Loader />
-  //     </div>
-  //   );
-  // }
 
   return (
     <div className={css.contApp}>

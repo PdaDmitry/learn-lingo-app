@@ -15,7 +15,6 @@ export default function Loader() {
         wrapperStyle={{}}
         wrapperClass=""
       />
-      {/* <p className={css.loaderText}> Please wait...</p> */}
     </div>
   );
 }

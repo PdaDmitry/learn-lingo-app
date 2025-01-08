@@ -1,17 +1,10 @@
-/* ul {
-  margin-bottom: 0;
-} */
-
 .contCard {
   display: flex;
-  /* gap: 48px; */
   border-radius: 24px;
   padding: 24px;
   width: 1184px;
-  /* height: 328px; */
   background: #ffffff;
   margin-bottom: 32px;
-  /* background: #fff; */
 }
 
 .photoWrapper {
@@ -39,7 +32,6 @@
   position: absolute;
   top: 50%;
   left: 50%;
-  /* left: 60px; */
   width: 114px;
   height: 114px;
   background-color: white;
@@ -52,7 +44,6 @@
   position: absolute;
   top: 50%;
   left: 50%;
-  /* left: 60px; */
   width: 96px;
   height: 96px;
   border-radius: 50%;
@@ -70,15 +61,9 @@
   z-index: 4;
 }
 
-/* .portfolio {
-  width: 968px;
-  height: 280px;
-} */
-
 .info {
   display: flex;
   align-items: center;
-  /* width: 968px; */
   margin-bottom: 8px;
 }
 
@@ -109,7 +94,6 @@
   margin: 0 16px;
 }
 
-/* .svgBook, */
 .svgStar {
   display: block;
   width: 16px;
@@ -135,7 +119,6 @@
   display: block;
   width: 26px;
   height: 26px;
-  /* fill: none; */
 }
 
 .teacherName {
@@ -166,7 +149,6 @@
 }
 
 .categoriesTextSpan {
-  /* text-decoration: none; */
   color: #8a8a89;
 }
 

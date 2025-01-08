@@ -17,14 +17,12 @@ const persistTeachersConfig = {
   key: 'teachers',
   storage,
   witelist: ['items', 'teacherForId'],
-  // blacklist: ['favorites'],
 };
 
 const persistAuthConfig = {
   key: 'auth',
   storage,
   whitelist: ['user', 'isLoggedIn', 'refreshToken'],
-  // blacklist: ['error'],
 };
 
 const persistedReducer = persistReducer(persistTeachersConfig, teacherReducer);

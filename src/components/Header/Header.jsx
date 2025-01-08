@@ -1,6 +1,5 @@
 import { NavLink, useNavigate } from 'react-router-dom';
 import clsx from 'clsx';
-
 import css from './Header.module.css';
 import { RegistrationForm } from '../RegistrationForm/RegistrationForm';
 import { useState } from 'react';

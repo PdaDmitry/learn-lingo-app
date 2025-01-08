@@ -8,8 +8,6 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import css from './LogInForm.module.css';
 import { useDispatch } from 'react-redux';
 import { loginUser } from '../../redux/auth/operationsAuth';
-// import { selectLoader } from '../../redux/auth/selectorsAuth';
-// import Loader from '../Loader/Loader';
 
 export const LogInForm = ({ closeModal }) => {
   const [showPassword, setShowPassword] = useState(false);

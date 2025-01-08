@@ -36,13 +36,8 @@ export const registerUser = createAsyncThunk(
       await set(ref(db, `users/${user.uid}`), {
         name,
         email: user.email,
-        favorites: [], // Initializing an empty array
+        favorites: [],
         theme: '',
-        // filters: {
-        //   language: '', // Начальные значения фильтров
-        //   level: '',
-        //   price: '',
-        // },
         filters: initialFilters,
       });
 
@@ -52,11 +47,9 @@ export const registerUser = createAsyncThunk(
         email: user.email,
         refreshToken: user.stsTokenManager.refreshToken,
         filters: initialFilters,
-        // theme: theme || 'default',
       };
     } catch (error) {
       console.error('Error registering user:', error.message);
-      //  toast.error(error.message);
       return rejectWithValue(error.message);
     }
   }
@@ -66,11 +59,10 @@ export const registerUser = createAsyncThunk(
 
 export const logoutUser = createAsyncThunk('auth/logoutUser', async (_, { rejectWithValue }) => {
   const auth = getAuth();
-  // console.log(auth);
 
   try {
     await signOut(auth);
-    // console.log('User logged out');
+
     toast.success('User logged out', {
       duration: 4000,
       position: 'top-center',
@@ -99,7 +91,6 @@ export const loginUser = createAsyncThunk(
       const themeSnapshot = await get(ref(db, `users/${user.uid}/theme`));
       const theme = themeSnapshot.exists() ? themeSnapshot.val() : '#F4C550';
 
-      // Получаем фильтры пользователя
       const filtersSnapshot = await get(ref(db, `users/${user.uid}/filters`));
       const filters = filtersSnapshot.exists()
         ? filtersSnapshot.val()
@@ -116,10 +107,8 @@ export const loginUser = createAsyncThunk(
         theme,
         refreshToken: user.stsTokenManager.refreshToken,
         filters,
-        // favorites,
       };
     } catch (error) {
-      // console.error('Error logging in user:', error.message);
       toast.error('Incorrect email or password', {
         duration: 4000,
         position: 'bottom-center',
@@ -133,17 +122,16 @@ export const loginUser = createAsyncThunk(
 // =====================================updateTheme===========================================
 
 export const updateTheme = createAsyncThunk(
-  'auth/updateTheme', // Название экшена
+  'auth/updateTheme',
   async ({ userId, theme }, { rejectWithValue }) => {
     const db = getDatabase();
 
     try {
-      // Обновляем поле `theme` в Firebase для конкретного пользователя
       await update(ref(db, `users/${userId}`), {
-        theme, // Сохраняем выбранную тему
+        theme,
       });
 
-      return theme; // Возвращаем выбранную тему для дальнейшей работы в редьюсере
+      return theme;
     } catch (error) {
       console.error('Error updating theme:', error);
       return rejectWithValue(error.message);
@@ -154,21 +142,18 @@ export const updateTheme = createAsyncThunk(
 // =====================================updateUserFilters===========================================
 
 export const updateUserFilters = createAsyncThunk(
-  'auth/updateUserFilters', // Название экшена
+  'auth/updateUserFilters',
   async ({ userId, filters }, { rejectWithValue }) => {
     const db = getDatabase();
 
     try {
-      // Обновляем поле `filters` в Firebase для конкретного пользователя
       await update(ref(db, `users/${userId}`), {
-        // filters: { ...filters },
-        filters, // Сохраняем новые фильтры
+        filters,
       });
 
-      return filters; // Возвращаем обновленные фильтры для дальнейшей работы в редьюсере
+      return filters;
     } catch (error) {
-      // console.error('Error updating user filters:', error);
-      return rejectWithValue(error.message); // Обработка ошибки
+      return rejectWithValue(error.message);
     }
   }
 );

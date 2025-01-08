@@ -25,7 +25,6 @@ export const ChangeThemeForm = ({ closeModal }) => {
 
   const handleSubmit = event => {
     event.preventDefault();
-    // console.log({ userId, selectedTheme });
     dispatch(updateTheme({ userId, theme: selectedTheme }));
     closeModal();
   };
@@ -89,7 +88,7 @@ export const ChangeThemeForm = ({ closeModal }) => {
         className={css.btnChangeTheme}
         disabled={!selectedTheme}
         style={isHovered ? dynamicStyles.dinamicBackground : dynamicStyles.btnTheme}
-        onMouseEnter={() => setIsHovered(true)} // When the mouse hovers, change the state
+        onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
         Change theme

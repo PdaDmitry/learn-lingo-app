@@ -24,8 +24,6 @@
   margin-bottom: 0;
 }
 
-/* .reviewsElem {} */
-
 .contNameRating {
   display: flex;
   margin-bottom: 16px;
@@ -89,7 +87,6 @@
   height: 60px;
   background: #f4c550;
   border: none;
-
   font-weight: 700;
   font-size: 18px;
   line-height: 1.55556;

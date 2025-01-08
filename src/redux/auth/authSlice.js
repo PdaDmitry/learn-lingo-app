@@ -6,7 +6,6 @@ import {
   updateTheme,
   updateUserFilters,
 } from './operationsAuth';
-// import { clearFavorites } from '../teachers/teachersSlice';
 
 const handleLoaderState = state => {
   state.loader = true;
@@ -25,7 +24,7 @@ const initialState = {
     email: null,
     theme: null,
     filters: {
-      language: '', // Начальные значения фильтров
+      language: '',
       level: '',
       price: '',
     },
@@ -50,7 +49,7 @@ const authSlice = createSlice({
         state.user.email = action.payload.email;
         state.refreshToken = action.payload.refreshToken;
         state.isLoggedIn = true;
-        state.user.filters = action.payload.filters; //////////// Обновляем фильтры
+        state.user.filters = action.payload.filters;
       })
       .addCase(registerUser.rejected, handleErrorState)
 
@@ -61,7 +60,6 @@ const authSlice = createSlice({
         state.user = { localId: null, name: null, email: null };
         state.refreshToken = null;
         state.isLoggedIn = false;
-        // dispatch(clearFavorites());
       })
       .addCase(logoutUser.rejected, handleErrorState)
 
@@ -73,7 +71,7 @@ const authSlice = createSlice({
         state.user.email = action.payload.email;
         state.refreshToken = action.payload.refreshToken;
         state.isLoggedIn = true;
-        state.user.theme = action.payload.theme; //////////////
+        state.user.theme = action.payload.theme;
         state.user.filters = action.payload.filters;
       })
       .addCase(loginUser.rejected, handleErrorState)
@@ -82,7 +80,7 @@ const authSlice = createSlice({
       .addCase(updateTheme.pending, handleLoaderState)
       .addCase(updateTheme.fulfilled, (state, action) => {
         state.loader = false;
-        state.user.theme = action.payload; // Обновляем тему пользователя
+        state.user.theme = action.payload;
       })
       .addCase(updateTheme.rejected, handleErrorState)
 
@@ -91,7 +89,6 @@ const authSlice = createSlice({
       .addCase(updateUserFilters.fulfilled, (state, action) => {
         state.loader = false;
         state.user.filters = action.payload;
-        // console.log('Payload:', action.payload);
       })
       .addCase(updateUserFilters.rejected, handleErrorState);
   },

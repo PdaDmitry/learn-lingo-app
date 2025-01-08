@@ -14,7 +14,6 @@ const handleIsLoadingState = state => {
 const handleIsErrorState = (state, action) => {
   state.isLoading = false;
   state.isError = action.payload || 'Something went wrong';
-  // state.isError = true;
 };
 
 const initialState = {
@@ -42,7 +41,6 @@ const teachersSlice = createSlice({
       .addCase(fetchTeachersThunc.fulfilled, (state, action) => {
         state.isLoading = false;
         state.items = action.payload || [];
-        // state.teacherForById = action.payload;
         state.total = state.items.length;
         state.maxPage = Math.ceil(state.total / state.perPage);
       })
@@ -52,7 +50,6 @@ const teachersSlice = createSlice({
       .addCase(fetchTeacherForId.pending, handleIsLoadingState)
       .addCase(fetchTeacherForId.fulfilled, (state, action) => {
         state.isLoading = false;
-        // state.teacherById = action.payload;
         state.teacherForId = action.payload || [];
       })
       .addCase(fetchTeacherForId.rejected, handleIsErrorState)

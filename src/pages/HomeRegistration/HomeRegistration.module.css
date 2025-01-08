@@ -40,7 +40,6 @@
   border-radius: 8px;
   width: 195px;
   height: 40px;
-  /* background: #fbe9ba; */
   top: 165px;
   left: 236px;
   z-index: 0;
@@ -61,16 +60,10 @@
   line-height: 156%;
   border: none;
   border-radius: 12px;
-  /* padding: 16px 88px; */
   width: 267px;
   height: 60px;
-  /* background: #f4c550; */
   cursor: pointer;
 }
-
-/* .btnStarted:hover {
-  background: #ffdc86;
-} */
 
 .imgSvg {
   width: 568px;

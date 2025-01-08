@@ -61,7 +61,6 @@
   line-height: 156%;
   border: none;
   border-radius: 12px;
-  /* padding: 16px 88px; */
   width: 267px;
   height: 60px;
   background: #8a8a89;
@@ -78,14 +77,6 @@
   flex-shrink: 0;
   border-radius: 30px;
 }
-
-/* .imgSvg {
-  width: 568px;
-  height: 530px;
-  flex-shrink: 0;
-
-  border-radius: 30px;
-}  */
 
 .teacherProfile {
   display: flex;

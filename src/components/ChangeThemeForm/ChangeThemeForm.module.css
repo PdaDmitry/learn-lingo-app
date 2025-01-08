@@ -2,7 +2,6 @@
   position: relative;
   border-radius: 30px;
   width: 499px;
-  /* height: 971px; */
   padding: 64px;
   background: #fff;
 }
@@ -40,9 +39,6 @@
   margin-bottom: 0;
 }
 
-/* .radioOption {
-} */
-
 .radioInput {
   display: none;
 }
@@ -61,7 +57,6 @@
 
 .btnChangeTheme {
   border-radius: 12px;
-  /* padding: 16px 215px; */
   width: 371px;
   height: 60px;
   background: #f4c550;

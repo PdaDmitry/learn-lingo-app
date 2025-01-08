@@ -1,7 +1,5 @@
 import Modal from 'react-modal';
 
-// Modal.setAppElement('#root');
-
 const modalStyles = {
   overlay: {
     backgroundColor: 'rgba(0, 0, 0, 0.7)',
@@ -16,7 +14,6 @@ const modalStyles = {
     transform: 'translate(-50%, -50%)',
     backgroundColor: 'transparent',
     border: 'none',
-    // padding: '20px',
     zIndex: 2001,
   },
 };

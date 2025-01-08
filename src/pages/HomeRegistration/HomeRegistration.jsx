@@ -19,14 +19,6 @@ const Avatar = {
   '#F0AA8D': Avatar5,
 };
 
-// const colorDependence = {
-//   '#F4C550': '#FBE9BA',
-//   '#9FBAAE': '#CBDED3',
-//   '#9FB7CE': '#BFD6EA',
-//   '#E0A39A': '#F2C0BD',
-//   '#F0AA8D': '#F4C8BA',
-// };
-
 export const HomeRegistration = () => {
   const [isHovered, setIsHovered] = useState(false);
   const navigate = useNavigate();
@@ -76,7 +68,7 @@ export const HomeRegistration = () => {
             className={css.btnStarted}
             onClick={handleButtonClick}
             style={isHovered ? dynamicStyles.dinamicBackground : dynamicStyles.btnStarted}
-            onMouseEnter={() => setIsHovered(true)} // When the mouse hovers, change the state
+            onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
           >
             Get started

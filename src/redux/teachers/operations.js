@@ -1,12 +1,11 @@
 import { getDatabase, ref, get, set, update } from 'firebase/database';
-// import { getAuth, createUserWithEmailAndPassword, fetchSignInMethodsForEmail } from 'firebase/auth';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { app } from '../../../firebase';
 
 export const fetchTeachersThunc = createAsyncThunk('fetchTeachers', async (filters, thunkAPI) => {
   try {
     const db = getDatabase(app);
-    const dbReference = ref(db, '/'); // Link to database root
+    const dbReference = ref(db, '/');
     const readingData = await get(dbReference);
 
     if (readingData.exists()) {
@@ -16,7 +15,6 @@ export const fetchTeachersThunc = createAsyncThunk('fetchTeachers', async (filte
 
       const teachersWithId = Object.entries(data)
         .filter(([key, value]) => {
-          // if the key matches users, skip it
           return !key.startsWith('users') && !userIdPattern.test(key);
         })
         .filter(([key, value]) => {
@@ -39,7 +37,6 @@ export const fetchTeachersThunc = createAsyncThunk('fetchTeachers', async (filte
       throw new Error('No data available');
     }
   } catch (error) {
-    // console.error('Error fetching teachers:', error);
     return thunkAPI.rejectWithValue(error.message);
   }
 });
@@ -83,21 +80,19 @@ export const toggleFavoriteTeacher = createAsyncThunk(
     const userRef = ref(db, `users/${userId}/favorites`);
 
     try {
-      // current list of favorites
       const currentFavoritesSnapshot = await get(userRef);
       const currentFavorites = currentFavoritesSnapshot.exists()
         ? currentFavoritesSnapshot.val()
         : [];
-      // if the teacher is missing, add it, if it exists, delete it;
       const teacherExists = currentFavorites.find(fav => fav.id === teacher.id);
       let updatedFavorites;
 
       if (!teacherExists) {
-        updatedFavorites = [...currentFavorites, teacher]; // Adding a teacher
+        updatedFavorites = [...currentFavorites, teacher];
       } else {
-        updatedFavorites = currentFavorites.filter(fav => fav.id !== teacher.id); // Removing a teacher
+        updatedFavorites = currentFavorites.filter(fav => fav.id !== teacher.id);
       }
-      // Updating favorites in the database
+
       await update(ref(db, `users/${userId}`), {
         favorites: updatedFavorites,
       });
@@ -115,20 +110,18 @@ export const toggleFavoriteTeacher = createAsyncThunk(
 export const fetchFavoriteTeachers = createAsyncThunk(
   'fetchUserFavorites',
   async (userId, thunkAPI) => {
-    // console.log(userId);
     try {
       const db = getDatabase(app);
-      const userFavoritesRef = ref(db, `users/${userId}/favorites`); // Путь к избранным учителям в записи пользователя
+      const userFavoritesRef = ref(db, `users/${userId}/favorites`);
       const readingData = await get(userFavoritesRef);
 
       if (readingData.exists()) {
         const data = readingData.val();
-        return data; // Возвращаем массив избранных учителей для пользователя
+        return data;
       } else {
         throw new Error('No favorites available for this user');
       }
     } catch (error) {
-      // console.error('Error fetching user favorites:', error);
       return thunkAPI.rejectWithValue(error.message);
     }
   }

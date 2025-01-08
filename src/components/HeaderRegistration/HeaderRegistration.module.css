@@ -30,7 +30,6 @@
   font-weight: 400;
   font-size: 16px;
   line-height: 125%;
-  /* margin-right: 268px; */
   margin-right: 169px;
 }
 
@@ -64,12 +63,10 @@
 .btnLogOut {
   all: unset;
   display: inline-flex;
-  /* width: 73px; */
   align-items: center;
   font-weight: 700;
   font-size: 16px;
   line-height: 125%;
-
   margin-right: 16px;
   cursor: pointer;
 }
@@ -78,12 +75,9 @@
   font-weight: 700;
   font-size: 16px;
   line-height: 125%;
-  /* color: #fff; */
   border-radius: 12px;
-  /* padding: 14px 39px; */
   width: 166px;
   height: 48px;
-  /* background: #8a8a89; */
   border: none;
   cursor: pointer;
 }

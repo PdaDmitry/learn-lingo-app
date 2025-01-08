@@ -19,7 +19,6 @@ export const Teachers = () => {
   const userFilters = useSelector(selectUserFilters);
   const loading = useSelector(selectIsLoading);
   const maxPage = useSelector(selectMaxPage);
-  // const totalTeachers = useSelector(selectTotal);
   const dispatch = useDispatch();
 
   useEffect(() => {

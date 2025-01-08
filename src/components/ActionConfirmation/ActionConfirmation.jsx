@@ -31,7 +31,7 @@ export const ActionConfirmation = ({ closeModal, logOut }) => {
           className={css.btnLogout}
           onClick={logOut}
           style={isHovered ? dynamicStyles.dinamicBackground : dynamicStyles.btnTheme}
-          onMouseEnter={() => setIsHovered(true)} // When the mouse hovers, change the state
+          onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
         >
           Logout

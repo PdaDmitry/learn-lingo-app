@@ -46,5 +46,3 @@ export const OnlyForAuthorized = ({ closeModal }) => {
     </div>
   );
 };
-
-// ==========================================

@@ -14,7 +14,6 @@
   right: 20px;
   background: none;
   border: none;
-  /* font-size: 24px; */
   width: 32px;
   height: 32px;
   cursor: pointer;
@@ -51,7 +50,6 @@
   font-size: 16px;
   line-height: 1.375;
   outline: none;
-  /* background-color: white !important; */
   transition: border-color 0.3s ease;
 }
 
@@ -65,19 +63,19 @@
 /* ==================================================================== */
 
 .input:focus {
-  background-color: inherit; /* Фон остается белым при фокусе */
-  border-color: #f4c550; /* Измените цвет рамки, если нужно */
+  background-color: inherit;
+  border-color: #f4c550;
 }
 
 .input:-webkit-autofill {
-  background-color: white !important; /* Устанавливаем белый фон */
-  box-shadow: 0 0 0px 1000px white inset !important; /* Убираем подсветку */
-  -webkit-box-shadow: 0 0 0px 1000px white inset !important; /* Для старых версий */
-  transition: background-color 0s; /* Убираем анимацию изменения цвета */
+  background-color: white !important;
+  box-shadow: 0 0 0px 1000px white inset !important;
+  -webkit-box-shadow: 0 0 0px 1000px white inset !important;
+  transition: background-color 0s;
 }
 
 .input:-webkit-autofill:focus {
-  background-color: white !important; /* Фон остается белым при фокусе */
+  background-color: white !important;
 }
 
 /* ===================================================================== */
@@ -93,7 +91,6 @@
 
 .btnLogInForm {
   border-radius: 12px;
-  /* padding: 16px 210px; */
   width: 438px;
   height: 60px;
   background: #f4c550;

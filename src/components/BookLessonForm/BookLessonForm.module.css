@@ -142,7 +142,6 @@
   background-color: white !important;
   box-shadow: 0 0 0px 1000px white inset !important;
   -webkit-box-shadow: 0 0 0px 1000px white inset !important;
-  /* Для старых версий */
   transition: background-color 0s;
 }
 
@@ -154,7 +153,6 @@
 
 .btnBookForm {
   border-radius: 12px;
-  /* padding: 16px 215px; */
   width: 471px;
   height: 60px;
   background: #f4c550;

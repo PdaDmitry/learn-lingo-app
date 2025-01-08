@@ -1,41 +1,29 @@
 import { useDispatch, useSelector } from 'react-redux';
-import {
-  selectFavoriteTeacherById,
-  selectIsLoading,
-  selectTeachersById,
-} from '../../redux/teachers/selectors';
+import { selectFavoriteTeacherById, selectTeachersById } from '../../redux/teachers/selectors';
 import { FiHeart } from 'react-icons/fi';
 import { LuBookOpen } from 'react-icons/lu';
 import { useState } from 'react';
 import { TeacherReviews } from '../TeacherReviews/TeacherReviews';
-// import ModalWindow from '../ModalWindow/ModalWindow';
 import css from './Teacher.module.css';
 import { selectUserID, selectUserTheme } from '../../redux/auth/selectorsAuth';
 import { toggleFavoriteTeacher } from '../../redux/teachers/operations';
-// import { OnlyForAuthorized } from '../OnlyForAuthorized/OnlyForAuthorized';
 import toast from 'react-hot-toast';
 
 export const Teacher = ({ id, filterLevel }) => {
   const userId = useSelector(selectUserID);
-
   const [isOpenReviews, setIsOpenReviews] = useState(() => {
-    if (!userId) return false; /////////////////
-
+    if (!userId) return false;
     const savedState = localStorage.getItem(`teacher-${id}-isOpen-${userId}`);
     return savedState ? JSON.parse(savedState) : false;
   });
 
+  const teacher = useSelector(selectTeachersById(id));
+  const userTheme = useSelector(selectUserTheme);
+  const isFavorite = useSelector(selectFavoriteTeacherById(id));
   const dispatch = useDispatch();
 
-  const teacher = useSelector(selectTeachersById(id));
-  // console.log('teacher: ', teacher);
-
-  const userTheme = useSelector(selectUserTheme);
-  // console.log('userTheme: ', userTheme);
-  const isFavorite = useSelector(selectFavoriteTeacherById(id));
-
   if (!teacher) {
-    return <p>Teacher not found.</p>; // или какой-то другой UI для отсутствия данных
+    return <p>Teacher not found.</p>;
   }
 
   const {
@@ -54,19 +42,14 @@ export const Teacher = ({ id, filterLevel }) => {
   const handleToggle = () => {
     const newIsOpen = !isOpenReviews;
     setIsOpenReviews(newIsOpen);
-    // localStorage.setItem(`teacher-${id}-isOpen`, JSON.stringify(newIsOpen));
+
     if (userId) {
-      // Сохраняем данные для текущего авторизованного пользователя
       localStorage.setItem(`teacher-${id}-isOpen-${userId}`, JSON.stringify(newIsOpen));
     }
   };
 
-  // const openModal = () => setIsModalOpen(true);
-  // const closeModal = () => setIsModalOpen(false);
-
   const handleFavoriteClick = () => {
     if (userId === null) {
-      // openModal();
       toast.error('This functionality is available only to authorized users!', {
         duration: 4000,
         position: 'top-center',
@@ -86,7 +69,6 @@ export const Teacher = ({ id, filterLevel }) => {
   return (
     <div className={css.contCard}>
       <div className={css.photoWrapper}>
-        {/* <div className={css.backgroundPhoto}></div> */}
         <div
           className={`${css.backgroundPhoto} ${userTheme ? '' : css.backgroundColorPhoto}`}
           style={userTheme ? dynamicStyles.color : {}}
@@ -121,7 +103,6 @@ export const Teacher = ({ id, filterLevel }) => {
             </li>
           </ul>
           <FiHeart
-            // {clickFavorite? style={{ width: '26px', height: '26px', cursor: 'pointer' }}: style={{ width: '26px', height: '26px', cursor: 'pointer',color:'red' }}}
             style={{
               width: '26px',
               height: '26px',
@@ -161,7 +142,6 @@ export const Teacher = ({ id, filterLevel }) => {
             {levels.map((level, index) => (
               <li
                 key={index}
-                // className={`${css.levelItem} ${level === filterLevel ? css.selectedLevel : ''}`}
                 className={`${css.levelItem} ${
                   level === filterLevel && userTheme == null ? css.selectedLevel : ''
                 }`}
@@ -177,10 +157,6 @@ export const Teacher = ({ id, filterLevel }) => {
           </ul>
         )}
       </div>
-
-      {/* <ModalWindow isOpen={isModalOpen} onClose={closeModal}>
-        <OnlyForAuthorized closeModal={closeModal} />
-      </ModalWindow> */}
     </div>
   );
 };

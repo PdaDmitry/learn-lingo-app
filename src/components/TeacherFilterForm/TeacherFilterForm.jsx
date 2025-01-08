@@ -20,14 +20,11 @@ export const TeacherFilterForm = ({
 
   const userId = useSelector(selectUserID);
   const userFilters = useSelector(selectUserFilters);
-  // console.log('userFilters: ', userFilters);
 
   const dispatch = useDispatch();
 
-  // Обработчик изменений для фильтров
   const handleFilterChange = (field, value) => {
     if (userId) {
-      // Для авторизованных
       if (field === 'language') setLanguage(value);
       if (field === 'level') {
         setLevel(value);
@@ -35,7 +32,6 @@ export const TeacherFilterForm = ({
       }
       if (field === 'price') setPrice(value);
     } else {
-      // Для гостей
       setLogOutFilters(prev => ({ ...prev, [field]: value }));
       if (field === 'language') setGuestFilterLanguage(value);
       if (field === 'level') setFilterLevel(value);
@@ -43,7 +39,6 @@ export const TeacherFilterForm = ({
     }
   };
 
-  // Для гостей: обновление фильтров
   useEffect(() => {
     if (!userId) {
       const filters = {
@@ -52,37 +47,23 @@ export const TeacherFilterForm = ({
         price: logOutFilters.price ? parseFloat(logOutFilters.price) : '',
       };
 
-      // console.log('useEffect 1 LogOut users:', filters);
-      // console.log('\n');
-
       dispatch(fetchTeachersThunc(filters));
     }
   }, [logOutFilters, dispatch, userId]);
 
-  // Для авторизованных: загрузка фильтров из состояния пользователя
   useEffect(() => {
     if (userId && userFilters && !isInitialized) {
       setFilterLevel(userFilters.level || '');
       setLanguage(userFilters.language || '');
       setLevel(userFilters.level || '');
       setPrice(userFilters.price ? parseFloat(userFilters.price) : '');
-
-      // setIsInitialized(true); // Помечаем, что данные загружены//////////////////
-      // console.log(
-      //   'useEffect 3! filters from base:',
-      //   userFilters.language,
-      //   userFilters.level,
-      //   userFilters.price
-      // );
-      // console.log('\n');
     }
   }, [userId, userFilters, dispatch, isInitialized]);
 
   useEffect(() => {
     if (userId && userFilters) {
-      // console.log('useEffect 2');
       setIsInitialized(true);
-      dispatch(fetchTeachersThunc(userFilters)); // Вызываем только fetch
+      dispatch(fetchTeachersThunc(userFilters));
     }
   }, [userId, userFilters, dispatch]);
 
@@ -99,11 +80,8 @@ export const TeacherFilterForm = ({
         filters.level !== userFilters.level ||
         +filters.price !== +userFilters.price
       ) {
-        // console.log('useEffect 4: filters are different');
         dispatch(updateUserFilters({ userId, filters }));
       }
-
-      // dispatch(updateUserFilters({ userId, filters }));
     }
   }, [userId, language, level, price, dispatch, isInitialized, userFilters]);
 

@@ -23,7 +23,7 @@ export default function LoadMoreBtn({ onClick }) {
         type="button"
         onClick={onClick}
         style={isHovered ? dynamicStyles.dinamicBackground : dynamicStyles.btnTheme}
-        onMouseEnter={() => setIsHovered(true)} // When the mouse hovers, change the state
+        onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
         Load more

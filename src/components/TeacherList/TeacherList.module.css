@@ -1,4 +1,4 @@
 .scrollableContainer {
-  max-height: 75vh; /* Установите максимальную высоту */
-  overflow-y: auto; /* Включить вертикальную прокрутку */
+  max-height: 75vh;
+  overflow-y: auto;
 }

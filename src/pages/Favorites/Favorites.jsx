@@ -7,7 +7,6 @@ import { fetchFavoriteTeachers } from '../../redux/teachers/operations';
 
 export const Favorites = () => {
   const userId = useSelector(selectUserID);
-  // console.log(userId);
   const dispatch = useDispatch();
 
   useEffect(() => {

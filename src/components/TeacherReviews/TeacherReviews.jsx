@@ -23,24 +23,15 @@ const avatar = {
   Emily: avatarEmily,
 };
 
-// const colorDependence = {
-//   '#F4C550': '#FBE9BA',
-//   '#9FBAAE': '#CBDED3',
-//   '#9FB7CE': '#BFD6EA',
-//   '#E0A39A': '#F2C0BD',
-//   '#F0AA8D': '#F4C8BA',
-// };
-
 export const TeacherReviews = ({ id, filterLevel }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
 
-  const openModal = () => setIsModalOpen(true);
-  const closeModal = () => setIsModalOpen(false);
-
   const teacherReviews = useSelector(selectTeachersById(id));
   const userTheme = useSelector(selectUserTheme);
-  // console.log('userTheme: ', userTheme);
+
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
 
   const dynamicStyles = {
     dinamicBackground: {
@@ -60,7 +51,6 @@ export const TeacherReviews = ({ id, filterLevel }) => {
           {reviews.map((review, index) => (
             <li key={index} className={css.reviewsElem}>
               <div className={css.contNameRating}>
-                {/* <p className={css.avatar}>Avatar</p> */}
                 <img
                   src={avatarMap[review.reviewer_name] || avatar[review.reviewer_name]}
                   alt={review.reviewer_name}
@@ -87,7 +77,6 @@ export const TeacherReviews = ({ id, filterLevel }) => {
         {levels.map((level, index) => (
           <li
             key={index}
-            // className={`${css.levelItem} ${level === filterLevel ? css.selectedLevel : ''}`}
             className={`${css.levelItem} ${
               level === filterLevel && userTheme == null ? css.selectedLevel : ''
             }`}
@@ -106,7 +95,7 @@ export const TeacherReviews = ({ id, filterLevel }) => {
         className={css.btnBookLesson}
         onClick={openModal}
         style={isHovered ? dynamicStyles.dinamicBackground : dynamicStyles.btnTheme}
-        onMouseEnter={() => setIsHovered(true)} // When the mouse hovers, change the state
+        onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
         Book trial lesson

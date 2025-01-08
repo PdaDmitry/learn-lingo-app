@@ -1,6 +1,5 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
-// import { BooleanSchema } from 'yup';
 import { IoMdClose } from 'react-icons/io';
 import { MdRadioButtonUnchecked } from 'react-icons/md';
 import { MdOutlineRadioButtonChecked } from 'react-icons/md';
@@ -105,7 +104,6 @@ export const BookLessonForm = ({ closeModal, id }) => {
                     height: '24px',
                     marginRight: '8px',
                     color: userTheme ? userTheme : ' #f4c550',
-                    // color: ' #f4c550',
                   }}
                 />
               ) : (
@@ -129,10 +127,10 @@ export const BookLessonForm = ({ closeModal, id }) => {
           {...register('fullName')}
           placeholder="Full Name"
           className={css.input}
-          onFocus={() => setIsFocusedFullName(true)} // Фокус на поле
-          onBlur={() => setIsFocusedFullName(false)} // Потеря фокуса
+          onFocus={() => setIsFocusedFullName(true)}
+          onBlur={() => setIsFocusedFullName(false)}
           style={{
-            borderColor: dynamicBorderColorFullName, // Меняем цвет рамки
+            borderColor: dynamicBorderColorFullName,
           }}
         />
         {errors.fullName && <p className={css.textError}>{errors.fullName.message}</p>}
@@ -143,10 +141,10 @@ export const BookLessonForm = ({ closeModal, id }) => {
           {...register('email')}
           placeholder="Email"
           className={css.input}
-          onFocus={() => setIsFocusedEmail(true)} // Фокус на поле
-          onBlur={() => setIsFocusedEmail(false)} // Потеря фокуса
+          onFocus={() => setIsFocusedEmail(true)}
+          onBlur={() => setIsFocusedEmail(false)}
           style={{
-            borderColor: dynamicBorderColorEmail, // Меняем цвет рамки
+            borderColor: dynamicBorderColorEmail,
           }}
         />
         {errors.email && <p className={css.textError}>{errors.email.message}</p>}
@@ -157,10 +155,10 @@ export const BookLessonForm = ({ closeModal, id }) => {
           {...register('number')}
           placeholder="Phone number"
           className={css.input}
-          onFocus={() => setIsFocusedNumber(true)} // Фокус на поле
-          onBlur={() => setIsFocusedNumber(false)} // Потеря фокуса
+          onFocus={() => setIsFocusedNumber(true)}
+          onBlur={() => setIsFocusedNumber(false)}
           style={{
-            borderColor: dynamicBorderColorNumber, // Меняем цвет рамки
+            borderColor: dynamicBorderColorNumber,
           }}
         />
         {errors.number && <p className={css.textError}>{errors.number.message}</p>}
@@ -169,7 +167,7 @@ export const BookLessonForm = ({ closeModal, id }) => {
         type="submit"
         className={css.btnBookForm}
         style={isHovered ? dynamicStyles.dinamicBackground : dynamicStyles.btnTheme}
-        onMouseEnter={() => setIsHovered(true)} // When the mouse hovers, change the state
+        onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
         Book
