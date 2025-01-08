@@ -28,11 +28,6 @@ export const TeacherList = ({ page, filterLevel }) => {
     console.log('\n');
   }, [totalTeachers, maxPage, page]);
 
-  if (teachers.length === 0) {
-    console.log('teachers.length: ', teachers.length);
-    return <p>No teachers available</p>;
-  }
-
   useEffect(() => {
     const startIndex = (page - 1) * perPage;
     const endIndex = startIndex + perPage;
@@ -43,7 +38,8 @@ export const TeacherList = ({ page, filterLevel }) => {
       setDisplayedTeachers(teachers.slice(startIndex, endIndex));
     } else {
       //Добавить проверку через состояние, если сработала функция
-      setDisplayedTeachers(prev => [...prev, ...teachers.slice(startIndex, endIndex)]);
+      // setDisplayedTeachers(prev => [...prev, ...teachers.slice(startIndex, endIndex)]);
+      setDisplayedTeachers(teachers.slice(0, endIndex));
     }
   }, [page, teachers]);
 
@@ -54,6 +50,11 @@ export const TeacherList = ({ page, filterLevel }) => {
     }
     window.scrollBy({ top: 202, behavior: 'smooth' });
   }, [displayedTeachers]);
+
+  if (teachers.length === 0) {
+    console.log('teachers.length: ', teachers.length);
+    return <p>No teachers available</p>;
+  }
 
   return (
     <div ref={containerRef} className={css.scrollableContainer}>
