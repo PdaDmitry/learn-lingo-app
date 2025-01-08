@@ -12,6 +12,10 @@
   flex-direction: column;
 }
 
+.contPrice {
+  position: relative;
+}
+
 .filterTitle {
   font-weight: 500;
   font-size: 14px;
@@ -29,4 +33,12 @@
 
 .priceField {
   width: 124px;
+}
+
+.dollar {
+  position: absolute;
+  font-size: 17px;
+  top: 40px;
+  left: 40px;
+  color: rgb(58, 57, 57);
 }

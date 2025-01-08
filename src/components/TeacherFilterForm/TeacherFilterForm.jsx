@@ -132,7 +132,6 @@ export const TeacherFilterForm = ({
         <label htmlFor="price" className={css.filterTitle}>
           Price
         </label>
-
         <Select
           options={priceOptions}
           value={
@@ -145,7 +144,10 @@ export const TeacherFilterForm = ({
           className={css.priceField}
           isSearchable={false}
         />
-        {/* <p>$</p> */}
+        {userId
+          ? price !== 'Select Price' && price !== '' && <p className={css.dollar}>$</p>
+          : logOutFilters.price !== 'Select Price' &&
+            logOutFilters.price !== '' && <p className={css.dollar}>$</p>}
       </div>
     </form>
   );
