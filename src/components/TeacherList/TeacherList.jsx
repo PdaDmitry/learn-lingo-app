@@ -21,7 +21,7 @@ export const TeacherList = ({ page, filterLevel }) => {
     } else {
       setDisplayedTeachers(teachers.slice(0, endIndex));
     }
-  }, [page, teachers]);
+  }, [page, teachers, perPage]);
 
   useEffect(() => {
     if (lastTeacherRef.current) {

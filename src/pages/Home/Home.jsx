@@ -30,7 +30,7 @@ export const Home = () => {
           <use href="/symbol-defs-before-registration.svg#icon-image"></use>
         </svg>
       </div>
-
+      {/* <img src="../../../public/Rectangle-0.png" alt="Language learning" className={css.frame} /> */}
       <ul className={css.teacherProfile}>
         <li className={css.contUlLi}>
           <p className={css.numberPlus}>32,000 +</p>

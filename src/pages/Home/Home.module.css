@@ -78,6 +78,12 @@
   border-radius: 30px;
 }
 
+.frame {
+  min-width: 1312px;
+  max-width: 1312px;
+  height: 116px;
+}
+
 .teacherProfile {
   display: flex;
   border: 2px dashed #8a8a89;

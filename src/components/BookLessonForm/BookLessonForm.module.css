@@ -5,6 +5,8 @@
   height: 971px;
   padding: 64px;
   background: #fff;
+  transform: scale(0.7);
+  /* transform-origin: center; */
 }
 
 .closeButton {
