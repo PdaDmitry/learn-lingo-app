@@ -5,6 +5,11 @@ import Avatar2 from '../../../public/block-2.jpg';
 import Avatar3 from '../../../public/block-3.jpg';
 import Avatar4 from '../../../public/block-4.jpg';
 import Avatar5 from '../../../public/block-5.jpg';
+import Rectangle1 from '../../assets/Rectangle-1.png';
+import Rectangle2 from '../../assets/Rectangle-2.png';
+import Rectangle3 from '../../assets/Rectangle-3.png';
+import Rectangle4 from '../../assets/Rectangle-4.png';
+import Rectangle5 from '../../assets/Rectangle-5.png';
 import { useSelector } from 'react-redux';
 import { selectLoader, selectUserID, selectUserTheme } from '../../redux/auth/selectorsAuth';
 import { useState } from 'react';
@@ -17,6 +22,14 @@ const Avatar = {
   '#9FB7CE': Avatar3,
   '#E0A39A': Avatar4,
   '#F0AA8D': Avatar5,
+};
+
+const RectangleMap = {
+  '#F4C550': Rectangle1,
+  '#9FBAAE': Rectangle2,
+  '#9FB7CE': Rectangle3,
+  '#E0A39A': Rectangle4,
+  '#F0AA8D': Rectangle5,
 };
 
 export const HomeRegistration = () => {
@@ -34,9 +47,10 @@ export const HomeRegistration = () => {
       background: userTheme || '#F4C550',
     },
     teacherProfile: {
-      background: userTheme
-        ? `url('../../../public/Rectangle-${iconDependence[userTheme]}.png')`
-        : `url('../../../public/Rectangle-1.png')`,
+      // background: userTheme
+      //   ? `url('../../../public/Rectangle-${iconDependence[userTheme]}.png')`
+      //   : `url('../../../public/Rectangle-1.png')`,
+      backgroundImage: `url(${userTheme ? RectangleMap[userTheme] : Rectangle1})`,
       backgroundPosition: 'center',
       backgroundRepeat: 'no-repeat',
       backgroundSize: 'cover',
