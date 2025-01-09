@@ -11,10 +11,10 @@ import Rectangle3 from '../../assets/Rectangle-3.png';
 import Rectangle4 from '../../assets/Rectangle-4.png';
 import Rectangle5 from '../../assets/Rectangle-5.png';
 import { useSelector } from 'react-redux';
-import { selectLoader, selectUserID, selectUserTheme } from '../../redux/auth/selectorsAuth';
+import { selectLoader, selectUserTheme } from '../../redux/auth/selectorsAuth';
 import { useState } from 'react';
 import Loader from '../../components/Loader/Loader';
-import { colorDependence, iconDependence } from '../../options';
+import { colorDependence } from '../../options';
 
 const Avatar = {
   '#F4C550': Avatar1,
@@ -35,7 +35,6 @@ const RectangleMap = {
 export const HomeRegistration = () => {
   const [isHovered, setIsHovered] = useState(false);
   const navigate = useNavigate();
-  const userId = useSelector(selectUserID);
   const userTheme = useSelector(selectUserTheme);
   const loading = useSelector(selectLoader);
 
@@ -47,9 +46,6 @@ export const HomeRegistration = () => {
       background: userTheme || '#F4C550',
     },
     teacherProfile: {
-      // background: userTheme
-      //   ? `url('../../../public/Rectangle-${iconDependence[userTheme]}.png')`
-      //   : `url('../../../public/Rectangle-1.png')`,
       backgroundImage: `url(${userTheme ? RectangleMap[userTheme] : Rectangle1})`,
       backgroundPosition: 'center',
       backgroundRepeat: 'no-repeat',
