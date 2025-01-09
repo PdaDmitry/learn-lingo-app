@@ -35,8 +35,8 @@ export const HomeRegistration = () => {
     },
     teacherProfile: {
       background: userTheme
-        ? `url('../../../src/assets/Rectangle-${iconDependence[userTheme]}.png')`
-        : `url('../../../src/assets/Rectangle-1.png')`,
+        ? `url('../../../public/Rectangle-${iconDependence[userTheme]}.png')`
+        : `url('../../../public/Rectangle-1.png')`,
       backgroundPosition: 'center',
       backgroundRepeat: 'no-repeat',
       backgroundSize: 'cover',
