@@ -1,8 +1,11 @@
 import { useNavigate } from 'react-router-dom';
 import css from './Home.module.css';
+import { useSelector } from 'react-redux';
+import { selectUserID } from '../../redux/auth/selectorsAuth';
 
 export const Home = () => {
   const navigate = useNavigate();
+  const userId = useSelector(selectUserID);
 
   const handleButtonClick = () => {
     navigate('/teachers');
@@ -30,7 +33,6 @@ export const Home = () => {
           <use href="/symbol-defs-before-registration.svg#icon-image"></use>
         </svg>
       </div>
-      {/* <img src="../../../public/Rectangle-0.png" alt="Language learning" className={css.frame} /> */}
       <ul className={css.teacherProfile}>
         <li className={css.contUlLi}>
           <p className={css.numberPlus}>32,000 +</p>

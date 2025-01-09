@@ -6,10 +6,10 @@ import Avatar3 from '../../../public/block-3.jpg';
 import Avatar4 from '../../../public/block-4.jpg';
 import Avatar5 from '../../../public/block-5.jpg';
 import { useSelector } from 'react-redux';
-import { selectLoader, selectUserTheme } from '../../redux/auth/selectorsAuth';
+import { selectLoader, selectUserID, selectUserTheme } from '../../redux/auth/selectorsAuth';
 import { useState } from 'react';
 import Loader from '../../components/Loader/Loader';
-import { colorDependence } from '../../options';
+import { colorDependence, iconDependence } from '../../options';
 
 const Avatar = {
   '#F4C550': Avatar1,
@@ -22,6 +22,7 @@ const Avatar = {
 export const HomeRegistration = () => {
   const [isHovered, setIsHovered] = useState(false);
   const navigate = useNavigate();
+  const userId = useSelector(selectUserID);
   const userTheme = useSelector(selectUserTheme);
   const loading = useSelector(selectLoader);
 
@@ -33,10 +34,15 @@ export const HomeRegistration = () => {
       background: userTheme || '#F4C550',
     },
     teacherProfile: {
-      border: userTheme ? `2px dashed ${userTheme}` : `2px dashed #f4c550`,
+      background: userTheme
+        ? `url('../../../src/assets/Rectangle-${iconDependence[userTheme]}.png')`
+        : `url('../../../src/assets/Rectangle-1.png')`,
+      backgroundPosition: 'center',
+      backgroundRepeat: 'no-repeat',
+      backgroundSize: 'cover',
     },
   };
-
+  //${iconDependence.userTheme}
   const handleButtonClick = () => {
     navigate('/teachers');
   };

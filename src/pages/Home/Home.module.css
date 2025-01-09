@@ -78,20 +78,15 @@
   border-radius: 30px;
 }
 
-.frame {
-  min-width: 1312px;
-  max-width: 1312px;
-  height: 116px;
-}
-
 .teacherProfile {
   display: flex;
-  border: 2px dashed #8a8a89;
   border-radius: 30px;
   width: 1312px;
   height: 116px;
   padding: 40px 0 40px 123px;
   align-items: center;
+  background: url('../../../src/assets/Rectangle-0.png') no-repeat center center;
+  background-size: cover;
 }
 
 .teacherProfile li:not(:last-child) {
