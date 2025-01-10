@@ -52,7 +52,7 @@ export const HomeRegistration = () => {
       backgroundSize: 'cover',
     },
   };
-  //${iconDependence.userTheme}
+
   const handleButtonClick = () => {
     navigate('/teachers');
   };

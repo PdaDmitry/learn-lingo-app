@@ -7,9 +7,11 @@ import { TeacherReviews } from '../TeacherReviews/TeacherReviews';
 import css from './Teacher.module.css';
 import { selectUserID, selectUserTheme } from '../../redux/auth/selectorsAuth';
 import { toggleFavoriteTeacher } from '../../redux/teachers/operations';
-import toast from 'react-hot-toast';
+import ModalWindow from '../ModalWindow/ModalWindow';
+import { RestrictionForGuests } from '../RestrictionForGuests/RestrictionForGuests';
 
 export const Teacher = ({ id, filterLevel }) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const userId = useSelector(selectUserID);
   const [isOpenReviews, setIsOpenReviews] = useState(() => {
     if (!userId) return false;
@@ -21,6 +23,9 @@ export const Teacher = ({ id, filterLevel }) => {
   const userTheme = useSelector(selectUserTheme);
   const isFavorite = useSelector(selectFavoriteTeacherById(id));
   const dispatch = useDispatch();
+
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
 
   if (!teacher) {
     return <p>Teacher not found.</p>;
@@ -50,11 +55,7 @@ export const Teacher = ({ id, filterLevel }) => {
 
   const handleFavoriteClick = () => {
     if (userId === null) {
-      toast.error('This functionality is available only to authorized users!', {
-        duration: 4000,
-        position: 'top-center',
-        style: { background: 'orange', color: 'black' },
-      });
+      openModal();
     } else {
       dispatch(toggleFavoriteTeacher({ userId, teacher }));
     }
@@ -157,6 +158,10 @@ export const Teacher = ({ id, filterLevel }) => {
           </ul>
         )}
       </div>
+
+      <ModalWindow isOpen={isModalOpen} onClose={closeModal}>
+        <RestrictionForGuests closeModal={closeModal} />
+      </ModalWindow>
     </div>
   );
 };

@@ -1,11 +1,11 @@
 import { useNavigate } from 'react-router-dom';
 import css from './Home.module.css';
-import { useSelector } from 'react-redux';
-import { selectUserID } from '../../redux/auth/selectorsAuth';
+// import { useSelector } from 'react-redux';
+// import { selectUserID } from '../../redux/auth/selectorsAuth';
 
 export const Home = () => {
   const navigate = useNavigate();
-  const userId = useSelector(selectUserID);
+  // const userId = useSelector(selectUserID);
 
   const handleButtonClick = () => {
     navigate('/teachers');
