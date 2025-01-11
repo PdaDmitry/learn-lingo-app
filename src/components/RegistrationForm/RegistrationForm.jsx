@@ -9,9 +9,11 @@ import { LuEye } from 'react-icons/lu';
 import toast from 'react-hot-toast';
 import { registerUser } from '../../redux/auth/operationsAuth';
 import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 export const RegistrationForm = ({ closeModal }) => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
 
   const togglePasswordVisibility = () => {
@@ -36,6 +38,7 @@ export const RegistrationForm = ({ closeModal }) => {
         style: { background: 'green', color: 'white' },
       });
       closeModal();
+      navigate('/');
     } catch (error) {
       toast.error(`Email '${data.email}' is already in use`, {
         duration: 4000,
