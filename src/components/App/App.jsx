@@ -1,6 +1,4 @@
 import { Route, Routes } from 'react-router-dom';
-import { Header } from '../Header/Header';
-import { Home } from '../../pages/Home/Home';
 import { Teachers } from '../../pages/Teachers/Teachers';
 import { NotFound } from '../../pages/NotFound/NotFound';
 import { HomeRegistration } from '../../pages/HomeRegistration/HomeRegistration';
@@ -17,10 +15,10 @@ function App() {
 
   return (
     <div className={css.contApp}>
-      {isLoggedIn ? <HeaderRegistration /> : <Header />}
+      <HeaderRegistration />
       <Toaster />
       <Routes>
-        <Route path="/" element={isLoggedIn ? <HomeRegistration /> : <Home />} />
+        <Route path="/" element={<HomeRegistration />} />
         <Route path="/teachers" element={<Teachers />} />
         {isLoggedIn && <Route path="/favorites" element={<Favorites />} />}
         <Route path="*" element={<NotFound />} />

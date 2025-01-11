@@ -41,6 +41,10 @@
   margin-right: 28px;
 }
 
+.hidden {
+  visibility: hidden;
+}
+
 .link {
   color: #121417;
 }
@@ -71,6 +75,20 @@
   cursor: pointer;
 }
 
+.btnLogIn {
+  all: unset;
+  display: inline-flex;
+  width: 73px;
+  align-items: center;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 125%;
+  color: #8a8a89;
+  margin-right: 16px;
+  cursor: pointer;
+}
+
+.btnChangeTheme,
 .btnRegistration {
   font-weight: 700;
   font-size: 16px;
@@ -80,4 +98,13 @@
   height: 48px;
   border: none;
   cursor: pointer;
+}
+
+.btnRegistration {
+  color: #fff;
+  background: #8a8a89;
+}
+
+.btnRegistration:hover {
+  background: #acacaa;
 }

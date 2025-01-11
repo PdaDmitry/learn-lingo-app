@@ -5,13 +5,14 @@ import Avatar2 from '../../../public/block-2.jpg';
 import Avatar3 from '../../../public/block-3.jpg';
 import Avatar4 from '../../../public/block-4.jpg';
 import Avatar5 from '../../../public/block-5.jpg';
+import Rectangle0 from '../../assets/Rectangle-0.png';
 import Rectangle1 from '../../assets/Rectangle-1.png';
 import Rectangle2 from '../../assets/Rectangle-2.png';
 import Rectangle3 from '../../assets/Rectangle-3.png';
 import Rectangle4 from '../../assets/Rectangle-4.png';
 import Rectangle5 from '../../assets/Rectangle-5.png';
 import { useSelector } from 'react-redux';
-import { selectLoader, selectUserTheme } from '../../redux/auth/selectorsAuth';
+import { selectIsLoggedIn, selectLoader, selectUserTheme } from '../../redux/auth/selectorsAuth';
 import { useState } from 'react';
 import Loader from '../../components/Loader/Loader';
 import { colorDependence } from '../../options';
@@ -35,6 +36,7 @@ const RectangleMap = {
 export const HomeRegistration = () => {
   const [isHovered, setIsHovered] = useState(false);
   const navigate = useNavigate();
+  const isLoggedIn = useSelector(selectIsLoggedIn);
   const userTheme = useSelector(selectUserTheme);
   const loading = useSelector(selectLoader);
 
@@ -46,7 +48,10 @@ export const HomeRegistration = () => {
       background: userTheme || '#F4C550',
     },
     teacherProfile: {
-      backgroundImage: `url(${userTheme ? RectangleMap[userTheme] : Rectangle1})`,
+      backgroundImage: `url(${
+        isLoggedIn ? (userTheme ? RectangleMap[userTheme] : Rectangle1) : Rectangle0
+      })`,
+
       backgroundPosition: 'center',
       backgroundRepeat: 'no-repeat',
       backgroundSize: 'cover',
@@ -73,28 +78,44 @@ export const HomeRegistration = () => {
             Unlock your potential with the best <span className={css.textSpan}>language</span>{' '}
             tutors
           </h1>
-          <div className={css.backgroundSpan} style={dynamicStyles.dinamicBackground}></div>
+          {isLoggedIn ? (
+            <div className={css.backgroundSpan} style={dynamicStyles.dinamicBackground}></div>
+          ) : (
+            <div className={css.backgroundSpanNotLogIn}></div>
+          )}
           <p className={css.text}>
             Embark on an Exciting Language Journey with Expert Language Tutors: Elevate your
             language proficiency to new heights by connecting with highly qualified and experienced
             tutors.
           </p>
-          <button
-            type="button"
-            className={css.btnStarted}
-            onClick={handleButtonClick}
-            style={isHovered ? dynamicStyles.dinamicBackground : dynamicStyles.btnStarted}
-            onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={() => setIsHovered(false)}
-          >
-            Get started
-          </button>
+          {isLoggedIn ? (
+            <button
+              type="button"
+              className={css.btnStarted}
+              onClick={handleButtonClick}
+              style={isHovered ? dynamicStyles.dinamicBackground : dynamicStyles.btnStarted}
+              onMouseEnter={() => setIsHovered(true)}
+              onMouseLeave={() => setIsHovered(false)}
+            >
+              Get started
+            </button>
+          ) : (
+            <button type="button" className={css.btnStartedNotLogIn} onClick={handleButtonClick}>
+              Get started
+            </button>
+          )}
         </div>
-        <img
-          src={userTheme ? Avatar[userTheme] : Avatar['#F4C550']}
-          alt="Language learning"
-          className={css.imgSvg}
-        />
+        {isLoggedIn ? (
+          <img
+            src={userTheme ? Avatar[userTheme] : Avatar['#F4C550']}
+            alt="Language learning"
+            className={css.imgSvg}
+          />
+        ) : (
+          <svg className={css.imgSvg}>
+            <use href="/symbol-defs-before-registration.svg#icon-image"></use>
+          </svg>
+        )}
       </div>
 
       <ul className={css.teacherProfile} style={dynamicStyles.teacherProfile}>

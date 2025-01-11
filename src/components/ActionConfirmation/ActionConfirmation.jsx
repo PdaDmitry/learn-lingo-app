@@ -29,7 +29,10 @@ export const ActionConfirmation = ({ closeModal, logOut }) => {
         <button
           type="button"
           className={css.btnLogout}
-          onClick={logOut}
+          onClick={() => {
+            logOut();
+            closeModal();
+          }}
           style={isHovered ? dynamicStyles.dinamicBackground : dynamicStyles.btnTheme}
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
