@@ -115,6 +115,11 @@ The following libraries are used in this project:
 
 5. Open the app in your browser at http://localhost:3000.
 
+## Useful Links
+
+- [Figma Design Prototype](https://www.figma.com/design/dewf5jVviSTuWMMyU3d8Mc/Learn-Lingo?node-id=0-1&p=f&t=s17vDeIHO3WpkGF2-0)
+- [Technical Requirements](https://docs.google.com/document/d/1ZB_MFgnnJj7t7OXtv5hESSwY6xRgVoACZKzgZczWc3Y/edit?tab=t.0)
+
 ---
 
 Live Demo Access the live version at: https://vercel.com/dmitry-postupaievs-projects/learn-lingo-app
