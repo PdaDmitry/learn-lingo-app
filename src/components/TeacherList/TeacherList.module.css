@@ -1,8 +1,4 @@
-.containerList {
-  display: flex;
-  justify-content: center;
-}
-
+.containerList,
 .text {
-  text-align: center;
+  padding-left: 128px;
 }
