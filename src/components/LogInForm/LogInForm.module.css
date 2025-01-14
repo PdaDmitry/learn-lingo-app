@@ -5,6 +5,7 @@
   height: 505px;
   padding: 64px;
   background: #fff;
+  user-select: none;
 }
 
 .closeButton {

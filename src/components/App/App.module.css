@@ -1,3 +1,6 @@
 .contApp {
-    user-select: none;
+  user-select: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }

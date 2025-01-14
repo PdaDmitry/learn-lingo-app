@@ -42,6 +42,7 @@ export const customStyles = {
     border: 'none',
     outline: 'none',
     boxShadow: 'none',
+    cursor: 'pointer',
     ':focus': {
       border: 'none',
       outline: 'none',

@@ -4,6 +4,7 @@
   width: 565px;
   padding: 64px;
   background: #fff;
+  user-select: none;
 }
 
 .closeButton {

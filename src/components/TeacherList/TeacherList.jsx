@@ -27,7 +27,7 @@ export const TeacherList = ({ page, filterLevel }) => {
     if (lastTeacherRef.current) {
       lastTeacherRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
-    window.scrollBy({ top: 202, behavior: 'smooth' });
+    // window.scrollBy({ top: 202, behavior: 'smooth' });
   }, [displayedTeachers]);
 
   if (teachers.length === 0) {
