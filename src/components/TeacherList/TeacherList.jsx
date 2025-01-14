@@ -27,15 +27,14 @@ export const TeacherList = ({ page, filterLevel }) => {
     if (lastTeacherRef.current) {
       lastTeacherRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
-    // window.scrollBy({ top: 202, behavior: 'smooth' });
   }, [displayedTeachers]);
 
   if (teachers.length === 0) {
-    return <p>No teachers available</p>;
+    return <p className={css.text}>No teachers available</p>;
   }
 
   return (
-    <div ref={containerRef} className={css.scrollableContainer}>
+    <div ref={containerRef} className={css.containerList}>
       <ul className={css.listTeachers}>
         {displayedTeachers.map((teacher, index) => (
           <li key={teacher.id} ref={index === displayedTeachers.length - 4 ? lastTeacherRef : null}>

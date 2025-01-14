@@ -1,6 +1,7 @@
 .btnLoad {
   display: block;
-  margin-left: 500px;
+  margin-left: auto;
+  margin-right: auto;
   border-radius: 12px;
   width: 183px;
   height: 60px;

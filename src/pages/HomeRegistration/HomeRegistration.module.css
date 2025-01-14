@@ -4,6 +4,7 @@
 
 .homeImg {
   display: flex;
+  justify-content: center;
   gap: 24px;
   margin-bottom: 24px;
 }
@@ -88,6 +89,8 @@
 
 .teacherProfile {
   display: flex;
+
+  margin: 0 auto;
   border-radius: 30px;
   width: 1312px;
   height: 116px;
